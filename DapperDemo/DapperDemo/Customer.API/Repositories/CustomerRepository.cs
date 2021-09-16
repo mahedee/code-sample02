@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.API.Repositories
 {
-    public class CustomerRepository : BaseRepository, ICustomerRepository
+    public class CustomerRepository : DbConnector, ICustomerRepository
     {
         public CustomerRepository(IConfiguration configuration)
             : base(configuration)

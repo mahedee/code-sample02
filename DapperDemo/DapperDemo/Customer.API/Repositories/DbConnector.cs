@@ -4,11 +4,11 @@ using System.Data;
 
 namespace Ordering.API.Repositories
 {
-    public class BaseRepository
+    public class DbConnector
     {
         private readonly IConfiguration _configuration;
 
-        protected BaseRepository(IConfiguration configuration)
+        protected DbConnector(IConfiguration configuration)
         {
             _configuration = configuration;
         }
