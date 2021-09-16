@@ -1,12 +1,8 @@
 ﻿using MediatR;
 using Ordering.Application.Queries;
 using Ordering.Core.Entities;
-using Ordering.Core.Repositories;
 using Ordering.Core.Repositories.Query;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
