@@ -39,7 +39,7 @@ namespace Ordering.API.Controllers
 
         [HttpGet("email")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<Customer> GetByString(string email)
+        public async Task<Customer> GetByEmail(string email)
         {
             return await _mediator.Send(new GetCustomerByEmailQuery(email));
         }
