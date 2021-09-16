@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Ordering.Core.Repositories.Base;
+using Ordering.Core.Repositories.Command.Base;
 using Ordering.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
@@ -7,29 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ordering.Infrastructure.Repository.Base
+namespace Ordering.Infrastructure.Repository.Command.Base
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class CommandRepository<T> : ICommandRepository<T> where T : class
     {
         protected readonly OrderingContext _context;
 
-        public Repository(OrderingContext context)
+        public CommandRepository(OrderingContext context)
         {
             _context = context;
         }
-
-        public async Task<IReadOnlyList<T>> GetAllAsync()
-        {
-            return await _context.Set<T>().ToListAsync();
-        }
-
-
-        public async Task<T> GetByIdAsync(Int64 id)
-        {
-            return await _context.Set<T>().FindAsync(id);
-        }
-
-
         public async Task<T> AddAsync(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
@@ -48,6 +35,5 @@ namespace Ordering.Infrastructure.Repository.Base
             _context.Set<T>().Remove(entity);
             await _context.SaveChangesAsync();
         }
-
     }
 }

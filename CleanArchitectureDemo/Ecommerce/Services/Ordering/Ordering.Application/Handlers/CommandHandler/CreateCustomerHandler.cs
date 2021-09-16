@@ -4,6 +4,7 @@ using Ordering.Application.Mapper;
 using Ordering.Application.Response;
 using Ordering.Core.Entities;
 using Ordering.Core.Repositories;
+using Ordering.Core.Repositories.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,10 @@ namespace Ordering.Application.Handlers.CommandHandler
 {
     public class CreateCustomerHandler : IRequestHandler<CreateCustomerCommand, CustomerResponse>
     {
-        private readonly ICustomerRepository _customerRepository;
-        public CreateCustomerHandler(ICustomerRepository customerRepository)
+        private readonly Core.Repositories.Command.ICustomerCommandRepository _customerCommandRepository;
+        public CreateCustomerHandler(Core.Repositories.Command.ICustomerCommandRepository customerCommandRepository)
         {
-            _customerRepository = customerRepository;
+            _customerCommandRepository = customerCommandRepository;
         }
         public async Task<CustomerResponse> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
@@ -29,7 +30,7 @@ namespace Ordering.Application.Handlers.CommandHandler
                 throw new ApplicationException("There is a problem in mapper");
             }
 
-            var newCustomer = await _customerRepository.AddAsync(customerEntity);
+            var newCustomer = await _customerCommandRepository.AddAsync(customerEntity);
             var customerResponse = CustomerMapper.Mapper.Map<CustomerResponse>(newCustomer);
             return customerResponse;
         }
