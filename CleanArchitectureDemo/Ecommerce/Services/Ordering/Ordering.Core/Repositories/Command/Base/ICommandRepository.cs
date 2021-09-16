@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ordering.Core.Repositories.Base
+namespace Ordering.Core.Repositories.Command.Base
 {
-    public interface IRepository<T> where T : class
+    public interface ICommandRepository<T> where T : class
     {
-        Task<IReadOnlyList<T>> GetAllAsync();
-        Task<T> GetByIdAsync(Int64 id);
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);

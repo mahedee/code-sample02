@@ -5,6 +5,8 @@ using Ordering.Application.Queries;
 using Ordering.Application.Response;
 using Ordering.Core.Entities;
 using Ordering.Core.Repositories;
+using Ordering.Core.Repositories.Command;
+using Ordering.Core.Repositories.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,19 +18,21 @@ namespace Ordering.Application.Handlers.CommandHandler
 {
     public class DeleteCustomerHandler : IRequestHandler<DeleteCustomerCommand, String>
     {
-        private readonly ICustomerRepository _customerRepository;
-        public DeleteCustomerHandler(ICustomerRepository customerRepository)
+        private readonly ICustomerCommandRepository _customerCommandRepository;
+        private readonly ICustomerQueryRepository _customerQueryRepository;
+        public DeleteCustomerHandler(ICustomerCommandRepository customerRepository, ICustomerQueryRepository customerQueryRepository)
         {
-            _customerRepository = customerRepository;
+            _customerCommandRepository = customerRepository;
+            _customerQueryRepository = customerQueryRepository;
         }
 
         public async Task<string> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var customerEntity = await _customerRepository.GetByIdAsync(request.Id);
+                var customerEntity = await _customerQueryRepository.GetByIdAsync(request.Id);
 
-                await _customerRepository.DeleteAsync(customerEntity);
+                await _customerCommandRepository.DeleteAsync(customerEntity);
             }
             catch(Exception exp)
             {

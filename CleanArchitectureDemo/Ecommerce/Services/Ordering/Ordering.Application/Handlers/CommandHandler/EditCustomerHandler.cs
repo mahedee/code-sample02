@@ -5,6 +5,8 @@ using Ordering.Application.Queries;
 using Ordering.Application.Response;
 using Ordering.Core.Entities;
 using Ordering.Core.Repositories;
+using Ordering.Core.Repositories.Command;
+using Ordering.Core.Repositories.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +18,14 @@ namespace Ordering.Application.Handlers.CommandHandler
 {
     public class EditCustomerHandler : IRequestHandler<EditCustomerCommand, CustomerResponse>
     {
-        private readonly ICustomerRepository _customerRepository;
-        private readonly IMediator _mediator;
-        public EditCustomerHandler(ICustomerRepository customerRepository, IMediator mediator)
+        private readonly ICustomerCommandRepository _customerCommandRepository;
+        private readonly ICustomerQueryRepository _customerQueryRepository;
+        //private readonly IMediator _mediator;
+        public EditCustomerHandler(ICustomerCommandRepository customerRepository, ICustomerQueryRepository customerQueryRepository)
         {
-            _customerRepository = customerRepository;
-            _mediator = mediator;
+            _customerCommandRepository = customerRepository;
+            _customerQueryRepository = customerQueryRepository;
+            //_mediator = mediator;
         }
         public async Task<CustomerResponse> Handle(EditCustomerCommand request, CancellationToken cancellationToken)
         {
@@ -34,14 +38,14 @@ namespace Ordering.Application.Handlers.CommandHandler
 
             try
             {
-                await _customerRepository.UpdateAsync(customerEntity);
+                await _customerCommandRepository.UpdateAsync(customerEntity);
             }
             catch (Exception exp)
             {
                 throw new ApplicationException(exp.Message);
             }
 
-            var modifiedCustomer = await _customerRepository.GetByIdAsync(request.Id);
+            var modifiedCustomer = await _customerQueryRepository.GetByIdAsync(request.Id);
             var customerResponse = CustomerMapper.Mapper.Map<CustomerResponse>(modifiedCustomer);
 
             return customerResponse;

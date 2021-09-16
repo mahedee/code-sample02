@@ -1,25 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Ordering.Application.Handlers.CommandHandler;
-using Ordering.Core.Repositories;
-using Ordering.Core.Repositories.Base;
+using Ordering.Core.Repositories.Command.Base;
+using Ordering.Core.Repositories.Query;
+using Ordering.Core.Repositories.Query.Base;
 using Ordering.Infrastructure.Data;
-using Ordering.Infrastructure.Repository;
-using Ordering.Infrastructure.Repository.Base;
-using Microsoft.EntityFrameworkCore;
+using Ordering.Infrastructure.Repository.Command;
+using Ordering.Infrastructure.Repository.Command.Base;
+using Ordering.Infrastructure.Repository.Query;
+using Ordering.Infrastructure.Repository.Query.Base;
+using System.Reflection;
 
 namespace Ordering.API
 {
@@ -64,8 +60,15 @@ namespace Ordering.API
             // Register dependencies
             services.AddAutoMapper(typeof(Startup));
             services.AddMediatR(typeof(CreateCustomerHandler).GetTypeInfo().Assembly);
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            //services.AddTransient<Core.Repositories.ICustomerCommandRepository, CustomerRepository>();
+
+            // New added for CQRS
+            services.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
+            services.AddTransient<ICustomerQueryRepository, CustomerQueryRepository>();
+            services.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
+            services.AddTransient<Core.Repositories.Command.ICustomerCommandRepository, CustomerCommandRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

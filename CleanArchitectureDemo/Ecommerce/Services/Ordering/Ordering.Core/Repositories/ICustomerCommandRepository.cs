@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Core.Repositories
 {
-    public interface ICustomerRepository : IRepository<Customer>
+    public interface ICustomerCommandRepository : IRepository<Customer>
     {
         //Custom operation which is not generic
         Task<IEnumerable<Customer>> GetCustomerByEmail(string email);
