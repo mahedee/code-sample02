@@ -2,9 +2,8 @@
 
 namespace Ordering.API.Entities
 {
-    public class Customer
+    public class Customer : BaseEntity
     {
-        public Int64 Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

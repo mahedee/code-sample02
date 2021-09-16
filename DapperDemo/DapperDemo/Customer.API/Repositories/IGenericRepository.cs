@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.API.Repositories
 {
-    public interface IRepository<T>
+    public interface IGenericRepository<T>
     {
         Task<List<T>> GetAllAsync();
         Task<T> GetByIdAsync(Int64 id);

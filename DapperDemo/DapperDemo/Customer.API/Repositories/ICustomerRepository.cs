@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.API.Repositories
 {
-    public interface ICustomerRepository : IRepository<Customer>
+    public interface ICustomerRepository : IGenericRepository<Customer>
     {
         Task<List<Customer>> GetAllByEmailId(string email);
     }
