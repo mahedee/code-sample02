@@ -35,22 +35,8 @@ namespace Ordering.API
 
             services.AddControllers();
 
-            services.AddDbContext<OrderingContext>(options => options.UseSqlite("Data Source = Db/Ordering.db"));
-
-            // Configure sql server
-            //services.AddDbContext<OrderingContext>(p => p.UseSqlServer(Configuration.GetConnectionString("OrderingDB")), ServiceLifetime.Singleton);
-            // For SQLServer Connection
-
-            //services.AddDbContext<OrderingContext>(options =>
-            //{
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("OrderingDB"),
-            //        sqlServerOptionsAction: sqlOptions =>
-            //        {
-            //            sqlOptions.MigrationsAssembly(typeof(OrderingContext).GetTypeInfo().Assembly.GetName().Name);
-            //            sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
-            //        });
-            //});
+            // Configure for Sqlite
+            services.AddDbContext<OrderingContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSwaggerGen(c =>
             {
@@ -60,10 +46,6 @@ namespace Ordering.API
             // Register dependencies
             services.AddAutoMapper(typeof(Startup));
             services.AddMediatR(typeof(CreateCustomerHandler).GetTypeInfo().Assembly);
-            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            //services.AddTransient<Core.Repositories.ICustomerCommandRepository, CustomerRepository>();
-
-            // New added for CQRS
             services.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
             services.AddTransient<ICustomerQueryRepository, CustomerQueryRepository>();
             services.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));

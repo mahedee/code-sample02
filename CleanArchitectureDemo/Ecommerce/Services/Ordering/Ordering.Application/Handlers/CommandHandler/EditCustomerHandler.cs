@@ -1,16 +1,11 @@
 ﻿using MediatR;
 using Ordering.Application.Commands;
 using Ordering.Application.Mapper;
-using Ordering.Application.Queries;
 using Ordering.Application.Response;
 using Ordering.Core.Entities;
-using Ordering.Core.Repositories;
 using Ordering.Core.Repositories.Command;
 using Ordering.Core.Repositories.Query;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -20,12 +15,10 @@ namespace Ordering.Application.Handlers.CommandHandler
     {
         private readonly ICustomerCommandRepository _customerCommandRepository;
         private readonly ICustomerQueryRepository _customerQueryRepository;
-        //private readonly IMediator _mediator;
         public EditCustomerHandler(ICustomerCommandRepository customerRepository, ICustomerQueryRepository customerQueryRepository)
         {
             _customerCommandRepository = customerRepository;
             _customerQueryRepository = customerQueryRepository;
-            //_mediator = mediator;
         }
         public async Task<CustomerResponse> Handle(EditCustomerCommand request, CancellationToken cancellationToken)
         {

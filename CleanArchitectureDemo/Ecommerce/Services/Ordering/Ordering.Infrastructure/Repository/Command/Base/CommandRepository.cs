@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ordering.Core.Repositories.Command.Base;
 using Ordering.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Ordering.Infrastructure.Repository.Command.Base
