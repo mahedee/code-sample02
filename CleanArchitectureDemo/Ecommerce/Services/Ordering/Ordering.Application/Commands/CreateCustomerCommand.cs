@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Ordering.Application.Response;
+using System;
 
 namespace Ordering.Application.Commands
 {
@@ -10,5 +11,11 @@ namespace Ordering.Application.Commands
         public string Email { get; set; }
         public string ContactNumber { get; set; }
         public string Address { get; set; }
+        public DateTime CreatedDate { get; set; }
+
+        public CreateCustomerCommand()
+        {
+            this.CreatedDate = DateTime.Now;
+        }
     }
 }
