@@ -1,7 +1,4 @@
 ﻿using Ordering.Core.Entities.Base;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ordering.Core.Entities
 {
