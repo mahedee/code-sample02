@@ -8,8 +8,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Plain.RabbitMQ;
 using RabbitMQ.Client;
-using Shared;
-using System;
 
 namespace Catalog.API
 {
@@ -48,35 +46,6 @@ namespace Catalog.API
                 ));
 
             services.AddHostedService<OrderCreatedListener>();
-
-            //services.AddMassTransit(config => {
-            //    config.AddConsumer<OrderConsumer>();
-
-            //    config.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
-            //    {
-            //        cfg.Host(new Uri(Settings.RabbitMqRootUri), h =>
-            //        {
-            //            h.Username(Settings.RabbitMqUserName);
-            //            h.Password(Settings.RabbitMqPassword);
-            //        });
-            //        cfg.ReceiveEndpoint("order-queue", ep =>
-            //        {
-            //            ep.PrefetchCount = 16;
-            //            ep.UseMessageRetry(r => r.Interval(2, 100));
-            //            ep.ConfigureConsumer<OrderConsumer>(provider);
-            //        });
-            //    }));
-
-            //    //config.UsingRabbitMq((ctx, cfg) =>
-            //    //{
-            //    //    cfg.Host("amqp://guest:guest@localhost:5672");
-            //    //    cfg.ReceiveEndpoint("order-queue", c => {
-            //    //        c.ConfigureConsumer<OrderConsumer>(ctx);
-            //    //    });
-            //    //});
-            //});
-
-            //services.AddMassTransitHostedService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -6,7 +6,6 @@ using Ordering.API.Models;
 using Plain.RabbitMQ;
 using Shared.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Ordering.API.Controllers
@@ -45,48 +44,7 @@ namespace Ordering.API.Controllers
             return orderItem;
         }
 
-        //// PUT: api/OrderItems/5
-        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutOrderItem(int id, OrderItem orderItem)
-        //{
-        //    if (id != orderItem.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(orderItem).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!OrderItemExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
-
-        // POST api/<OrderController>
-        //[HttpPost]
-        //public async Task<ActionResult> Post([FromBody] Order order)
-        //{
-        //    await _publishEndpoint.Publish<Order>(order);
-        //    return Ok();
-        //}
-
-
-
+        
         // POST: api/OrderItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -109,27 +67,5 @@ namespace Ordering.API.Controllers
             "order_created_routingkey", // Routing key
             null);
         }
-
-
-        //// DELETE: api/OrderItems/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteOrderItem(int id)
-        //{
-        //    var orderItem = await _context.OrderItems.FindAsync(id);
-        //    if (orderItem == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.OrderItems.Remove(orderItem);
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
-
-        //private bool OrderItemExists(int id)
-        //{
-        //    return _context.OrderItems.Any(e => e.Id == id);
-        //}
     }
 }
