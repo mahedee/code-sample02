@@ -4,6 +4,7 @@ using System;
 
 namespace Ordering.Application.Commands
 {
+    // Customer create command with CustomerResponse
     public class EditCustomerCommand : IRequest<CustomerResponse>
     {
 

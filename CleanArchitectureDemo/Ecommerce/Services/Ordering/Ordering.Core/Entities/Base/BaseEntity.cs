@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ordering.Core.Entities.Base
 {
+    // Base entity or auditable entity
     public class BaseEntity
     {
         [Key]

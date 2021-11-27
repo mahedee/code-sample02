@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Application.Handlers.CommandHandler
 {
+    // Customer edit command handler with customer response as output
     public class EditCustomerHandler : IRequestHandler<EditCustomerCommand, CustomerResponse>
     {
         private readonly ICustomerCommandRepository _customerCommandRepository;

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Application.Handlers.CommandHandler
 {
+    // Customer create command handler with CustomerResponse as output
     public class CreateCustomerHandler : IRequestHandler<CreateCustomerCommand, CustomerResponse>
     {
         private readonly ICustomerCommandRepository _customerCommandRepository;

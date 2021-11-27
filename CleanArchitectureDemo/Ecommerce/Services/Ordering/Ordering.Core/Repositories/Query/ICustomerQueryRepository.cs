@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Core.Repositories.Query
 {
+    // Interface for CustomerQueryRepository
     public interface ICustomerQueryRepository : IQueryRepository<Customer>
     {
         //Custom operation which is not generic

@@ -2,6 +2,7 @@
 
 namespace Ordering.Core.Entities
 {
+    // Customer entity 
     public class Customer : BaseEntity
     {
         public string FirstName { get; set; }

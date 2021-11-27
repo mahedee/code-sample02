@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Application.Handlers.CommandHandler
 {
+    // Customer delete command handler with string response as output
     public class DeleteCustomerHandler : IRequestHandler<DeleteCustomerCommand, String>
     {
         private readonly ICustomerCommandRepository _customerCommandRepository;
