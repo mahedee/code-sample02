@@ -4,6 +4,7 @@ using Ordering.Infrastructure.Data;
 
 namespace Ordering.Infrastructure.Repository.Query.Base
 {
+    // Generic Query repository class
     public class QueryRepository<T> : DbConnector,  IQueryRepository<T> where T : class
     {
         public QueryRepository(IConfiguration configuration)

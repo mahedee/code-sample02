@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Application.Handlers.QueryHandlers
 {
+    // Get all customer query handler with List<Customer> response as output
     public class GetAllCustomerHandler : IRequestHandler<GetAllCustomerQuery, List<Customer>>
     {
         private readonly ICustomerQueryRepository _customerQueryRepository;

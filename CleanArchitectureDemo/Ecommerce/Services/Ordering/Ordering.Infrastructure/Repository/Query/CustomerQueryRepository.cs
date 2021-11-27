@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Infrastructure.Repository.Query
 {
+    // QueryRepository class for customer
     public class CustomerQueryRepository : QueryRepository<Customer>, ICustomerQueryRepository
     {
         public CustomerQueryRepository(IConfiguration configuration) 

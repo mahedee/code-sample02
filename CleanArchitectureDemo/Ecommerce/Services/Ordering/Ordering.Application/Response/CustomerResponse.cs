@@ -2,6 +2,7 @@
 
 namespace Ordering.Application.Response
 {
+    // Customer response or DTO class
     public class CustomerResponse
     {
         public Int64 Id { get; set; }

@@ -4,6 +4,7 @@ using System.Data;
 
 namespace Ordering.Infrastructure.Data
 {
+    // Connection Class for Query
     public class DbConnector
     {
         private readonly IConfiguration _configuration;

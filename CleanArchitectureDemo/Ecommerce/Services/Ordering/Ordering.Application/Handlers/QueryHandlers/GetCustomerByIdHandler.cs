@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Application.Handlers.QueryHandlers
 {
+    // Get specific query handler with Customer response as output
     public class GetCustomerByIdHandler : IRequestHandler<GetCustomerByIdQuery, Customer>
     {
         private readonly IMediator _mediator;
