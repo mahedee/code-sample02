@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Ordering.Application.Commands;
+using Ordering.Application.DTOs;
 using Ordering.Application.Queries;
-using Ordering.Application.Response;
 using Ordering.Core.Entities;
 using System;
 using System.Collections.Generic;

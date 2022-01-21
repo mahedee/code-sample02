@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Ordering.Application.Response;
+using Ordering.Application.DTOs;
 using System;
 
 namespace Ordering.Application.Commands
