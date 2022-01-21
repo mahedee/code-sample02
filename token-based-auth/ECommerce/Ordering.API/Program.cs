@@ -1,5 +1,9 @@
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Ordering.Application.Common.Interfaces;
+using Ordering.Application.Common.Security;
 using Ordering.Application.Handlers.CommandHandler;
 using Ordering.Core.Repositories.Command;
 using Ordering.Core.Repositories.Command.Base;
@@ -11,6 +15,7 @@ using Ordering.Infrastructure.Repository.Command.Base;
 using Ordering.Infrastructure.Repository.Query;
 using Ordering.Infrastructure.Repository.Query.Base;
 using System.Reflection;
+using System.Text;
 //using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +23,35 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+// For authentication
+var key = "this is a secret key";
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = "jwt",
+        ValidIssuer = "jwt",
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+        //ValidateIssuerSigningKey = true,
+        //ValidateIssuer = false,
+        //ValidateAudience = false,
+        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key))
+    };
+});
+
+// Dependency injection with key
+builder.Services.AddSingleton<ITokenGenerator>(new TokenGenerator(key));
+
 
 
 // Configuration for Sqlite
