@@ -21,7 +21,7 @@ namespace Ordering.API.Controllers
 
         [HttpPost]
         [ProducesDefaultResponseType(typeof(AuthResponseDTO))]
-        public async Task<IActionResult> Signin([FromBody] AuthCommand command)
+        public async Task<IActionResult> Login([FromBody] AuthCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
