@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Ordering.Application.Commands;
-using Ordering.Application.Response;
+using Ordering.Application.DTOs;
 using Ordering.Core.Entities;
 
 namespace Ordering.Application.Mapper
