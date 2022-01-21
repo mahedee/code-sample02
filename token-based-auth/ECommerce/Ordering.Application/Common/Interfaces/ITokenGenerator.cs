@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ordering.Application.Common.Interfaces
+{
+    public interface ITokenGenerator
+    {
+        public string GenerateToken(string userName, string password);
+    }
+}
