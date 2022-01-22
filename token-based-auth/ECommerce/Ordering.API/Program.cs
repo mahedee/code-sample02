@@ -1,20 +1,24 @@
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Ordering.Application.Common.Interfaces;
 using Ordering.Application.Common.Security;
 using Ordering.Application.Handlers.CommandHandler;
+using Ordering.Application.Handlers.CommandHandler.User.Create;
 using Ordering.Core.Repositories.Command;
 using Ordering.Core.Repositories.Command.Base;
 using Ordering.Core.Repositories.Query;
 using Ordering.Core.Repositories.Query.Base;
 using Ordering.Infrastructure.Data;
+using Ordering.Infrastructure.Identity;
 using Ordering.Infrastructure.Repository.Command;
 using Ordering.Infrastructure.Repository.Command.Base;
 using Ordering.Infrastructure.Repository.Query;
 using Ordering.Infrastructure.Repository.Query.Base;
+using Ordering.Infrastructure.Services;
 using System.Reflection;
 using System.Text;
 //using System.Configuration;
@@ -60,10 +64,17 @@ builder.Services.AddDbContext<OrderingContext>(options => options.UseSqlite(buil
 
 // Register dependencies
 builder.Services.AddMediatR(typeof(CreateCustomerHandler).GetTypeInfo().Assembly);
+builder.Services.AddMediatR(typeof(UserCreateCommandHandler).GetTypeInfo().Assembly);
+
 builder.Services.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
 builder.Services.AddTransient<ICustomerQueryRepository, CustomerQueryRepository>();
 builder.Services.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
 builder.Services.AddTransient<ICustomerCommandRepository, CustomerCommandRepository>();
+builder.Services.AddScoped<IIdentityService, IdentityService>();
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<OrderingContext>()
+    .AddDefaultTokenProviders();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
