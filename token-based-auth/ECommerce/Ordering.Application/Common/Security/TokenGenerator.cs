@@ -45,10 +45,10 @@ namespace Ordering.Application.Common.Security
 
 
             var token = new JwtSecurityToken(
-                issuer: "jwt",
-                audience: "jwt",
+                issuer: _issuer,
+                audience: _audience,
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(60),
+                expires: DateTime.Now.AddMinutes(Convert.ToDouble(_expiryMinutes)),
                 signingCredentials: signingCredentials
            );
 
