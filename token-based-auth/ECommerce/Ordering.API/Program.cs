@@ -31,7 +31,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // For authentication
-var key = "this is a secret key";
+var _key = builder.Configuration["Jwt:Key"];
+var _issuer = builder.Configuration["Jwt:Issuer"];
+var _audience = builder.Configuration["Jwt:Audience"];
+var _expirtyMinutes = builder.Configuration["Jwt:ExpiryMinutes"];
+
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -47,7 +51,7 @@ builder.Services.AddAuthentication(x =>
         ValidateAudience = true,
         ValidAudience = "jwt",
         ValidIssuer = "jwt",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key))
         //ValidateIssuerSigningKey = true,
         //ValidateIssuer = false,
         //ValidateAudience = false,
@@ -56,7 +60,8 @@ builder.Services.AddAuthentication(x =>
 });
 
 // Dependency injection with key
-builder.Services.AddSingleton<ITokenGenerator>(new TokenGenerator(key));
+builder.Services.AddSingleton<ITokenGenerator>(new TokenGenerator(_key, _issuer, _audience, _expirtyMinutes));
+//builder.Services.AddSingleton<ITokenGenerator>(new TokenGenerator(_key));
 
 // Include Infrastructur Dependency
 builder.Services.AddInfrastructure(builder.Configuration);
