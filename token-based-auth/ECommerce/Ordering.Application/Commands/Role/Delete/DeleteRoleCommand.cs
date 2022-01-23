@@ -21,9 +21,10 @@ namespace Ordering.Application.Commands.Role.Delete
         {
             _identityService = identityService;
         }
-        public Task<int> Handle(DeleteRoleCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteRoleCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result = await _identityService.DeleteRoleAsync(request.RoleId);
+            return result ? 1 : 0;
         }
     }
 }
