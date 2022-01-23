@@ -19,7 +19,7 @@ namespace Ordering.API.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("Login")]
         [ProducesDefaultResponseType(typeof(AuthResponseDTO))]
         public async Task<IActionResult> Login([FromBody] AuthCommand command)
         {
