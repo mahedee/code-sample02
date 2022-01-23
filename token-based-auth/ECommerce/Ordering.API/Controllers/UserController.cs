@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Ordering.Application.Commands.User.Create;
+using Ordering.Application.DTOs;
+using Ordering.Application.Queries.User;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,6 +24,13 @@ namespace Ordering.API.Controllers
         public async Task<IActionResult> CreateUser(UserCreateCommand command)
         {
             return Ok(await _mediator.Send(command));
+        }
+
+        [HttpGet]
+        [ProducesDefaultResponseType(typeof(List<UserResponseDTO>))]
+        public async Task<IActionResult> GetAllUserAsync()
+        {
+            return Ok(await _mediator.Send(new GetUserQuery()));
         }
     }
 }
