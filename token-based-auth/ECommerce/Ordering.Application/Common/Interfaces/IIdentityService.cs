@@ -13,8 +13,21 @@ namespace Ordering.Application.Common.Interfaces
         Task<bool> SigninUserAsync(string userName, string password);
         Task<string> GetUserIdAsync(string userName);
         Task<(string userId, string UserName, IList<string> roles)> GetUserDetailsAsync(string userId);
+        Task<string> GetUserNameAsync(string userId);
+        Task<bool> DeleteUserAsync(string userId);
+        Task<bool> IsUniqueUserName(string userName);
+        Task<List<(string id, string userName, string email)>> GetAllUsersAsync();
 
         // Role Section
         Task<bool> CreateRoleAsync(string roleName);
+        Task<bool> DeleteRoleAsync(string roleId);
+        Task<List<(string id, string roleName)>> GetRolesAsync();
+
+        // User's Role section
+        Task<bool> IsInRoleAsync(string userId, string role);
+        Task<List<string>> GetUserRolesAsync(string userId);
+        Task<bool> AssignUserToRole(string userName, IList<string> roles);
+
+
     }
 }
