@@ -123,6 +123,11 @@ namespace Ordering.Infrastructure.Services
         public Task<List<(string id, string userName, string email, IList<string> roles)>> GetAllUsersDetailsAsync()
         {
             throw new NotImplementedException();
+
+            //var roles = await _userManager.GetRolesAsync(user);
+            //return (user.Id, user.UserName, user.Email, roles);
+
+            //var users = _userManager.Users.ToListAsync();
         }
 
         //public async Task<List<(string id, string userName, string email, IList<string> roles)>> GetAllUsersDetailsAsync()
