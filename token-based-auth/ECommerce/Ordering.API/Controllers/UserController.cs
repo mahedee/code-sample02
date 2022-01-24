@@ -21,14 +21,14 @@ namespace Ordering.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         [ProducesDefaultResponseType(typeof(int))]
-        public async Task<IActionResult> CreateUser(UserCreateCommand command)
+        public async Task<IActionResult> CreateUser(CreateUserCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         [ProducesDefaultResponseType(typeof(List<UserResponseDTO>))]
         public async Task<IActionResult> GetAllUserAsync()
         {

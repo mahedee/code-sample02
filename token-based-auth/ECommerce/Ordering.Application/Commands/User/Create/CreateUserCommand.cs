@@ -2,7 +2,7 @@
 
 namespace Ordering.Application.Commands.User.Create
 {
-    public class UserCreateCommand : IRequest<int>
+    public class CreateUserCommand : IRequest<int>
     {
         public string UserName { get; set; }
         public string Email { get; set; }
