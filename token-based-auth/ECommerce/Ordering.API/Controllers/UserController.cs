@@ -60,6 +60,14 @@ namespace Ordering.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("GetAllUserDetails")]
+        [ProducesDefaultResponseType(typeof(UserDetailsResponseDTO))]
+        public async Task<IActionResult> GetAllUserDetails()
+        {
+            var result = await _mediator.Send(new GetAllUsersDetailsQuery());
+            return Ok(result);
+        }
+
 
     }
 }

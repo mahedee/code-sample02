@@ -33,7 +33,7 @@ namespace Ordering.Application.Queries.User
                 Id = x.id,
                 Email = x.email,
                 UserName = x.userName,
-                Roles = (IList<string>)_identityService.GetUserRolesAsync(x.id)
+                Roles = (IList<string>)_identityService.GetUserRolesAsync(x.id) // Converstion problem
             }).ToList();
 
 
