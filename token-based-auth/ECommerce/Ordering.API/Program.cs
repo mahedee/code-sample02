@@ -73,7 +73,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 // Register dependencies
 builder.Services.AddMediatR(typeof(CreateCustomerHandler).GetTypeInfo().Assembly);
-builder.Services.AddMediatR(typeof(UserCreateCommandHandler).GetTypeInfo().Assembly);
+builder.Services.AddMediatR(typeof(CreateUserCommandHandler).GetTypeInfo().Assembly);
 
 //builder.Services.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
 //builder.Services.AddTransient<ICustomerQueryRepository, CustomerQueryRepository>();
