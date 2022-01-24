@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Ordering.Application.Commands.User.Create;
+using Ordering.Application.Commands.User.Delete;
 using Ordering.Application.DTOs;
 using Ordering.Application.Queries.User;
 
@@ -31,6 +32,14 @@ namespace Ordering.API.Controllers
         public async Task<IActionResult> GetAllUserAsync()
         {
             return Ok(await _mediator.Send(new GetUserQuery()));
+        }
+
+        [HttpDelete("{userId}")]
+        [ProducesDefaultResponseType(typeof(int))]
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            var result = await _mediator.Send(new DeleteUserCommand() { Id = userId});
+            return Ok(result);
         }
     }
 }
