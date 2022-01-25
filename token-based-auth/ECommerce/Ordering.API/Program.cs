@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Ordering.Application.Commands.Customers;
 using Ordering.Application.Common.Interfaces;
 using Ordering.Application.Common.Security;
 using Ordering.Application.Handlers.CommandHandler;
@@ -72,7 +73,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 //builder.Services.AddDbContext<OrderingContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Register dependencies
-builder.Services.AddMediatR(typeof(CreateCustomerHandler).GetTypeInfo().Assembly);
+builder.Services.AddMediatR(typeof(CreateCustomerCommandHandler).GetTypeInfo().Assembly);
 builder.Services.AddMediatR(typeof(CreateUserCommandHandler).GetTypeInfo().Assembly);
 
 //builder.Services.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));

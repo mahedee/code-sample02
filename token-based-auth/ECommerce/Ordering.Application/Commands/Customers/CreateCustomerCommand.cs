@@ -1,20 +1,31 @@
 ﻿using MediatR;
-using Ordering.Application.Commands;
 using Ordering.Application.DTOs;
 using Ordering.Application.Mapper;
 using Ordering.Core.Entities;
 using Ordering.Core.Repositories.Command;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Ordering.Application.Handlers.CommandHandler
+namespace Ordering.Application.Commands.Customers
 {
-    // Customer create command handler with CustomerResponse as output
-    public class CreateCustomerHandler : IRequestHandler<CreateCustomerCommand, CustomerResponse>
+    // Customer create command with CustomerResponse
+    public class CreateCustomerCommand : IRequest<CustomerResponse>
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string ContactNumber { get; set; }
+        public string Address { get; set; }
+        public DateTime CreatedDate { get; set; }
+
+        public CreateCustomerCommand()
+        {
+            this.CreatedDate = DateTime.Now;
+        }
+    }
+
+    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, CustomerResponse>
     {
         private readonly ICustomerCommandRepository _customerCommandRepository;
-        public CreateCustomerHandler(ICustomerCommandRepository customerCommandRepository)
+        public CreateCustomerCommandHandler(ICustomerCommandRepository customerCommandRepository)
         {
             _customerCommandRepository = customerCommandRepository;
         }
@@ -22,7 +33,7 @@ namespace Ordering.Application.Handlers.CommandHandler
         {
             var customerEntity = CustomerMapper.Mapper.Map<Customer>(request);
 
-            if(customerEntity is null)
+            if (customerEntity is null)
             {
                 throw new ApplicationException("There is a problem in mapper");
             }

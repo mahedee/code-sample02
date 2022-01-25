@@ -1,14 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Ordering.Application.Commands;
+using Ordering.Application.Commands.Customers;
 using Ordering.Application.DTOs;
 using Ordering.Application.Queries;
 using Ordering.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Ordering.API.Controllers
 {
