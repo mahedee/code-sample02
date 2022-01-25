@@ -32,19 +32,15 @@ namespace Ordering.Application.Queries.User
             {
                 Id = x.id,
                 Email = x.email,
-                UserName = x.userName,
-                Roles = (IList<string>)_identityService.GetUserRolesAsync(x.id) // Converstion problem
+                UserName = x.userName
+                //Roles = (IList<string>)_identityService.GetUserRolesAsync(x.id) // Converstion problem
             }).ToList();
 
-
+            foreach (var user in userDetails)
+            {
+                user.Roles = await _identityService.GetUserRolesAsync(user.Id);
+            }
             return userDetails;
-            //throw new NotImplementedException();
         }
-
-        //public async Task<UserDetailsResponseDTO> Handle(GetUserDetailsQuery request, CancellationToken cancellationToken)
-        //{
-        //    //var (userId, userName, email, roles ) = await _identityService.GetUserDetailsAsync(request.UserId);
-        //    //return new UserDetailsResponseDTO() { Id = userId, UserName = userName, Email = email, Roles = roles };
-        //}
     }
 }
