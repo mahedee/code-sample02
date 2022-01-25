@@ -1,10 +1,20 @@
 ﻿using MediatR;
-using Ordering.Application.Commands;
 using Ordering.Application.Common.Interfaces;
 using Ordering.Application.DTOs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Ordering.Application.Handlers.CommandHandler
+namespace Ordering.Application.Commands.Auth
 {
+    public class AuthCommand : IRequest<AuthResponseDTO>
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+    }
+
     public class AuthCommandHandler : IRequestHandler<AuthCommand, AuthResponseDTO>
     {
         private readonly ITokenGenerator _tokenGenerator;
@@ -20,7 +30,7 @@ namespace Ordering.Application.Handlers.CommandHandler
         {
             var result = await _identityService.SigninUserAsync(request.UserName, request.Password);
 
-            if(!result)
+            if (!result)
             {
                 //throw new BadRequestException("Invalid username or password");
                 throw new Exception("Invalid user name or password");

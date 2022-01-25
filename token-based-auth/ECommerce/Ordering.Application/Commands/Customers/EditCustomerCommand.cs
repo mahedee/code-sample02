@@ -1,23 +1,29 @@
 ﻿using MediatR;
-using Ordering.Application.Commands;
-using Ordering.Application.Commands.Customers;
 using Ordering.Application.DTOs;
 using Ordering.Application.Mapper;
 using Ordering.Core.Entities;
 using Ordering.Core.Repositories.Command;
 using Ordering.Core.Repositories.Query;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Ordering.Application.Handlers.CommandHandler
+namespace Ordering.Application.Commands.Customers
 {
-    // Customer edit command handler with customer response as output
-    public class EditCustomerHandler : IRequestHandler<EditCustomerCommand, CustomerResponse>
+    // Customer create command with CustomerResponse
+    public class EditCustomerCommand : IRequest<CustomerResponse>
+    {
+
+        public Int64 Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string ContactNumber { get; set; }
+        public string Address { get; set; }
+    }
+
+    public class EditCustomerCommandHandler : IRequestHandler<EditCustomerCommand, CustomerResponse>
     {
         private readonly ICustomerCommandRepository _customerCommandRepository;
         private readonly ICustomerQueryRepository _customerQueryRepository;
-        public EditCustomerHandler(ICustomerCommandRepository customerRepository, ICustomerQueryRepository customerQueryRepository)
+        public EditCustomerCommandHandler(ICustomerCommandRepository customerRepository, ICustomerQueryRepository customerQueryRepository)
         {
             _customerCommandRepository = customerRepository;
             _customerQueryRepository = customerQueryRepository;
