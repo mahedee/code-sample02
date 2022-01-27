@@ -76,6 +76,19 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddMediatR(typeof(CreateCustomerCommandHandler).GetTypeInfo().Assembly);
 builder.Services.AddMediatR(typeof(CreateUserCommandHandler).GetTypeInfo().Assembly);
 
+
+//Enable CORS//Cross site resource sharing
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+        builder => builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        //.AllowCredentials()
+        );
+});
+
+
 //builder.Services.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
 //builder.Services.AddTransient<ICustomerQueryRepository, CustomerQueryRepository>();
 //builder.Services.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
@@ -131,6 +144,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//Must be betwwen app.UseRouting() and app.UseEndPoints()
+app.UseCors("CorsPolicy");
 
 // Added for authentication
 app.UseAuthentication();

@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import axios from 'axios';
+import { getData } from '../services/AccessAPI';
 
 // export keyword is a new feature in ES6 let export your functions , 
 // variables so you can get access to them in other js files
@@ -49,13 +50,17 @@ export class Customers extends Component {
     }
 
     populateCustomersData() {
+
+        var response = getData("api/Customer");
+        this.setState({ customers: response, loading: false, error: "" });
         // Axios is a library that helps us make http requests to external resources
-        axios.get("http://localhost:8001/api/Customers").then(result => {
-            const response = result.data;
-            this.setState({ customers: response, loading: false, error: "" });
-        }).catch(error => {
-            this.setState({ customers: [], loading: false, failed: true, error: "Customers could not be loaded!" });
-        });
+        //axios.get("https://localhost:7142/api/Customer").then(result => {
+        // axios.get("https://localhost:7142/api/Customer").then(result => {
+        //     const response = result.data;
+        //     this.setState({ customers: response, loading: false, error: "" });
+        // }).catch(error => {
+        //     this.setState({ customers: [], loading: false, failed: true, error: "Customers could not be loaded!" });
+        // });
     }
 
     renderAllCustomersTable(customers) {
@@ -63,11 +68,11 @@ export class Customers extends Component {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Full Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
                         <th>Contact Number</th>
-                        <th>Nominee Name</th>
-                        <th>Nominee's Contact Number</th>
-                        <th>Nominee's DOB</th>
+                        <th>Address</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -75,11 +80,12 @@ export class Customers extends Component {
                     {
                         customers.map(customer => (
                             <tr key={customer.id}>
-                                <td>{customer.fullName}</td>
+                                <td>{customer.firstName}</td>
+                                <td>{customer.lastName}</td>
+                                <td>{customer.email}</td>
                                 <td>{customer.contactNumber}</td>
-                                <td>{customer.nomineeName}</td>
-                                <td>{customer.nomineeContactNumber}</td>
-                                <td>{new Date(customer.nomineeDateOfBirth).toISOString().slice(0, 10)}</td>
+                                <td>{customer.address}</td>
+                                {/* <td>{new Date(customer.nomineeDateOfBirth).toISOString().slice(0, 10)}</td> */}
                                 <td><button onClick={() => this.OncustomerEdit(customer.id)} className="btn btn-success">Edit</button> ||
                                 <button onClick={() => this.OncustomerDelete(customer.id)} className="btn btn-danger">Delete</button></td>
                             </tr>

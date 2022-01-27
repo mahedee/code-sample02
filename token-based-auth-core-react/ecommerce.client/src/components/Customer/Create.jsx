@@ -15,12 +15,12 @@ export class Create extends Component {
 
 
         this.state = {
-            fullName: '',
+            firstName: '',
+            lastName: '',
+            email: '',
             contactNumber: '',
-            nomineeName: '',
-            nomineeContactNumber: '',
             //This is date time object
-            nomineeDateOfBirth: null
+            address: ''
         }
     }
 
@@ -62,14 +62,14 @@ export class Create extends Component {
         const { history } = this.props;
 
         let customerObj = {
-            fullName: this.state.fullName,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
             contactNumber: this.state.contactNumber,
-            nomineeName: this.state.nomineeName,
-            nomineeContactNumber: this.state.nomineeContactNumber,
-            nomineeDateOfBirth: this.state.nomineeDateOfBirth
+            address: this.state.address
         }
 
-        axios.post("http://localhost:8001/api/Customers", customerObj).then(result => {
+        axios.post("https://localhost:7142/api/Customer", customerObj).then(result => {
             history.push('/banking/customers');
         })
     }
@@ -81,8 +81,8 @@ export class Create extends Component {
                     <h3>Add new customer</h3>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
-                            <label className="control-label">Full Name: </label>
-                            <input className="form-control" type="text" value={this.state.fullName} onChange={this.onChangeFullName}></input>
+                            <label className="control-label">First Name: </label>
+                            <input className="form-control" type="text" value={this.state.firstName} onChange={this.onChangeFullName}></input>
                         </div>
 
                         <div className="form-group">
