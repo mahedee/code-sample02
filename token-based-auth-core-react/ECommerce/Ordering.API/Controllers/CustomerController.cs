@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Ordering.Application.Commands.Customers;
 using Ordering.Application.DTOs;
@@ -8,9 +9,10 @@ using Ordering.Core.Entities;
 
 namespace Ordering.API.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin,Member")]
+    //[Authorize(Roles = "Admin,Member")]
     public class CustomerController : ControllerBase
     {
         private readonly IMediator _mediator;
