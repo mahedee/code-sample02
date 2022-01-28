@@ -1,5 +1,9 @@
 import { Component } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { postDataForLogin } from "../services/AccessAPI";
+import SessionManager from "./SessionManager";
+
 
 export default class Login extends Component {
     constructor() {
@@ -28,21 +32,61 @@ export default class Login extends Component {
     }
 
     login() {
-        let userInfo=this.state;
+        let userInfo = this.state;
         this.setState({
-          loading:true
-       });
+            loading: true
+        });
 
-       console.log("login info: " + userInfo.password);
-       postDataForLogin('api/Auth/Login', userInfo).then((result) => {
-           if(result?.token)
-           {
-            console.log("Login result: " + result.token);
-           }
-       });
+        console.log("login info: " + userInfo.password);
+        postDataForLogin('api/Auth/Login', userInfo).then((result) => {
+            if (result?.token) {
+
+                SessionManager.setUserSession(result.userName, result.token, result.userId, result.usersRole)
+
+                if (SessionManager.getToken()) {
+                    this.setState({
+                        loading: false
+                    });
+
+                    // If login successful and get token
+                    // redirect to dashboard
+                    window.location.href = "/";
+                }
+            }
+
+            else {
+                let errors = '';
+                for (const key in result?.errors) {
+                    if (Object.hasOwnProperty.call(result.errors, key)) {
+                        errors += result.errors[key];
+
+                    }
+                }
+                errors = errors === '' ? 'Login is unsuccessfull!' : errors;
+                toast.error(errors, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true
+                });
+
+                this.setState({
+                    errors: "Login failed!",
+                    loading: false
+                });
+            }
+
+        });
     }
 
     render() {
+        let content;
+        if (this.state.loading) {
+            content = <div>Loading...</div>;
+        }
+
         return (
             <div className="login-box col-md-4">
                 <div className="login-logo">
@@ -75,7 +119,7 @@ export default class Login extends Component {
                             </button>
                         </div>
                         <div className="col-md-2">
-                            {/* {content} */}
+                            {content}
                         </div>
                     </div>
                     <div className="row">
@@ -83,7 +127,7 @@ export default class Login extends Component {
                             <strong className="has-error" style={{ color: "red" }}>{this.state.errorMsg}</strong>
                         </div>
                         <div className="col-md-4">
-                            {/* <ToastContainer /> */}
+                            <ToastContainer></ToastContainer>
                         </div>
                     </div>
                 </div>
