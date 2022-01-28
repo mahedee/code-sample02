@@ -32,8 +32,10 @@
 
 export function GetData(type) {
     //let token=Auth.getToken();
-    let token="";
+    let token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtYWhlZGVlIiwianRpIjoiNDY2ODk3OWUtMjhjNS00NjFkLWI4M2YtMzVlY2U0ZWEzNGFlIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Im1haGVkZWUiLCJVc2VySWQiOiI0NjY4OTc5ZS0yOGM1LTQ2MWQtYjgzZi0zNWVjZTRlYTM0YWUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTY0MzM0OTU0OSwiaXNzIjoiand0IiwiYXVkIjoiand0In0.t4nlZ79uXLlExsHaTibSht5eiMOiYVTBdrlqEUGf7f4';
     //let BaseURL = window.SERVER_URL;
+
+    console.log("Log Token: " + token);
     let BaseURL = "https://localhost:7142/";
     let payload = {
         method: 'GET',
