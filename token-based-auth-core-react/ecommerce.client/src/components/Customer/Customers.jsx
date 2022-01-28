@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import axios from 'axios';
-import { getData } from '../services/AccessAPI';
+import { GetData } from '../services/AccessAPI';
 
 // export keyword is a new feature in ES6 let export your functions , 
 // variables so you can get access to them in other js files
@@ -51,8 +51,25 @@ export class Customers extends Component {
 
     populateCustomersData() {
 
-        var response = getData("api/Customer");
-        this.setState({ customers: response, loading: false, error: "" });
+        GetData(`api/Customer`).then(
+            (result) => {
+              let responseJson = result;
+              console.log("responseJson: ");
+              console.log(responseJson);
+              if (responseJson) {
+                this.setState({
+                  //data: responseJson.Data,
+                  customers: responseJson,
+                  //total: responseJson.TotalCount,
+                  loading:false
+                });
+              }
+            }
+          );
+
+
+        //var response = getData("api/Customer");
+        //this.setState({ customers: response, loading: false, error: "" });
         // Axios is a library that helps us make http requests to external resources
         //axios.get("https://localhost:7142/api/Customer").then(result => {
         // axios.get("https://localhost:7142/api/Customer").then(result => {
