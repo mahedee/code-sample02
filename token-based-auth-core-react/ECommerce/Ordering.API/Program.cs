@@ -23,6 +23,32 @@ var _issuer = builder.Configuration["Jwt:Issuer"];
 var _audience = builder.Configuration["Jwt:Audience"];
 var _expirtyMinutes = builder.Configuration["Jwt:ExpiryMinutes"];
 
+/*
+// Another try
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidAudience = _audience,
+        ValidIssuer = _issuer,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key)),
+        ClockSkew = TimeSpan.FromMinutes(Convert.ToDouble(_expirtyMinutes))
+        //ValidateIssuerSigningKey = true,
+        //ValidateIssuer = false,
+        //ValidateAudience = false,
+        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key))
+    };
+});
+
+*/
+
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
