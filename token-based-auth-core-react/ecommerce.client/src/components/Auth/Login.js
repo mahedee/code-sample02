@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { postDataForLogin } from "../services/AccessAPI";
 
 export default class Login extends Component {
     constructor() {
@@ -27,6 +28,18 @@ export default class Login extends Component {
     }
 
     login() {
+        let userInfo=this.state;
+        this.setState({
+          loading:true
+       });
+
+       console.log("login info: " + userInfo.password);
+       postDataForLogin('api/Auth/Login', userInfo).then((result) => {
+           if(result?.token)
+           {
+            console.log("Login result: " + result.token);
+           }
+       });
     }
 
     render() {
