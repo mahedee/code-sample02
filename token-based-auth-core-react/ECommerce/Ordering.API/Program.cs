@@ -49,6 +49,7 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+
 // Dependency injection with key
 builder.Services.AddSingleton<ITokenGenerator>(new TokenGenerator(_key, _issuer, _audience, _expirtyMinutes));
 //builder.Services.AddSingleton<ITokenGenerator>(new TokenGenerator(_key));
@@ -141,9 +142,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 //Must be betwwen app.UseRouting() and app.UseEndPoints()
+// maintain middleware order
 app.UseCors("CorsPolicy");
 
 // Added for authentication
+// Maintain middleware order
 app.UseAuthentication();
 
 app.UseAuthorization();
