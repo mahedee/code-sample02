@@ -1,26 +1,12 @@
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Ordering.Application.Commands.Customers;
 using Ordering.Application.Common.Interfaces;
 using Ordering.Application.Common.Security;
-using Ordering.Application.Handlers.CommandHandler;
 using Ordering.Application.Handlers.CommandHandler.User.Create;
-using Ordering.Core.Repositories.Command;
-using Ordering.Core.Repositories.Command.Base;
-using Ordering.Core.Repositories.Query;
-using Ordering.Core.Repositories.Query.Base;
 using Ordering.Infrastructure;
-using Ordering.Infrastructure.Data;
-using Ordering.Infrastructure.Identity;
-using Ordering.Infrastructure.Repository.Command;
-using Ordering.Infrastructure.Repository.Command.Base;
-using Ordering.Infrastructure.Repository.Query;
-using Ordering.Infrastructure.Repository.Query.Base;
-using Ordering.Infrastructure.Services;
 using System.Reflection;
 using System.Text;
 //using System.Configuration;
@@ -50,6 +36,8 @@ builder.Services.AddAuthentication(x =>
     {
         ValidateIssuer = true,
         ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
         ValidAudience = _audience,
         ValidIssuer = _issuer,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key))
@@ -78,14 +66,20 @@ builder.Services.AddMediatR(typeof(CreateUserCommandHandler).GetTypeInfo().Assem
 
 
 //Enable CORS//Cross site resource sharing
-builder.Services.AddCors(options =>
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("CorsPolicy",
+//        builder => builder.AllowAnyOrigin()
+//        .AllowAnyMethod()
+//        .AllowAnyHeader()
+//        //.AllowCredentials()
+//        );
+//});
+
+
+builder.Services.AddCors(c =>
 {
-    options.AddPolicy("CorsPolicy",
-        builder => builder.AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader()
-        //.AllowCredentials()
-        );
+    c.AddPolicy("CorsPolicy", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
 
 

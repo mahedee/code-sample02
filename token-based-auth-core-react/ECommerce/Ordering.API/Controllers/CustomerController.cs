@@ -13,6 +13,7 @@ namespace Ordering.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize(Roles = "Admin,Member")]
+    [Authorize]
     public class CustomerController : ControllerBase
     {
         private readonly IMediator _mediator;
