@@ -23,6 +23,7 @@ import { DeleteEmployee } from './components/Employee/Delete';
 import Login from './components/Auth/Login';
 import Logout from './components/Auth/Logout';
 import Registration from './components/Auth/Registration';
+import Users from './components/User/Users';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -49,6 +50,7 @@ export default class App extends Component {
 
         <Route path='/counter' component={Counter} />
         <Route path='/fetch-data' component={FetchData} />
+        <Route path='/admin/users' component={Users}></Route>
 
       </Layout>
     );

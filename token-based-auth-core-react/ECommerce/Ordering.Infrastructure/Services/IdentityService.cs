@@ -45,10 +45,11 @@ namespace Ordering.Infrastructure.Services
 
 
         // Return multiple value
-        public async Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, List<string> roles)
+        public async Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName, List<string> roles)
         {
             var user = new ApplicationUser()
             {
+                FullName = fullName,
                 UserName = userName,
                 Email = email
             };
@@ -57,8 +58,6 @@ namespace Ordering.Infrastructure.Services
 
             if (!result.Succeeded)
             {
-                // Refactor to custom exception
-                //throw new Exception(result.Errors.ToString());
                 throw new ValidationException(result.Errors);
             }
 
@@ -108,16 +107,17 @@ namespace Ordering.Infrastructure.Services
             return result.Succeeded;
         }
 
-        public async Task<List<(string id, string userName, string email)>> GetAllUsersAsync()
+        public async Task<List<(string id, string fullName, string userName, string email)>> GetAllUsersAsync()
         {
             var users = await _userManager.Users.Select(x => new
             {
                 x.Id,
+                x.FullName,
                 x.UserName,
                 x.Email
             }).ToListAsync();
 
-            return users.Select(user => (user.Id, user.UserName, user.Email)).ToList();
+            return users.Select(user => (user.Id, user.FullName, user.UserName, user.Email)).ToList();
         }
 
         public Task<List<(string id, string userName, string email, IList<string> roles)>> GetAllUsersDetailsAsync()
