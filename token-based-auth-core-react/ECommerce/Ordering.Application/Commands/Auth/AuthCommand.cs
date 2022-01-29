@@ -36,7 +36,7 @@ namespace Ordering.Application.Commands.Auth
                 throw new Exception("Invalid user name or password");
             }
 
-            var (userId, userName, email, roles) = await _identityService.GetUserDetailsAsync(await _identityService.GetUserIdAsync(request.UserName));
+            var (userId, fullName, userName, email, roles) = await _identityService.GetUserDetailsAsync(await _identityService.GetUserIdAsync(request.UserName));
 
             //string token = _tokenGenerator.GenerateToken(userId, userName, roles);
 
