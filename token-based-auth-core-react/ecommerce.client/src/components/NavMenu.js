@@ -168,6 +168,11 @@ export class NavMenu extends Component {
                                         <DropdownItem>
                                             <NavLink tag={Link} className="text-dark" to="/admin/users">Users</NavLink>
                                         </DropdownItem>
+                                        <DropdownItem divider />
+                                        <DropdownItem>
+                                            <NavLink tag={Link} className="text-dark" to="/admin/roles">Roles</NavLink>
+                                        </DropdownItem>
+
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
 

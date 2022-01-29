@@ -25,6 +25,8 @@ import Logout from './components/Auth/Logout';
 import Registration from './components/Auth/Registration';
 import Users from './components/User/Users';
 import UpdateUser from './components/User/UpdateUser';
+import Roles from './components/Role/Roles';
+import CreateRole from './components/Role/CreateRole';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -53,6 +55,8 @@ export default class App extends Component {
         <Route path='/fetch-data' component={FetchData} />
         <Route path='/admin/users' component={Users}></Route>
         <Route path='/admin/user/edit/:id' component= {UpdateUser}></Route>
+        <Route path='/admin/roles' component={Roles}></Route>
+        <Route path='/admin/roles/create' component = {CreateRole}></Route>
 
       </Layout>
     );
