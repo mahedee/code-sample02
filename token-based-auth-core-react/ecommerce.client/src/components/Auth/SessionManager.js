@@ -11,6 +11,13 @@ const SessionManager = {
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('userId', userId);
         sessionStorage.setItem('usersRole', usersRole);
+    },
+
+    removeUserSession(){
+        sessionStorage.removeItem('userName');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('userId');
+        sessionStorage.removeItem('usersRole');
     }
 }
 

@@ -21,6 +21,7 @@ import {CreateCustomer } from './components/Employee/Create';
 import { EditEmployee } from './components/Employee/Edit';
 import { DeleteEmployee } from './components/Employee/Delete';
 import Login from './components/Auth/Login';
+import Logout from './components/Auth/Logout';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -31,6 +32,7 @@ export default class App extends Component {
       <Layout>
         <Route exact path='/' component={Home} />
         <Route path='/login' component={Login}/>
+        <Route path='/logout' component={Logout}/>
         <Route path='/employees' component={Employees} />
         <Route path='/create' component={CreateCustomer}></Route>
         <Route path='/Edit/:id' component={EditEmployee}></Route>
