@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import axios from 'axios';
-import { GetData } from '../services/AccessAPI';
+import { getData } from '../services/AccessAPI';
 
 // export keyword is a new feature in ES6 let export your functions , 
 // variables so you can get access to them in other js files
@@ -51,7 +51,7 @@ export class Customers extends Component {
 
     populateCustomersData() {
 
-        GetData(`api/Customer`).then(
+        getData(`api/Customer`).then(
             (result) => {
               let responseJson = result;
             //   console.log("responseJson: ");

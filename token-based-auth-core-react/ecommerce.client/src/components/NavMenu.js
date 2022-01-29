@@ -160,14 +160,21 @@ export class NavMenu extends Component {
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
 
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        Admin
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        <DropdownItem>
+                                            <NavLink tag={Link} className="text-dark" to="/admin/users">Users</NavLink>
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+
 
 
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/">Security</NavLink>
-                                </NavItem>
-
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/">Admin</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink tag={Link} className='text-dark' to="/login">Login</NavLink>

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ordering.Infrastructure.Data;
 
@@ -10,9 +11,10 @@ using Ordering.Infrastructure.Data;
 namespace Ordering.Infrastructure.Migrations
 {
     [DbContext(typeof(OrderingContext))]
-    partial class OrderingContextModelSnapshot : ModelSnapshot
+    [Migration("20220129012637_update-application-user")]
+    partial class updateapplicationuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.1");
@@ -202,6 +204,7 @@ namespace Ordering.Infrastructure.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")

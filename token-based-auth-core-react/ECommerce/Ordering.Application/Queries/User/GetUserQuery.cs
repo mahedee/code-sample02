@@ -28,8 +28,9 @@ namespace Ordering.Application.Queries.User
             return users.Select(x => new UserResponseDTO()
             {
                 Id = x.id,
-                Email = x.email,
-                UserName = x.userName
+                FullName = x.fullName,
+                UserName = x.userName,
+                Email = x.email
             }).ToList();
         }
     }
