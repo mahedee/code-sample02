@@ -54,8 +54,8 @@ export class Customers extends Component {
         GetData(`api/Customer`).then(
             (result) => {
               let responseJson = result;
-              console.log("responseJson: ");
-              console.log(responseJson);
+            //   console.log("responseJson: ");
+            //   console.log(responseJson);
               if (responseJson) {
                 this.setState({
                   //data: responseJson.Data,
