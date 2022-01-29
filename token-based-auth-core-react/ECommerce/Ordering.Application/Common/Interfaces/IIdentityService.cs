@@ -18,6 +18,7 @@ namespace Ordering.Application.Common.Interfaces
         Task<bool> IsUniqueUserName(string userName);
         Task<List<(string id, string fullName, string userName, string email)>> GetAllUsersAsync();
         Task<List<(string id, string userName, string email, IList<string> roles)>> GetAllUsersDetailsAsync();
+        Task<bool> UpdateUserProfile(string id, string fullName, string email, IList<string> roles);
 
         // Role Section
         Task<bool> CreateRoleAsync(string roleName);
