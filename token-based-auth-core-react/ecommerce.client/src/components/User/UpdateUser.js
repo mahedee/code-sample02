@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { getData } from "../services/AccessAPI";
+import { getData, putData } from "../services/AccessAPI";
 
 export default class UpdateUser extends Component{
     constructor(props){
@@ -8,10 +8,25 @@ export default class UpdateUser extends Component{
             id: '',
             fullName: '',
             userName: '',
-            email: ''
+            email: '',
+            roles: []
         };
 
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+
     }
+
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    onKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            this.update(false);
+        }
+    }
+
 
     componentDidMount(){
         const {id} = this.props.match.params;
@@ -34,9 +49,63 @@ export default class UpdateUser extends Component{
         );
     }
 
+    onSubmit(e){
+        e.preventDefault();
+        const {history} = this.props;
+        const {id} = this.props.match.params;
+
+        let userProfile = {
+            id: this.state.id,
+            fullName: this.state.fullName,
+            email: this.state.email,
+            roles: this.state.roles
+        }
+
+        putData('api/User/EditUserProfile/' + id, userProfile).then((result) => {
+            let responseJson = result;
+            console.log("update response: ");
+            
+            if(responseJson){
+                console.log(responseJson);
+                history.push('/admin/users');
+            }
+        }
+
+        );
+    }
+
     render(){
         return(
-            <h3>Edit user information</h3>
+            <div className="row">
+                <div className="col-md-4">
+                    <h3>Edit User</h3>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                            <label className="control-label">Full Name: </label>
+                            <input className="form-control" type="text" value={this.state.fullName} onChange={this.onChange} name="fullName"
+                            onKeyDown={this.onKeyDown} ></input>
+                        </div>
+
+                        <div className="form-group">
+                            <label className="control-label">User Name: </label>
+                            <input className="form-control" type="text" value={this.state.userName} disabled = {true} readOnly = {true}></input>
+                        </div>
+
+                        <div className="form-group">
+                            <label className="control-label">Email: </label>
+                            <input className="form-control" type="text" value={this.state.email} onChange={this.onChange} name="email"
+                            onKeyDown={this.onKeyDown}></input>
+                        </div>
+
+                        <div className="form-group">
+                            <button onClick={this.onUpdateCancel} className="btn btn-default">Cancel</button>
+                            <input type="submit" value="Edit" className="btn btn-primary"></input>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
         );
     }
 }

@@ -69,5 +69,20 @@ namespace Ordering.API.Controllers
         }
 
 
+        [HttpPut("EditUserProfile/{id}")]
+        [ProducesDefaultResponseType(typeof(int))]
+        public async Task<ActionResult> EditUserProfile(string id, [FromBody]EditUserProfileCommand command)
+        {
+            if (id == command.Id)
+            {
+                var result = await _mediator.Send(command);
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
     }
 }
