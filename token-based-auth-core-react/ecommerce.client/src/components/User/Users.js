@@ -12,7 +12,6 @@ export default class Users extends Component {
 
 
     componentDidMount() {
-        console.log("call did mount of users");
         this.getAllUsersData();
     }
 
