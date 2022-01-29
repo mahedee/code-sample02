@@ -11,7 +11,7 @@ export default class Login extends Component {
         this.state = {
             userName: "",
             password: "",
-            loading: true,
+            loading: false,
             failed: false,
             error: ''
         };
@@ -81,6 +81,11 @@ export default class Login extends Component {
         });
     }
 
+    registration(){
+        window.location.href = "/registration";
+
+    }
+
     render() {
         let content;
         if (this.state.loading) {
@@ -113,9 +118,14 @@ export default class Login extends Component {
                         <span className="glyphicon glyphicon-lock form-control-feedback" />
                     </div>
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                             <button className="btn btn-primary btn-block" onClick={this.login}>
                                 Sign In
+                            </button>
+                        </div>
+                        <div className="col-md-6">
+                            <button className="btn btn-primary btn-block" onClick={this.registration}>
+                                Create an account
                             </button>
                         </div>
                         <div className="col-md-2">
