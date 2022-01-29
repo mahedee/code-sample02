@@ -157,7 +157,7 @@ namespace Ordering.Infrastructure.Services
             return roles.Select(role => (role.Id, role.Name)).ToList();
         }
 
-        public async Task<(string userId, string UserName, string email, IList<string> roles)> GetUserDetailsAsync(string userId)
+        public async Task<(string userId, string fullName, string UserName, string email, IList<string> roles)> GetUserDetailsAsync(string userId)
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == userId);
             if (user == null)
@@ -165,7 +165,7 @@ namespace Ordering.Infrastructure.Services
                 throw new NotFoundException("User not found");             
             }
             var roles = await _userManager.GetRolesAsync(user);
-            return (user.Id, user.UserName, user.Email, roles);
+            return (user.Id, user.FullName, user.UserName, user.Email, roles);
         }
 
         public async Task<string> GetUserIdAsync(string userName)

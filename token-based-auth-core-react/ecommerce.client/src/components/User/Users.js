@@ -16,6 +16,10 @@ export default class Users extends Component {
         this.getAllUsersData();
     }
 
+    onUserEdit(id){
+        const { history } = this.props;
+        history.push('/admin/user/edit/' + id);
+    }
     getAllUsersData() {
         getData('api/User/GetAll').then(
             (result) => {
@@ -52,7 +56,7 @@ export default class Users extends Component {
                                 <td>{user.fullName}</td>
                                 <td>{user.userName}</td>
                                 <td>{user.email}</td>
-                                <td><button onClick={() => this.OncustomerEdit(user.id)} className="btn btn-success">Edit</button> ||
+                                <td><button onClick={() => this.onUserEdit(user.id)} className="btn btn-success">Edit</button> ||
                                     <button onClick={() => this.OncustomerDelete(user.id)} className="btn btn-danger">Delete</button></td>
                             </tr>
                         ))
