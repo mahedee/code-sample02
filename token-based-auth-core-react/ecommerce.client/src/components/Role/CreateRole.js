@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { postData } from "../services/AccessAPI";
 
 export default class CreateRole extends Component{
     constructor(props){
@@ -9,6 +10,7 @@ export default class CreateRole extends Component{
         };
 
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
 
     }
 
@@ -19,6 +21,14 @@ export default class CreateRole extends Component{
         let roleObj = {
             roleName: this.state.roleName
         }
+
+        postData('api/Role/Create', roleObj).then((result) => {
+            let responseJson = result;
+
+            if(responseJson){
+                history.push('/admin/roles');
+            }
+        });
     }
 
     onChange(e){

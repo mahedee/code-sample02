@@ -19,7 +19,7 @@ namespace Ordering.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         [ProducesDefaultResponseType(typeof(int))]
 
         public async Task<ActionResult> CreateRoleAsync(RoleCreateCommand command)
