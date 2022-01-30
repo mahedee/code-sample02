@@ -14,7 +14,7 @@ export default class Roles extends Component {
 
     onRoleCreate(){
         const { history } = this.props;
-        history.push('/admin/roles/create');
+        history.push('/admin/role/create');
         // const {history} = this.props;
         // history.push('/admin/roles/create');
     }
