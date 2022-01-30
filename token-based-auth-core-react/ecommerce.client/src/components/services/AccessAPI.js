@@ -92,8 +92,8 @@ export function postData(endPoint, inputObj) {
     let payload = {
         method: 'POST',
         headers: {   
-            "access-control-allow-origin" : "*",
-            'Content-Type': 'application/json',
+            "access-control-allow-origin" : "*", 
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
         },

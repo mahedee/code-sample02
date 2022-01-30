@@ -23,7 +23,7 @@ namespace Ordering.API.Controllers
 
         [HttpPost("Create")]
         [ProducesDefaultResponseType(typeof(int))]
-        public async Task<IActionResult> CreateUser(CreateUserCommand command)
+        public async Task<ActionResult> CreateUser(CreateUserCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
@@ -35,7 +35,7 @@ namespace Ordering.API.Controllers
             return Ok(await _mediator.Send(new GetUserQuery()));
         }
 
-        [HttpDelete("{userId}")]
+        [HttpDelete("Delete/{userId}")]
         [ProducesDefaultResponseType(typeof(int))]
         public async Task<IActionResult> DeleteUser(string userId)
         {
