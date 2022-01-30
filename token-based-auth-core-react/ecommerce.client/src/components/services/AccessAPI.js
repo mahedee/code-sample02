@@ -85,6 +85,31 @@ export function postDataForLogin(type, userData) {
     });
 }
 
+export function postData(endPoint, inputObj) {
+    //let BaseURL = window.SERVER_URL;
+    let token=SessionManager.getToken();
+    let BaseURL = "https://localhost:7142/";
+    let payload = {
+        method: 'POST',
+        headers: {   
+            "access-control-allow-origin" : "*",
+            'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(inputObj)
+
+    }
+    return fetch(BaseURL + endPoint, payload)
+    .then(function(response) {
+        return response.json();
+    }).then(function(result) {
+        return result;
+    }).catch(function(error) {
+        console.log(error);
+    });
+}
+
 export function putData(endPoint, obj) {
     //let BaseURL = window.SERVER_URL;
     let token=SessionManager.getToken();
