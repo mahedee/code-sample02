@@ -110,6 +110,32 @@ export function postData(endPoint, inputObj) {
     });
 }
 
+export function deleteData(endPoint) {
+    //let BaseURL = window.SERVER_URL;
+    let token=SessionManager.getToken();
+    let BaseURL = "https://localhost:7142/";
+    let payload = {
+        method: 'DELETE',
+        headers: {   
+            "access-control-allow-origin" : "*", 
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+         },
+    }
+    return fetch(BaseURL + endPoint, payload)
+    .then(function(response) {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        return response.json();
+    }).then(function(result) {
+        return result;
+    }).catch(function(error) {
+        console.log(error);
+    });
+}
+
 export function putData(endPoint, obj) {
     //let BaseURL = window.SERVER_URL;
     let token=SessionManager.getToken();
