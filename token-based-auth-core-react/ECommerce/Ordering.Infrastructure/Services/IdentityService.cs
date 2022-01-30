@@ -234,5 +234,23 @@ namespace Ordering.Infrastructure.Services
 
             return result.Succeeded;
         }
+
+        public async Task<(string id, string roleName)> GetRoleByIdAsync(string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id);
+            return (role.Id, role.Name);
+        }
+
+        public async Task<bool> UpdateRole(string id, string roleName)
+        {
+            if (roleName != null)
+            {
+                var role = await _roleManager.FindByIdAsync(id);
+                role.Name = roleName;
+                var result = await _roleManager.UpdateAsync(role);
+                return result.Succeeded;
+            }
+            return false;
+        }
     }
 }
