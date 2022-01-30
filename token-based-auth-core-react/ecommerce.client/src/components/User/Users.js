@@ -10,6 +10,7 @@ export default class Users extends Component {
         };
 
         this.onUserCreate = this.onUserCreate.bind(this);
+        this.onUserDelete = this.onUserDelete.bind(this);
     }
 
 
@@ -27,6 +28,12 @@ export default class Users extends Component {
         const { history } = this.props;
         history.push('/admin/user/edit/' + id);
     }
+
+    onUserDelete(id){
+        const {history} = this.props;
+        history.push('/admin/user/delete/' + id);
+    }
+
     getAllUsersData() {
         getData('api/User/GetAll').then(
             (result) => {
@@ -64,7 +71,7 @@ export default class Users extends Component {
                                 <td>{user.userName}</td>
                                 <td>{user.email}</td>
                                 <td><button onClick={() => this.onUserEdit(user.id)} className="btn btn-success">Edit</button> ||
-                                    <button onClick={() => this.OncustomerDelete(user.id)} className="btn btn-danger">Delete</button></td>
+                                    <button onClick={() => this.onUserDelete(user.id)} className="btn btn-danger">Delete</button></td>
                             </tr>
                         ))
                     }
