@@ -42,7 +42,7 @@ namespace Ordering.API.Controllers
             return Ok(await _mediator.Send(new GetRoleByIdQuery() { RoleId = id }));
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         [ProducesDefaultResponseType(typeof(int))]
         public async Task<IActionResult> DeleteRoleAsync(string id)
         {
@@ -52,7 +52,7 @@ namespace Ordering.API.Controllers
             }));
         }
 
-        [HttpPut("EditRole/{id}")]
+        [HttpPut("Edit/{id}")]
         [ProducesDefaultResponseType(typeof(int))]
         public async Task<ActionResult> EditRole(string id, [FromBody] UpdateRoleCommand command)
         {

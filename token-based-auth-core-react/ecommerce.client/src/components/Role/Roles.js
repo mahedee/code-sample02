@@ -11,14 +11,13 @@ export default class Roles extends Component {
 
         this.onRoleCreate = this.onRoleCreate.bind(this);
         this.onRoleEdit = this.onRoleEdit.bind(this);
+        this.onRoleDelete = this.onRoleDelete.bind(this);
 
     }
 
     onRoleCreate(){
         const { history } = this.props;
         history.push('/admin/role/create');
-        // const {history} = this.props;
-        // history.push('/admin/roles/create');
     }
 
     onRoleEdit(id){
@@ -26,6 +25,12 @@ export default class Roles extends Component {
         history.push('/admin/role/edit/' + id);
     }
 
+    onRoleDelete(id){
+        const{history} = this.props;
+        //console.log('roleid for delte ');
+        //console.log(id);
+        history.push('/admin/role/delete/' + id);
+    }
 
     componentDidMount() {
         this.getAllRoles();
@@ -59,7 +64,7 @@ export default class Roles extends Component {
                             <tr key={role.id}>
                                 <td>{role.roleName}</td>
                                 <td><button onClick={() => this.onRoleEdit(role.id)} className="btn btn-success">Edit</button> ||
-                                    <button onClick={() => this.OnRoleDelete(role.id)} className="btn btn-danger">Delete</button></td>
+                                    <button onClick={() => this.onRoleDelete(role.id)} className="btn btn-danger">Delete</button></td>
                             </tr>
                         ))
                     }

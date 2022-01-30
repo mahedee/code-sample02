@@ -51,18 +51,16 @@ export default class EditRole extends Component{
 
         let roleObj = {
             id: this.state.id,
-            fullName: this.state.fullName,
-            email: this.state.email,
-            roles: this.state.roles
+            roleName: this.state.roleName
         }
 
-        putData('api/User/EditUserProfile/' + id, userProfile).then((result) => {
+        putData('api/Role/Edit/' + id, roleObj).then((result) => {
             let responseJson = result;
-            console.log("update response: ");
+            //console.log("update response: ");
             
             if(responseJson){
                 console.log(responseJson);
-                history.push('/admin/users');
+                history.push('/admin/roles');
             }
         }
 
