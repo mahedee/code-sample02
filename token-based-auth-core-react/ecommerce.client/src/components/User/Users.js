@@ -8,12 +8,20 @@ export default class Users extends Component {
             users: [],
             loading: true
         };
+
+        this.onUserCreate = this.onUserCreate.bind(this);
     }
 
 
     componentDidMount() {
         this.getAllUsersData();
     }
+
+    onUserCreate(){
+        const{history} = this.props;
+        history.push('/admin/user/create');
+    }
+
 
     onUserEdit(id){
         const { history } = this.props;
@@ -77,7 +85,7 @@ export default class Users extends Component {
         return (
             <div>
                 <h3>List of Users</h3>
-                <button onClick={() => this.onCustomerCreate()} className="btn btn-primary">Create new user</button>
+                <button onClick={() => this.onUserCreate()} className="btn btn-primary">Create new user</button>
                 {content}
             </div>
         );
