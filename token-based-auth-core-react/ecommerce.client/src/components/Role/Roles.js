@@ -4,12 +4,14 @@ import { getData } from "../services/AccessAPI";
 export default class Roles extends Component {
     constructor(props) {
         super(props);
-
-        this.onRoleCreate = this.onRoleCreate.bind(this);
         this.state = {
             roles: [],
             loading: true
         };
+
+        this.onRoleCreate = this.onRoleCreate.bind(this);
+        this.onRoleEdit = this.onRoleEdit.bind(this);
+
     }
 
     onRoleCreate(){
@@ -18,6 +20,13 @@ export default class Roles extends Component {
         // const {history} = this.props;
         // history.push('/admin/roles/create');
     }
+
+    onRoleEdit(id){
+        const {history} = this.props;
+        history.push('/admin/role/edit/' + id);
+    }
+
+
     componentDidMount() {
         this.getAllRoles();
     }
@@ -49,8 +58,8 @@ export default class Roles extends Component {
                         roles.map(role => (
                             <tr key={role.id}>
                                 <td>{role.roleName}</td>
-                                <td><button onClick={() => this.onUserEdit(role.id)} className="btn btn-success">Edit</button> ||
-                                    <button onClick={() => this.OncustomerDelete(role.id)} className="btn btn-danger">Delete</button></td>
+                                <td><button onClick={() => this.onRoleEdit(role.id)} className="btn btn-success">Edit</button> ||
+                                    <button onClick={() => this.OnRoleDelete(role.id)} className="btn btn-danger">Delete</button></td>
                             </tr>
                         ))
                     }

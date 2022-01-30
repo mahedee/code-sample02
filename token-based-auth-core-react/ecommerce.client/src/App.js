@@ -27,6 +27,7 @@ import Users from './components/User/Users';
 import UpdateUser from './components/User/UpdateUser';
 import Roles from './components/Role/Roles';
 import CreateRole from './components/Role/CreateRole';
+import EditRole from './components/Role/EditRole';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -57,6 +58,7 @@ export default class App extends Component {
         <Route path='/admin/user/edit/:id' component= {UpdateUser}></Route>
         <Route path='/admin/roles' component={Roles}></Route>
         <Route path='/admin/role/create' component = {CreateRole}></Route>
+        <Route path='/admin/role/edit/:id' component= {EditRole}></Route>
 
       </Layout>
     );
