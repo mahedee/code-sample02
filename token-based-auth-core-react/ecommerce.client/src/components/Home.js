@@ -8,59 +8,15 @@ export class Home extends Component {
       width: "15rem",
       margin: "5px",
       background: "gray",
-      float: "left"
+      float: "center"
     };
 
     return (
       <div>
-        <div class="card" style={mystyle} >
-          <div class="card-body">
-            Programs
-          </div>
+        <div class="card-body">
+          <h3>Welcome to admin panel!</h3>
+          <h5>Manage users permission</h5>
         </div>
-
-        <div class="card" style={mystyle} >
-          <div class="card-body">
-            Banking
-          </div>
-        </div>
-        <div class="card" style={mystyle} >
-          <div class="card-body">
-            Accounts
-          </div>
-        </div>
-
-        <div class="card" style={mystyle} >
-          <div class="card-body">
-            Monitoring
-          </div>
-        </div>
-
-        <div class="card" style={mystyle} >
-          <div class="card-body">
-            HRM
-          </div>
-        </div>
-
-        <div class="card" style={mystyle} >
-          <div class="card-body">
-            Security
-          </div>
-        </div>
-
-        <div class="card" style={mystyle} >
-          <div class="card-body">
-            Admin
-          </div>
-        </div>
-
-        <div class="card" style={mystyle} >
-          <div class="card-body">
-            Audit
-          </div>
-        </div>
-
-
       </div>
     );
   }

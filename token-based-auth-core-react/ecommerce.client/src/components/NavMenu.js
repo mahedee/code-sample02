@@ -42,7 +42,7 @@ export class NavMenu extends Component {
                                     <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
                                 </NavItem>
 
-                                <UncontrolledDropdown nav inNavbar>
+                                {/* <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
                                         Programs
                                     </DropdownToggle>
@@ -63,7 +63,7 @@ export class NavMenu extends Component {
                                             <NavLink tag={Link} className="text-dark" to="/underConstructions">Daily Overdue Report</NavLink>
                                         </DropdownItem>
                                     </DropdownMenu>
-                                </UncontrolledDropdown>
+                                </UncontrolledDropdown> */}
 
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
@@ -73,7 +73,7 @@ export class NavMenu extends Component {
                                         <DropdownItem>
                                             <NavLink tag={Link} className="text-dark" to="/banking/customers">Customer</NavLink>
                                         </DropdownItem>
-                                        <DropdownItem>
+                                        {/* <DropdownItem>
                                             <NavLink tag={Link} className="text-dark" to="/underConstructions">Account</NavLink>
                                         </DropdownItem>
                                         <DropdownItem divider />
@@ -84,12 +84,12 @@ export class NavMenu extends Component {
                                         </DropdownItem>
                                         <DropdownItem>
                                             <NavLink tag={Link} className="text-dark" to="/underConstructions">View Statement</NavLink>
-                                        </DropdownItem>
+                                        </DropdownItem> */}
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
 
 
-                                <UncontrolledDropdown nav inNavbar>
+                                {/* <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
                                         Accounts
                                     </DropdownToggle>
@@ -110,10 +110,10 @@ export class NavMenu extends Component {
                                             <NavLink tag={Link} className="text-dark" to="/underConstructions">Trail Balance Report</NavLink>
                                         </DropdownItem>
                                     </DropdownMenu>
-                                </UncontrolledDropdown>
+                                </UncontrolledDropdown> */}
 
 
-                                <UncontrolledDropdown nav inNavbar>
+                                {/* <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
                                         Monitoring
                                     </DropdownToggle>
@@ -134,8 +134,8 @@ export class NavMenu extends Component {
                                             <NavLink tag={Link} className="text-dark" to="/underConstructions">Others Report</NavLink>
                                         </DropdownItem>
                                     </DropdownMenu>
-                                </UncontrolledDropdown>
-
+                                </UncontrolledDropdown> */}
+{/* 
 
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
@@ -158,7 +158,7 @@ export class NavMenu extends Component {
                                             <NavLink tag={Link} className="text-dark" to="/underConstructions">Attendance Report</NavLink>
                                         </DropdownItem>
                                     </DropdownMenu>
-                                </UncontrolledDropdown>
+                                </UncontrolledDropdown> */}
 
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
@@ -178,9 +178,9 @@ export class NavMenu extends Component {
 
 
 
-                                <NavItem>
+                                {/* <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/">Security</NavLink>
-                                </NavItem>
+                                </NavItem> */}
                                 <NavItem>
                                     <NavLink tag={Link} className='text-dark' to="/login">Login</NavLink>
                                 </NavItem>
