@@ -13,6 +13,7 @@ namespace Ordering.Application.Common.Interfaces
         Task<bool> SigninUserAsync(string userName, string password);
         Task<string> GetUserIdAsync(string userName);
         Task<(string userId, string fullName, string UserName, string email, IList<string> roles)> GetUserDetailsAsync(string userId);
+        Task<(string userId, string fullName, string UserName, string email, IList<string> roles)> GetUserDetailsByUserNameAsync(string userName);
         Task<string> GetUserNameAsync(string userId);
         Task<bool> DeleteUserAsync(string userId);
         Task<bool> IsUniqueUserName(string userName);
