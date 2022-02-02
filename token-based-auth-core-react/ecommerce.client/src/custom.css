@@ -13,3 +13,8 @@ a {
     border-color: #1861ac;
   }
   
+  
+.checkBoxList{
+  list-style-type: none;
+  padding-left: 0%;
+}

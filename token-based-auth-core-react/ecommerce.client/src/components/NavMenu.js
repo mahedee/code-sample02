@@ -173,6 +173,11 @@ export class NavMenu extends Component {
                                             <NavLink tag={Link} className="text-dark" to="/admin/roles">Roles</NavLink>
                                         </DropdownItem>
 
+                                        <DropdownItem>
+                                            <NavLink tag={Link} className="text-dark" to="/admin/usersroles">Users Roles</NavLink>
+                                        </DropdownItem>
+
+
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
 
