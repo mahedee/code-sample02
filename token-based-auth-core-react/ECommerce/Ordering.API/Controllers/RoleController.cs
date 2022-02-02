@@ -27,7 +27,7 @@ namespace Ordering.API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         [ProducesDefaultResponseType(typeof(List<RoleResponseDTO>))]
         public async Task<IActionResult> GetRoleAsync()
         {
