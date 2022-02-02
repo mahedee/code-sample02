@@ -5,6 +5,10 @@ export default class UsersRole extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            userId:  '',
+            fullName: '',
+            userName: '',
+            userRoles: [],
             roles: [],
             loading: true
         };
@@ -12,8 +16,12 @@ export default class UsersRole extends Component {
         this.onUserCreate = this.onUserCreate.bind(this);
         this.onUserDelete = this.onUserDelete.bind(this);
         this.onSearch = this.onSearch.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+    }
 
     componentDidMount() {
         this.getAllRoles();
@@ -37,16 +45,24 @@ export default class UsersRole extends Component {
 
 
     onSearch(userName){
-        getData('api/Role/GetAll/' + userName).then(
+
+        alert(userName);
+
+        getData('api/User/GetUserDetailsByUserName/' + userName).then(
             (result) => {
                 if (result) {
+
+                    console.log(result);
                     this.setState({
-                        roles: result,
+                        userRoles: result.roles,
                         loading: false
                     });
                 }
             }
         );
+
+        // console.log("User roles");
+        // console.log(this.state.userRoles);
     }
 
     getAllRoles() {
@@ -67,7 +83,6 @@ export default class UsersRole extends Component {
     renderAllRoles(roles) {
         return (
 
-
             <div>
                 <hr></hr>
                 <label>User Name: </label>
@@ -77,8 +92,8 @@ export default class UsersRole extends Component {
                 <h4>Roles</h4>
                 <ul className="checkBoxList">
                 {
-                    roles.map(role => (
-                        <li>
+                    roles.map((role, index) => (
+                        <li key = {index}>
                             <input type="checkbox" value="mahedee"></input>
                             <span class="input-group-addon">&nbsp;</span>
                             <label>{role.roleName}</label>
@@ -87,30 +102,6 @@ export default class UsersRole extends Component {
                 }
                 </ul>
             </div>
-
-            // <table className="table table-striped">
-            //     <thead>
-            //         <tr>
-            //             <th>Full Name</th>
-            //             <th>User Name</th>
-            //             <th>Email</th>
-            //             <th>Actions</th>
-            //         </tr>
-            //     </thead>
-            //     <tbody>
-            //         {
-            //             users.map(user => (
-            //                 <tr key={user.id}>
-            //                     <td>{user.fullName}</td>
-            //                     <td>{user.userName}</td>
-            //                     <td>{user.email}</td>
-            //                     <td><button onClick={() => this.onUserEdit(user.id)} className="btn btn-success">Edit</button> ||
-            //                         <button onClick={() => this.onUserDelete(user.id)} className="btn btn-danger">Delete</button></td>
-            //                 </tr>
-            //             ))
-            //         }
-            //     </tbody>
-            // </table>
         );
     }
 
@@ -127,9 +118,9 @@ export default class UsersRole extends Component {
             <div>
                 <h3>Users Role</h3>
                 <div className="input-group">
-                    <input className="col-md-3" type="text" name="fullName" placeholder="Enter user name" value={this.state.fullName} onChange={this.onChange}></input>
+                    <input className="col-md-3" type="text" name="userName" placeholder="Enter user name" value={this.state.userName} onChange={this.onChange}></input>
                     <span class="input-group-addon">&nbsp;</span>
-                    <button className="btn btn-primary" onClick={this.registration}>
+                    <button className="btn btn-primary" onClick={() => this.onSearch(this.state.userName)}>
                         Search
                     </button>
                 </div>

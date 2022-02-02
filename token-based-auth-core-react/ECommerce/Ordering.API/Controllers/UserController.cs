@@ -51,6 +51,14 @@ namespace Ordering.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("GetUserDetailsByUserName/{userName}")]
+        [ProducesDefaultResponseType(typeof(UserDetailsResponseDTO))]
+        public async Task<IActionResult> GetUserDetailsByUserName(string userName)
+        {
+            var result = await _mediator.Send(new GetUserDetailsByUserNameQuery() { UserName = userName });
+            return Ok(result);
+        }
+
         [HttpPost("AssignRoles")]
         [ProducesDefaultResponseType(typeof(int))]
 

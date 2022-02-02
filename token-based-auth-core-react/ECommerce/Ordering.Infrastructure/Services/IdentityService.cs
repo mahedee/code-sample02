@@ -168,6 +168,17 @@ namespace Ordering.Infrastructure.Services
             return (user.Id, user.FullName, user.UserName, user.Email, roles);
         }
 
+        public async Task<(string userId, string fullName, string UserName, string email, IList<string> roles)> GetUserDetailsByUserNameAsync(string userName)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == userName);
+            if (user == null)
+            {
+                throw new NotFoundException("User not found");
+            }
+            var roles = await _userManager.GetRolesAsync(user);
+            return (user.Id, user.FullName, user.UserName, user.Email, roles);
+        }
+
         public async Task<string> GetUserIdAsync(string userName)
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == userName);
