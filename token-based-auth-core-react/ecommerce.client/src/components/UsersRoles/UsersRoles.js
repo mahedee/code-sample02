@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { getData } from "../services/AccessAPI";
+import RoleList from "./RoleList";
 
 export default class UsersRole extends Component {
     constructor(props) {
@@ -52,20 +53,19 @@ export default class UsersRole extends Component {
             (result) => {
                 if (result) {
 
-                    console.log(result);
+                    //console.log(result.roles);
                     this.setState({
                         userRoles: result.roles,
                         loading: false
                     });
+                    //console.log(this.state.userRoles);
                 }
             }
         );
-
-        // console.log("User roles");
-        // console.log(this.state.userRoles);
     }
 
     getAllRoles() {
+        //debugger;
         getData('api/Role/GetAll').then(
             (result) => {
                 if (result) {
@@ -79,6 +79,12 @@ export default class UsersRole extends Component {
 
         //console.log("users list: " + this.state.users);
     }
+
+    // const renderList = renderRoleList({
+    //     return(
+    //         <RoleList roles = {this.state.roles} userRoles = {this.state.userRoles}/>
+    //     );
+    // });
 
     renderAllRoles(roles) {
         return (
@@ -113,7 +119,10 @@ export default class UsersRole extends Component {
         ) : (
             this.renderAllRoles(this.state.roles)
         )
-
+        {
+            console.log('Roles data: ');
+            console.log(this.state.roles)
+        }
         return (
             <div>
                 <h3>Users Role</h3>
@@ -127,7 +136,13 @@ export default class UsersRole extends Component {
 
                 {/* <button onClick={() => this.onUserCreate()} className="btn btn-primary">Create new user</button> */}
                 {content}
+
+                {/* {renderRoleList()} */}
+            
+                <RoleList roles = {this.state.roles} userRoles = {this.state.userRoles}/>
             </div>
+
+            
         );
     }
 }
