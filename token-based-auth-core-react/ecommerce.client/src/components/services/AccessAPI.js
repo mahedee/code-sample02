@@ -1,6 +1,7 @@
 // //let BaseURL = window.SERVER_URL;
 
 import SessionManager from "../Auth/SessionManager";
+import { BASE_URL } from "./Settings";
 
 // import axios from "axios";
 
@@ -38,6 +39,10 @@ export function getData(type) {
     //let BaseURL = window.SERVER_URL;
 
     //console.log("Log Token: " + token);
+
+    //debugger;
+    console.log("Base URL: " + window.baseURL);
+    console.log(BASE_URL);
 
     let token=SessionManager.getToken();
     let BaseURL = "https://localhost:7142/";
