@@ -263,5 +263,15 @@ namespace Ordering.Infrastructure.Services
             }
             return false;
         }
+
+        public async Task<bool> UpdateUsersRole(string userName, IList<string> usersRole)
+        {
+            var user =  await _userManager.FindByNameAsync(userName);
+            var existingRoles = await _userManager.GetRolesAsync(user);
+            var result = await _userManager.RemoveFromRolesAsync(user, existingRoles);
+            result = await _userManager.AddToRolesAsync(user, usersRole);
+
+            return result.Succeeded;
+        }
     }
 }

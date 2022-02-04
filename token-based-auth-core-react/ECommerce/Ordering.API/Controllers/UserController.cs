@@ -68,6 +68,15 @@ namespace Ordering.API.Controllers
             return Ok(result);
         }
 
+        [HttpPut("EditUserRoles")]
+        [ProducesDefaultResponseType(typeof(int))]
+
+        public async Task<ActionResult> EditUserRoles(UpdateUserRolesCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
         [HttpGet("GetAllUserDetails")]
         [ProducesDefaultResponseType(typeof(UserDetailsResponseDTO))]
         public async Task<IActionResult> GetAllUserDetails()
