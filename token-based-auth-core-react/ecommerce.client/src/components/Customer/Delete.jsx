@@ -1,5 +1,5 @@
-﻿import axios from "axios";
-import React, { Component } from "react";
+﻿import React, { Component } from "react";
+import { deleteData, getData } from "../services/AccessAPI";
 
 export class Delete extends Component {
     constructor(props) {
@@ -9,27 +9,35 @@ export class Delete extends Component {
         this.onConfirmation = this.onConfirmation.bind(this);
 
         this.state = {
-            fullName: '',
+            firstName: '',
+            lastName: '',
+            email: '',
             contactNumber: '',
-            nomineeName: '',
-            nomineeContactNumber: '',
-            nomineeDateOfBirth: null
+            address: ''
         }
     }
 
     componentDidMount() {
         const { id } = this.props.match.params;
-        axios.get("http://localhost:8001/api/Customers/" + id).then(customer => {
-            const response = customer.data;
-            this.setState({
-                id: response.id,
-                fullName: response.fullName,
-                contactNumber: response.contactNumber,
-                nomineeName: response.nomineeName,
-                nomineeContactNumber: response.nomineeContactNumber,
-                nomineeDateOfBirth: new Date(response.nomineeDateOfBirth).toISOString().slice(0, 10)
-            })
-        })
+        this.getCustomer(id);
+    }
+
+    getCustomer(id) {
+        getData('api/Customer/' + id).then(
+            (result) => {
+                if (result) {
+                    this.setState({
+                        id: result.id,
+                        firstName: result.firstName,
+                        lastName: result.lastName,
+                        email: result.email,
+                        contactNumber: result.contactNumber,
+                        address: result.address
+                        //loading: false
+                    });
+                }
+            }
+        );
     }
 
     onCancel() {
@@ -43,10 +51,13 @@ export class Delete extends Component {
         const { id } = this.props.match.params;
         const { history } = this.props;
 
-        axios.delete("http://localhost:8001/api/Customers/" + id).then(result => {
-            history.push('/banking/customers');
-        })
-
+        deleteData('api/Customer/Delete/' + id).then((result) => {
+            let responseJson = result;
+            if (responseJson) {
+                history.push('/banking/customers');
+            }
+        }
+        );
     }
 
 
@@ -59,10 +70,22 @@ export class Delete extends Component {
                     <h4>Customer</h4>
                     <dl class="row">
                         <dt class="col-sm-2">
-                            Full Name:
+                            First Name:
                         </dt>
                         <dd class="col-sm-10">
-                            {this.state.fullName}
+                            {this.state.firstName}
+                        </dd>
+                        <dt class="col-sm-2">
+                            Last Name:
+                        </dt>
+                        <dd class="col-sm-10">
+                            {this.state.lastName}
+                        </dd>
+                        <dt class="col-sm-2">
+                            Email:
+                        </dt>
+                        <dd class="col-sm-10">
+                            {this.state.email}
                         </dd>
                         <dt class="col-sm-2">
                             Contact Number:
@@ -70,24 +93,12 @@ export class Delete extends Component {
                         <dd class="col-sm-10">
                             {this.state.contactNumber}
                         </dd>
-                        <dt class="col-sm-2">
-                            Nominee Name:
-                        </dt>
-                        <dd class="col-sm-10">
-                            {this.state.nomineeName}
-                        </dd>
-                        <dt class="col-sm-2">
-                            Nominee's Contact Number:
-                        </dt>
-                        <dd class="col-sm-10">
-                            {this.state.nomineeContactNumber}
-                        </dd>
 
                         <dt class="col-sm-2">
-                           Nominee's DOB:
+                            Address:
                         </dt>
                         <dd class="col-sm-10">
-                            {this.state.nomineeDateOfBirth}
+                            {this.state.address}
                         </dd>
 
                     </dl>
