@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { getData, putData } from "../services/AccessAPI";
 
-export default class EditRole extends Component{
-    constructor(props){
+export default class EditRole extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             id: '',
@@ -25,8 +25,8 @@ export default class EditRole extends Component{
     // }
 
 
-    componentDidMount(){
-        const {id} = this.props.match.params;
+    componentDidMount() {
+        const { id } = this.props.match.params;
         getData('api/Role/' + id).then(
             (result) => {
                 //let responseJson = result;
@@ -44,10 +44,10 @@ export default class EditRole extends Component{
         );
     }
 
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
-        const {history} = this.props;
-        const {id} = this.props.match.params;
+        const { history } = this.props;
+        const { id } = this.props.match.params;
 
         let roleObj = {
             id: this.state.id,
@@ -57,8 +57,8 @@ export default class EditRole extends Component{
         putData('api/Role/Edit/' + id, roleObj).then((result) => {
             let responseJson = result;
             //console.log("update response: ");
-            
-            if(responseJson){
+
+            if (responseJson) {
                 console.log(responseJson);
                 history.push('/admin/roles');
             }
@@ -67,8 +67,8 @@ export default class EditRole extends Component{
         );
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className="row">
                 <div className="col-md-4">
                     <h3>Edit Role</h3>
@@ -76,7 +76,7 @@ export default class EditRole extends Component{
                         <div className="form-group">
                             <label className="control-label">Role Name: </label>
                             <input className="form-control" type="text" value={this.state.roleName} onChange={this.onChange} name="roleName"
-                            onKeyDown={this.onKeyDown} ></input>
+                                onKeyDown={this.onKeyDown} ></input>
                         </div>
 
                         <div className="form-group">

@@ -49,7 +49,7 @@ namespace Ordering.API.Controllers
             return await _mediator.Send(new GetCustomerByEmailQuery(email));
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<CustomerResponse>> CreateCustomer([FromBody] CreateCustomerCommand command)
         {
@@ -58,8 +58,8 @@ namespace Ordering.API.Controllers
         }
 
 
-        [HttpPut("EditCustomer/{id}")]
-        public async Task<ActionResult> EditCustomer(int id, [FromBody] EditCustomerCommand command)
+        [HttpPut("Edit/{id}")]
+        public async Task<ActionResult> Edit(int id, [FromBody] EditCustomerCommand command)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace Ordering.API.Controllers
             }
         }
 
-        [HttpDelete("DeleteCustomer/{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<ActionResult> DeleteCustomer(int id)
         {
             try

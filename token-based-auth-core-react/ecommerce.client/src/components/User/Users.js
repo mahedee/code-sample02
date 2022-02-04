@@ -37,9 +37,6 @@ export default class Users extends Component {
     getAllUsersData() {
         getData('api/User/GetAll').then(
             (result) => {
-                //let responseJson = result;
-                //console.log("users list: ");
-                //console.log(result);
                 if (result) {
                     this.setState({
                         users: result,
