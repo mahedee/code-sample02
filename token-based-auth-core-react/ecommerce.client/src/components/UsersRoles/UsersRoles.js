@@ -29,16 +29,21 @@ export default class UsersRole extends Component {
     }
 
     handleCheckboxChange = (event) => {
-
+    //handleCheckboxChange(e){
         alert('Checkbox event');
-        // if (event.target.checked) {
-        //   if (!this.state.workDays.includes(event.target.value)) {
-        //     this.setState(prevState => ({ workDays: [...prevState.workDays, event.target.value]}))
-        //   }
-        // } else {
-        //   this.setState(prevState => ({ workDays: prevState.workDays.filter(day => day !== event.target.value) }));
-        // }
+        if(event.target.checked){
+            ///event.target.checked = true;
+            alert('checked');
+            alert(event.target.value);
 
+            if(!this.state.userRoles.includes(event.target.value)){
+                this.setState(prevState => ({userRoles: [...prevState.userRoles, event.target.value]}));
+                //alert(this.state.userRoles);
+            }
+        } else{
+            alert('uncheked')
+            this.setState(prevState => ({userRoles: prevState.userRoles.filter(roleName => roleName !== event.target.value)}));
+        }
 
     }
 
@@ -162,7 +167,7 @@ export default class UsersRole extends Component {
 
                 {/* <RoleList roles = {this.state.roles} userRoles = {this.state.userRoles}/> */}
 
-                <form onSubmit={this.onSubmit}>
+                {/* <form onSubmit={this.onSubmit}> */}
                     <div className="form-group">
                         {renderCheckbox}
                     </div>
@@ -170,7 +175,7 @@ export default class UsersRole extends Component {
                         <input type="submit" value="Save" className="btn btn-primary"></input>
                     </div>
 
-                </form>
+                {/* </form> */}
 
             </div>
 
