@@ -11,9 +11,9 @@ export default class UsersRole extends Component {
             userName: '',
             userRoles: [],
             roles: [],
+            msg: '',
             loading: true
         };
-
 
         this.onSearch = this.onSearch.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -23,55 +23,36 @@ export default class UsersRole extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-
         let userRoles = {
-            // id: this.state.id,
-            // fullName: this.state.fullName,
-            // email: this.state.email,
             userName: this.state.userName,
             roles: this.state.userRoles
         }
-
         putData('api/User/EditUserRoles', userRoles).then((result) => {
             let responseJson = result;
-            //console.log("update response: ");
-            
-            if(responseJson){
-                console.log(responseJson);
-                //history.push('/admin/roles');
+            if (responseJson) {
+                this.setState({ msg: "User's roles updated successfully!" });
             }
         }
 
         );
-
-        alert('Save all info');
-
     }
 
     handleCheckboxChange = (event) => {
-    //handleCheckboxChange(e){
-        alert('Checkbox event');
-        if(event.target.checked){
-            ///event.target.checked = true;
-            alert('checked');
-            alert(event.target.value);
 
-            if(!this.state.userRoles.includes(event.target.value)){
-                this.setState(prevState => ({userRoles: [...prevState.userRoles, event.target.value]}));
-                //alert(this.state.userRoles);
+        if (event.target.checked) {
+            if (!this.state.userRoles.includes(event.target.value)) {
+                this.setState(prevState => ({ userRoles: [...prevState.userRoles, event.target.value] }));
             }
-        } else{
-            alert('uncheked')
-            this.setState(prevState => ({userRoles: prevState.userRoles.filter(roleName => roleName !== event.target.value)}));
+        } else {
+            this.setState(prevState => ({ userRoles: prevState.userRoles.filter(roleName => roleName !== event.target.value) }));
         }
 
     }
 
-
-
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
+
 
     componentDidMount() {
         this.getAllRoles();
@@ -79,25 +60,18 @@ export default class UsersRole extends Component {
 
 
     onSearch(userName) {
-
-        alert(userName);
-        // this.renderRoleList();
-
         getData('api/User/GetUserDetailsByUserName/' + userName).then(
             (result) => {
                 if (result) {
-
-                    //console.log(result.roles);
                     this.setState({
                         userRoles: result.roles,
+                        fullName: result.fullName,
+                        userName: result.userName,
                         loading: false
                     });
-                    //console.log(this.state.userRoles);
                 }
             }
         );
-
-        this.renderRoleList();
     }
 
     getAllRoles() {
@@ -112,41 +86,10 @@ export default class UsersRole extends Component {
                 }
             }
         );
-
-        //console.log("users list: " + this.state.users);
     }
 
-
-
-    renderAllRoles(roles) {
-        return (
-
-            <div>
-                <hr></hr>
-                <label>User Name: </label>
-                <span class="input-group-addon">&nbsp;</span>
-                <label>User name</label>
-
-                <h4>Roles</h4>
-                <ul className="checkBoxList">
-                    {
-                        roles.map((role, index) => (
-                            <li key={index}>
-                                <input type="checkbox" value="mahedee"></input>
-                                <span class="input-group-addon">&nbsp;</span>
-                                <label>{role.roleName}</label>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
-        );
-    }
 
     renderRoleList() {
-
-        // console.log('user roles');
-        // console.log(this.state.userRoles);
         return (
             <RoleList roles={this.state.roles} userRoles={this.state.userRoles} onChange={this.handleCheckboxChange} />
         );
@@ -154,17 +97,6 @@ export default class UsersRole extends Component {
 
 
     render() {
-        let content = this.state.loading ? (
-            <p>
-                <em>Loading...</em>
-            </p>
-        ) : (
-            this.renderAllRoles(this.state.roles)
-        )
-        {
-            console.log('Roles data: ');
-            console.log(this.state.roles)
-        }
 
         let renderCheckbox = this.renderRoleList();
 
@@ -179,13 +111,11 @@ export default class UsersRole extends Component {
                         Search
                     </button>
                 </div>
+                <label>Full Name: {this.state.fullName}</label>
+                <label className="col-md-4">User Name: {this.state.userName}</label>
+                <hr></hr>
 
-                {/* <button onClick={() => this.onUserCreate()} className="btn btn-primary">Create new user</button> */}
-                {/* {content} */}
 
-                {/* {renderCheckbox} */}
-
-                {/* <RoleList roles = {this.state.roles} userRoles = {this.state.userRoles}/> */}
 
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
@@ -194,12 +124,9 @@ export default class UsersRole extends Component {
                     <div className="form-group">
                         <input type="submit" value="Save" className="btn btn-primary"></input>
                     </div>
-
                 </form>
-
+                <label>{this.state.msg}</label>
             </div>
-
-
         );
     }
 }
