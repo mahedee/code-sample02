@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { getData } from "../services/AccessAPI";
+import { getData, putData } from "../services/AccessAPI";
 import RoleList from "./RoleList";
 
 export default class UsersRole extends Component {
@@ -23,6 +23,26 @@ export default class UsersRole extends Component {
 
     onSubmit(e) {
         e.preventDefault();
+
+        let userRoles = {
+            // id: this.state.id,
+            // fullName: this.state.fullName,
+            // email: this.state.email,
+            userName: this.state.userName,
+            roles: this.state.userRoles
+        }
+
+        putData('api/User/EditUserRoles', userRoles).then((result) => {
+            let responseJson = result;
+            //console.log("update response: ");
+            
+            if(responseJson){
+                console.log(responseJson);
+                //history.push('/admin/roles');
+            }
+        }
+
+        );
 
         alert('Save all info');
 
@@ -167,7 +187,7 @@ export default class UsersRole extends Component {
 
                 {/* <RoleList roles = {this.state.roles} userRoles = {this.state.userRoles}/> */}
 
-                {/* <form onSubmit={this.onSubmit}> */}
+                <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         {renderCheckbox}
                     </div>
@@ -175,7 +195,7 @@ export default class UsersRole extends Component {
                         <input type="submit" value="Save" className="btn btn-primary"></input>
                     </div>
 
-                {/* </form> */}
+                </form>
 
             </div>
 
