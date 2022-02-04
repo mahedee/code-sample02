@@ -16,7 +16,7 @@ const RoleList = (props) => {
         //if (!userRoles) return false;
         if (userRoles.length <= 0) return false;
 
-        debugger;
+        //debugger;
         return userRoles.includes(roleName);
         // if (userRoles.filter(p => p.roleName.includes(roleName)).length > 0)
         //     return true;
@@ -30,20 +30,6 @@ const RoleList = (props) => {
                 {
                     //isChecked = roles.includes('Admin');
                     roles.map((role, index) => (
-
-
-                        // (roles.filter(p => p.roleName.includes('Admin')).length > 0) ? 
-                        // isChecked = true : isChecked = false
-
-                        // {
-                        //     console.log('found');
-                        // } 
-                        // : 
-                        // {
-                        //     //console.log('not found')
-
-                        // }
-
 
                         <li key={index}>
                             <input type="checkbox" checked={isExists(role.roleName)} ></input>

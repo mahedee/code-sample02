@@ -6,7 +6,7 @@ export default class UsersRole extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userId:  '',
+            userId: '',
             fullName: '',
             userName: '',
             userRoles: [],
@@ -14,11 +14,35 @@ export default class UsersRole extends Component {
             loading: true
         };
 
-        this.onUserCreate = this.onUserCreate.bind(this);
-        this.onUserDelete = this.onUserDelete.bind(this);
+
         this.onSearch = this.onSearch.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        alert('Save all info');
+
+    }
+
+    handleCheckboxChange = (event) => {
+
+        alert('Checkbox event');
+        // if (event.target.checked) {
+        //   if (!this.state.workDays.includes(event.target.value)) {
+        //     this.setState(prevState => ({ workDays: [...prevState.workDays, event.target.value]}))
+        //   }
+        // } else {
+        //   this.setState(prevState => ({ workDays: prevState.workDays.filter(day => day !== event.target.value) }));
+        // }
+
+
+    }
+
+
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
@@ -28,24 +52,8 @@ export default class UsersRole extends Component {
         this.getAllRoles();
     }
 
-    onUserCreate() {
-        const { history } = this.props;
-        history.push('/admin/user/create');
-    }
 
-
-    onUserEdit(id) {
-        const { history } = this.props;
-        history.push('/admin/user/edit/' + id);
-    }
-
-    onUserDelete(id) {
-        const { history } = this.props;
-        history.push('/admin/user/delete/' + id);
-    }
-
-
-    onSearch(userName){
+    onSearch(userName) {
 
         alert(userName);
         // this.renderRoleList();
@@ -83,11 +91,7 @@ export default class UsersRole extends Component {
         //console.log("users list: " + this.state.users);
     }
 
-    // const renderList = renderRoleList({
-    //     return(
-    //         <RoleList roles = {this.state.roles} userRoles = {this.state.userRoles}/>
-    //     );
-    // });
+
 
     renderAllRoles(roles) {
         return (
@@ -100,28 +104,28 @@ export default class UsersRole extends Component {
 
                 <h4>Roles</h4>
                 <ul className="checkBoxList">
-                {
-                    roles.map((role, index) => (
-                        <li key = {index}>
-                            <input type="checkbox" value="mahedee"></input>
-                            <span class="input-group-addon">&nbsp;</span>
-                            <label>{role.roleName}</label>
-                        </li>
-                    ))
-                }
+                    {
+                        roles.map((role, index) => (
+                            <li key={index}>
+                                <input type="checkbox" value="mahedee"></input>
+                                <span class="input-group-addon">&nbsp;</span>
+                                <label>{role.roleName}</label>
+                            </li>
+                        ))
+                    }
                 </ul>
             </div>
         );
     }
 
-    renderRoleList(){
+    renderRoleList() {
 
-       // console.log('user roles');
-       // console.log(this.state.userRoles);
-        return(
-            <RoleList roles = {this.state.roles} userRoles = {this.state.userRoles}/>
+        // console.log('user roles');
+        // console.log(this.state.userRoles);
+        return (
+            <RoleList roles={this.state.roles} userRoles={this.state.userRoles} onChange={this.handleCheckboxChange} />
         );
-        };
+    };
 
 
     render() {
@@ -138,6 +142,8 @@ export default class UsersRole extends Component {
         }
 
         let renderCheckbox = this.renderRoleList();
+
+
         return (
             <div>
                 <h3>Users Role</h3>
@@ -150,14 +156,25 @@ export default class UsersRole extends Component {
                 </div>
 
                 {/* <button onClick={() => this.onUserCreate()} className="btn btn-primary">Create new user</button> */}
-                {content}
+                {/* {content} */}
 
-                {renderCheckbox}
-            
+                {/* {renderCheckbox} */}
+
                 {/* <RoleList roles = {this.state.roles} userRoles = {this.state.userRoles}/> */}
+
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                        {renderCheckbox}
+                    </div>
+                    <div className="form-group">
+                        <input type="submit" value="Save" className="btn btn-primary"></input>
+                    </div>
+
+                </form>
+
             </div>
 
-            
+
         );
     }
 }
