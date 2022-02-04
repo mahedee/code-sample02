@@ -1,19 +1,27 @@
 const RoleList = (props) => {
 
-    debugger;
+    //debugger;
     const roles = props.roles;
-    const usersRoles = props.usersRoles;
+    const userRoles = props.userRoles;
 
-    console.log("Role list");
-    console.log(roles);
+    console.log("Role list : user roles");
+    console.log(userRoles);
     var isChecked = true;
 
     function isExists(roleName) {
-        if (!usersRoles) return false;
-        if (usersRoles.filter(p => p.roleName.includes(roleName)).length > 0)
-            return true;
-        else
-            return true;
+
+        console.log('role name' + roleName);
+        console.log(userRoles);
+
+        //if (!userRoles) return false;
+        if (userRoles.length <= 0) return false;
+
+        debugger;
+        return userRoles.includes(roleName);
+        // if (userRoles.filter(p => p.roleName.includes(roleName)).length > 0)
+        //     return true;
+        // else
+        //     return false;
     }
 
     const roleList = (
