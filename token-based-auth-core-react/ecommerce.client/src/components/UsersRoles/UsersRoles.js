@@ -48,6 +48,7 @@ export default class UsersRole extends Component {
     onSearch(userName){
 
         alert(userName);
+        // this.renderRoleList();
 
         getData('api/User/GetUserDetailsByUserName/' + userName).then(
             (result) => {
@@ -62,6 +63,8 @@ export default class UsersRole extends Component {
                 }
             }
         );
+
+        this.renderRoleList();
     }
 
     getAllRoles() {
@@ -111,6 +114,16 @@ export default class UsersRole extends Component {
         );
     }
 
+    renderRoleList(){
+
+       // console.log('user roles');
+       // console.log(this.state.userRoles);
+        return(
+            <RoleList roles = {this.state.roles} userRoles = {this.state.userRoles}/>
+        );
+        };
+
+
     render() {
         let content = this.state.loading ? (
             <p>
@@ -123,6 +136,8 @@ export default class UsersRole extends Component {
             console.log('Roles data: ');
             console.log(this.state.roles)
         }
+
+        let renderCheckbox = this.renderRoleList();
         return (
             <div>
                 <h3>Users Role</h3>
@@ -137,9 +152,9 @@ export default class UsersRole extends Component {
                 {/* <button onClick={() => this.onUserCreate()} className="btn btn-primary">Create new user</button> */}
                 {content}
 
-                {/* {renderRoleList()} */}
+                {renderCheckbox}
             
-                <RoleList roles = {this.state.roles} userRoles = {this.state.userRoles}/>
+                {/* <RoleList roles = {this.state.roles} userRoles = {this.state.userRoles}/> */}
             </div>
 
             
