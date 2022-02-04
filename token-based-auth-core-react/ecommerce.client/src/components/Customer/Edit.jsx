@@ -1,5 +1,6 @@
 ﻿import axios from "axios";
 import React, { Component } from "react";
+import { getData } from "../services/AccessAPI";
 
 export class Edit extends Component {
     constructor(props) {
@@ -14,29 +15,49 @@ export class Edit extends Component {
 
         this.state = {
             id: '',
-            fullName: '',
+            firstName: '',
+            lastName: '',
+            email: '',
             contactNumber: '',
-            nomineeName: '',
-            nomineeContactNumber: '',
-            //This is date time object
-            nomineeDateOfBirth: null
+            address: ''
         }
     }
 
     componentDidMount() {
         const { id } = this.props.match.params;
-        axios.get("http://localhost:8001/api/Customers/" + id).then(customer => {
-            const response = customer.data;
-            this.setState({
-                id: response.id,
-                fullName: response.fullName,
-                contactNumber: response.contactNumber,
-                nomineeName: response.nomineeName,
-                nomineeContactNumber: response.nomineeContactNumber,
-                nomineeDateOfBirth: new Date(response.nomineeDateOfBirth).toISOString().slice(0, 10)
-            })
-        })
+
         //alert(id);
+        this.getCustomer(id);
+        // axios.get("http://localhost:8001/api/Customers/" + id).then(customer => {
+        //     const response = customer.data;
+        //     this.setState({
+        //         id: response.id,
+        //         fullName: response.fullName,
+        //         contactNumber: response.contactNumber,
+        //         nomineeName: response.nomineeName,
+        //         nomineeContactNumber: response.nomineeContactNumber,
+        //         nomineeDateOfBirth: new Date(response.nomineeDateOfBirth).toISOString().slice(0, 10)
+        //     })
+        // })
+    }
+
+    getCustomer(id){
+
+        getData('api/Customer/' + id).then(
+            (result) => {
+                console.log(result);
+                if (result) {
+                    this.setState({
+                        firstName: result.firstName,
+                        lastName: result.lastName,
+                        email: result.email,
+                        contactNumber: result.contactNumber,
+                        address: result.address
+                        //loading: false
+                    });
+                }
+            }
+        );
     }
 
     onChangeFullName(e) {
@@ -103,28 +124,28 @@ export class Edit extends Component {
                     <h3>Edit Customer</h3>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
-                            <label className="control-label">Full Name: </label>
-                            <input className="form-control" type="text" value={this.state.fullName} onChange={this.onChangeFullName}></input>
+                            <label className="control-label">First Name: </label>
+                            <input className="form-control" type="text" value={this.state.firstName} onChange={this.onChangeFullName}></input>
+                        </div>
+
+                        <div className="form-group">
+                            <label className="control-label">Last Name: </label>
+                            <input className="form-control" type="text" value={this.state.lastName} onChange={this.onChangeContactNumber}></input>
+                        </div>
+
+                        <div className="form-group">
+                            <label className="control-label">Email: </label>
+                            <input className="form-control" type="text" value={this.state.email} onChange={this.onChangeNomineeName}></input>
                         </div>
 
                         <div className="form-group">
                             <label className="control-label">Contact Number: </label>
-                            <input className="form-control" type="text" value={this.state.contactNumber} onChange={this.onChangeContactNumber}></input>
+                            <input className="form-control" type="text" value={this.state.contactNumber} onChange={this.onChangeNomineeContactNumber}></input>
                         </div>
 
                         <div className="form-group">
-                            <label className="control-label">Nominee Name: </label>
-                            <input className="form-control" type="text" value={this.state.nomineeName} onChange={this.onChangeNomineeName}></input>
-                        </div>
-
-                        <div className="form-group">
-                            <label className="control-label">Nominee's Contact Number: </label>
-                            <input className="form-control" type="text" value={this.state.nomineeContactNumber} onChange={this.onChangeNomineeContactNumber}></input>
-                        </div>
-
-                        <div className="form-group">
-                            <label className="control-label">Nominee's DOB: </label>
-                            <input className="form-control" type="date" value={this.state.nomineeDateOfBirth} onChange={this.onChangeNomineeDOB}></input>
+                            <label className="control-label">Address: </label>
+                            <input className="form-control" type="text" value={this.state.address} onChange={this.onChangeNomineeDOB}></input>
                         </div>
 
                         <div className="form-group">

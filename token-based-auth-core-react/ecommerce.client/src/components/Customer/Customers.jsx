@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import axios from 'axios';
 import { getData } from '../services/AccessAPI';
 
 // export keyword is a new feature in ES6 let export your functions , 
@@ -51,33 +50,17 @@ export class Customers extends Component {
 
     populateCustomersData() {
 
-        getData(`api/Customer`).then(
+        getData(`api/Customer/getall`).then(
             (result) => {
-              let responseJson = result;
-            //   console.log("responseJson: ");
-            //   console.log(responseJson);
-              if (responseJson) {
-                this.setState({
-                  //data: responseJson.Data,
-                  customers: responseJson,
-                  //total: responseJson.TotalCount,
-                  loading:false
-                });
-              }
+                let responseJson = result;
+                if (responseJson) {
+                    this.setState({
+                        customers: responseJson,
+                        loading: false
+                    });
+                }
             }
-          );
-
-
-        //var response = getData("api/Customer");
-        //this.setState({ customers: response, loading: false, error: "" });
-        // Axios is a library that helps us make http requests to external resources
-        //axios.get("https://localhost:7142/api/Customer").then(result => {
-        // axios.get("https://localhost:7142/api/Customer").then(result => {
-        //     const response = result.data;
-        //     this.setState({ customers: response, loading: false, error: "" });
-        // }).catch(error => {
-        //     this.setState({ customers: [], loading: false, failed: true, error: "Customers could not be loaded!" });
-        // });
+        );
     }
 
     renderAllCustomersTable(customers) {
@@ -102,9 +85,8 @@ export class Customers extends Component {
                                 <td>{customer.email}</td>
                                 <td>{customer.contactNumber}</td>
                                 <td>{customer.address}</td>
-                                {/* <td>{new Date(customer.nomineeDateOfBirth).toISOString().slice(0, 10)}</td> */}
                                 <td><button onClick={() => this.OncustomerEdit(customer.id)} className="btn btn-success">Edit</button> ||
-                                <button onClick={() => this.OncustomerDelete(customer.id)} className="btn btn-danger">Delete</button></td>
+                                    <button onClick={() => this.OncustomerDelete(customer.id)} className="btn btn-danger">Delete</button></td>
                             </tr>
                         ))
                     }
@@ -120,8 +102,8 @@ export class Customers extends Component {
                 <em>Loading...</em>
             </p>
         ) : (
-                this.renderAllCustomersTable(this.state.customers)
-            )
+            this.renderAllCustomersTable(this.state.customers)
+        )
 
         return (
             <div>
