@@ -27,8 +27,6 @@ export default class Roles extends Component {
 
     onRoleDelete(id){
         const{history} = this.props;
-        //console.log('roleid for delte ');
-        //console.log(id);
         history.push('/admin/role/delete/' + id);
     }
 
@@ -37,7 +35,7 @@ export default class Roles extends Component {
     }
 
     getAllRoles() {
-        getData('api/Role').then(
+        getData('api/Role/GetAll').then(
             (result) => {
                 if (result) {
                     this.setState({

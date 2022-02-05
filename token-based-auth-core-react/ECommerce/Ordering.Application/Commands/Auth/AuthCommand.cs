@@ -1,11 +1,7 @@
 ﻿using MediatR;
+using Ordering.Application.Common.Exceptions;
 using Ordering.Application.Common.Interfaces;
 using Ordering.Application.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ordering.Application.Commands.Auth
 {
@@ -32,15 +28,10 @@ namespace Ordering.Application.Commands.Auth
 
             if (!result)
             {
-                //throw new BadRequestException("Invalid username or password");
-                throw new Exception("Invalid user name or password");
+                throw new BadRequestException("Invalid username or password");
             }
 
             var (userId, fullName, userName, email, roles) = await _identityService.GetUserDetailsAsync(await _identityService.GetUserIdAsync(request.UserName));
-
-            //string token = _tokenGenerator.GenerateToken(userId, userName, roles);
-
-            //string token = _tokenGenerator.GenerateToken(request.UserName, request.Password);
 
             string token = _tokenGenerator.GenerateJWTToken((userId: userId, userName: userName, roles: roles));
 

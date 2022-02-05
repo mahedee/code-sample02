@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Handlers\CommandHandler\User\" />
     <Folder Include="Queries\Auth\" />
   </ItemGroup>
 

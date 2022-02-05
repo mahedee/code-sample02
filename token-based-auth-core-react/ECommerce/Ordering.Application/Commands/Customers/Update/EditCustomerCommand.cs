@@ -5,7 +5,7 @@ using Ordering.Core.Entities;
 using Ordering.Core.Repositories.Command;
 using Ordering.Core.Repositories.Query;
 
-namespace Ordering.Application.Commands.Customers
+namespace Ordering.Application.Commands.Customers.Update
 {
     // Customer create command with CustomerResponse
     public class EditCustomerCommand : IRequest<CustomerResponse>

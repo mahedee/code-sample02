@@ -4,7 +4,7 @@ using Ordering.Application.Mapper;
 using Ordering.Core.Entities;
 using Ordering.Core.Repositories.Command;
 
-namespace Ordering.Application.Commands.Customers
+namespace Ordering.Application.Commands.Customers.Create
 {
     // Customer create command with CustomerResponse
     public class CreateCustomerCommand : IRequest<CustomerResponse>

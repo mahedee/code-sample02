@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ordering.Application.Commands.User
+namespace Ordering.Application.Commands.User.Update
 {
     public class AssignUsersRoleCommand : IRequest<int>
     {

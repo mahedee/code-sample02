@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Ordering.Application.Commands.Customers;
+using Ordering.Application.Commands.Customers.Create;
 using Ordering.Application.Commands.User.Create;
 using Ordering.Application.Common.Interfaces;
 using Ordering.Application.Common.Security;

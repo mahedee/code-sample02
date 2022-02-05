@@ -1,14 +1,10 @@
 ﻿using MediatR;
-using Ordering.Application.Commands;
-using Ordering.Application.Commands.Customers;
+using Ordering.Application.Commands.Customers.Update;
 using Ordering.Application.DTOs;
 using Ordering.Application.Mapper;
 using Ordering.Core.Entities;
 using Ordering.Core.Repositories.Command;
 using Ordering.Core.Repositories.Query;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Ordering.Application.Handlers.CommandHandler
 {
