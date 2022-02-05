@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import LoginMenu from "../LoginMenu";
 import { postDataForLogin } from "../services/AccessAPI";
 import SessionManager from "./SessionManager";
 
@@ -37,7 +38,7 @@ export default class Login extends Component {
             loading: true
         });
 
-        console.log("login info: " + userInfo.password);
+        //console.log("login info: " + userInfo.password);
         postDataForLogin('api/Auth/Login', userInfo).then((result) => {
             if (result?.token) {
 
@@ -47,6 +48,8 @@ export default class Login extends Component {
                     this.setState({
                         loading: false
                     });
+
+                    // <LoginMenu menuText = 'Logout' menuURL = '/logout' />
 
                     // If login successful and get token
                     // redirect to dashboard
@@ -82,7 +85,7 @@ export default class Login extends Component {
     }
 
     registration(){
-        window.location.href = "/registration";
+        window.location.href = "/admin/user/create";
 
     }
 
