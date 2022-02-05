@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Ordering.Application.Commands.User;
 using Ordering.Application.Commands.User.Create;
 using Ordering.Application.Commands.User.Delete;
+using Ordering.Application.Commands.User.Update;
 using Ordering.Application.DTOs;
 using Ordering.Application.Queries.User;
 

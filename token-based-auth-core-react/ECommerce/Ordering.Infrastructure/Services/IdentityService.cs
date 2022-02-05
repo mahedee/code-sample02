@@ -38,7 +38,6 @@ namespace Ordering.Infrastructure.Services
             if(!result.Succeeded)
             {
                 throw new ValidationException(result.Errors);
-                //throw new Exception(result.Errors.ToString());
             }
             return result.Succeeded;
         }

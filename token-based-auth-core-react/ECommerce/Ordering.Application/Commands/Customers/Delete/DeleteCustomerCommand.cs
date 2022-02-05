@@ -2,7 +2,7 @@
 using Ordering.Core.Repositories.Command;
 using Ordering.Core.Repositories.Query;
 
-namespace Ordering.Application.Commands.Customers
+namespace Ordering.Application.Commands.Customers.Delete
 {
     // Customer create command with string response
     public class DeleteCustomerCommand : IRequest<String>

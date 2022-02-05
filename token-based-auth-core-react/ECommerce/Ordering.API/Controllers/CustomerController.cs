@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Ordering.Application.Commands.Customers;
+using Ordering.Application.Commands.Customers.Create;
+using Ordering.Application.Commands.Customers.Delete;
+using Ordering.Application.Commands.Customers.Update;
 using Ordering.Application.DTOs;
 using Ordering.Application.Queries;
 using Ordering.Core.Entities;
