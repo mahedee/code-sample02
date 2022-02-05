@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ordering.Application.Commands.Role.Create;
 using Ordering.Application.Commands.Role.Delete;
@@ -10,6 +12,8 @@ namespace Ordering.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "Admin, Management")]
     public class RoleController : ControllerBase
     {
         public readonly IMediator _mediator;

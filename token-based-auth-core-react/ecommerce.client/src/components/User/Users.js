@@ -46,7 +46,6 @@ export default class Users extends Component {
             }
         );
 
-        //console.log("users list: " + this.state.users);
     }
 
     renderAllUsersTable(users) {

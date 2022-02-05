@@ -1,11 +1,12 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Ordering.Application.Commands.Customers.Create;
 using Ordering.Application.Commands.Customers.Delete;
 using Ordering.Application.Commands.Customers.Update;
 using Ordering.Application.DTOs;
-using Ordering.Application.Queries;
 using Ordering.Application.Queries.Customers;
 using Ordering.Core.Entities;
 
@@ -19,7 +20,8 @@ namespace Ordering.API.Controllers
     //[Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "Admin,Member")]
 
     // Authorize with a specific scheme
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin,Member")]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin,Member,User")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CustomerController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -80,6 +82,8 @@ namespace Ordering.API.Controllers
             }
         }
 
+
+        [Authorize(Roles = "Admin, Management")]
         [HttpDelete("Delete/{id}")]
         public async Task<ActionResult> DeleteCustomer(int id)
         {

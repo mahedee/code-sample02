@@ -9,11 +9,11 @@ using Ordering.Infrastructure;
 using Ordering.Infrastructure.Services;
 using System.Reflection;
 using System.Text;
-//using System.Configuration;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 
 builder.Services.AddControllers();
 
@@ -23,32 +23,8 @@ var _issuer = builder.Configuration["Jwt:Issuer"];
 var _audience = builder.Configuration["Jwt:Audience"];
 var _expirtyMinutes = builder.Configuration["Jwt:ExpiryMinutes"];
 
-/*
-// Another try
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, x =>
-{
-    x.RequireHttpsMetadata = false;
-    x.SaveToken = true;
-    x.TokenValidationParameters = new TokenValidationParameters()
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidAudience = _audience,
-        ValidIssuer = _issuer,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key)),
-        ClockSkew = TimeSpan.FromMinutes(Convert.ToDouble(_expirtyMinutes))
-        //ValidateIssuerSigningKey = true,
-        //ValidateIssuer = false,
-        //ValidateAudience = false,
-        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key))
-    };
-});
 
-*/
-
+// Configuration for token
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -68,17 +44,14 @@ builder.Services.AddAuthentication(x =>
         ValidIssuer = _issuer,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key)),
         ClockSkew = TimeSpan.FromMinutes(Convert.ToDouble(_expirtyMinutes))
-        //ValidateIssuerSigningKey = true,
-        //ValidateIssuer = false,
-        //ValidateAudience = false,
-        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key))
+
     };
 });
 
 
 // Dependency injection with key
 builder.Services.AddSingleton<ITokenGenerator>(new TokenGenerator(_key, _issuer, _audience, _expirtyMinutes));
-//builder.Services.AddSingleton<ITokenGenerator>(new TokenGenerator(_key));
+
 
 // Include Infrastructur Dependency
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -93,17 +66,6 @@ builder.Services.AddMediatR(typeof(CreateCustomerCommandHandler).GetTypeInfo().A
 builder.Services.AddMediatR(typeof(CreateUserCommandHandler).GetTypeInfo().Assembly);
 
 
-//Enable CORS//Cross site resource sharing
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("CorsPolicy",
-//        builder => builder.AllowAnyOrigin()
-//        .AllowAnyMethod()
-//        .AllowAnyHeader()
-//        //.AllowCredentials()
-//        );
-//});
-
 
 builder.Services.AddCors(c =>
 {
@@ -111,15 +73,6 @@ builder.Services.AddCors(c =>
 });
 
 
-//builder.Services.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
-//builder.Services.AddTransient<ICustomerQueryRepository, CustomerQueryRepository>();
-//builder.Services.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
-//builder.Services.AddTransient<ICustomerCommandRepository, CustomerCommandRepository>();
-//builder.Services.AddScoped<IIdentityService, IdentityService>();
-
-//builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-//    .AddEntityFrameworkStores<OrderingContext>()
-//    .AddDefaultTokenProviders();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -167,7 +120,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//Must be betwwen app.UseRouting() and app.UseEndPoints()
+// Must be betwwen app.UseRouting() and app.UseEndPoints()
 // maintain middleware order
 app.UseCors("CorsPolicy");
 
