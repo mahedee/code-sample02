@@ -1,13 +1,21 @@
 ﻿using MediatR;
-using Ordering.Application.Queries;
 using Ordering.Core.Entities;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+using System;
 
-namespace Ordering.Application.Handlers.QueryHandlers
+namespace Ordering.Application.Queries.Customers
 {
-    // Get specific query handler with Customer response as output
+    // Customer GetCustomerByIdQuery with Customer response
+    public class GetCustomerByIdQuery: IRequest<Customer>
+    {
+        public Int64 Id { get; private set; }
+        
+        public GetCustomerByIdQuery(Int64 Id)
+        {
+            this.Id = Id;
+        }
+
+    }
+
     public class GetCustomerByIdHandler : IRequestHandler<GetCustomerByIdQuery, Customer>
     {
         private readonly IMediator _mediator;

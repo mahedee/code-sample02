@@ -1,14 +1,16 @@
 ﻿using MediatR;
-using Ordering.Application.Queries;
 using Ordering.Core.Entities;
 using Ordering.Core.Repositories.Query;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Ordering.Application.Handlers.QueryHandlers
+namespace Ordering.Application.Queries.Customers
 {
-    // Get all customer query handler with List<Customer> response as output
+    // Customer query with List<Customer> response
+    public record GetAllCustomerQuery : IRequest<List<Customer>>
+    {
+
+    }
+
     public class GetAllCustomerHandler : IRequestHandler<GetAllCustomerQuery, List<Customer>>
     {
         private readonly ICustomerQueryRepository _customerQueryRepository;
