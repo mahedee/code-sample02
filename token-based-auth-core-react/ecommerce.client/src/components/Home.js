@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import SessionManager from './Auth/SessionManager';
 
 export class Home extends Component {
+
+  constructor(props) {
+    super(props);
+  }
   static displayName = Home.name;
 
   render() {
@@ -10,6 +15,13 @@ export class Home extends Component {
       background: "gray",
       float: "center"
     };
+
+    // If not loggedin
+    if (!SessionManager.getToken()){
+      const { history } = this.props;
+      history.push('/login');
+      //return window.location.href = "/login";
+    }
 
     return (
       <div>
