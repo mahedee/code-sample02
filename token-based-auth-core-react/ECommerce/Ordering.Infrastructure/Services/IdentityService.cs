@@ -129,22 +129,6 @@ namespace Ordering.Infrastructure.Services
             //var users = _userManager.Users.ToListAsync();
         }
 
-        //public async Task<List<(string id, string userName, string email, IList<string> roles)>> GetAllUsersDetailsAsync()
-        //{
-        //    //var users = await _userManager.Users.ToListAsync();
-        //    var users = await _userManager.Users.Select(x => new
-        //    {
-        //        x.Id,
-        //        x.UserName,
-        //        x.Email
-        //    }).ToListAsync();
-
-        //    //_userManager.GetRolesAsync(user)
-
-        //    var result = users.Select(user => (user.Id, user.UserName,user.Email)).ToList();
-        //    return result;
-        //}
-
         public async Task<List<(string id, string roleName)>> GetRolesAsync()
         {
             var roles = await _roleManager.Roles.Select(x => new
