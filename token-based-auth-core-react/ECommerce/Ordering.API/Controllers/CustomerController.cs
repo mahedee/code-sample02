@@ -6,6 +6,7 @@ using Ordering.Application.Commands.Customers.Delete;
 using Ordering.Application.Commands.Customers.Update;
 using Ordering.Application.DTOs;
 using Ordering.Application.Queries;
+using Ordering.Application.Queries.Customers;
 using Ordering.Core.Entities;
 
 namespace Ordering.API.Controllers
