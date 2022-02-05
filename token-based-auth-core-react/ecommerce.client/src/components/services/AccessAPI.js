@@ -1,22 +1,12 @@
-// //let BaseURL = window.SERVER_URL;
 
 import SessionManager from "../Auth/SessionManager";
 import { BASE_URL } from "./Settings";
 
 
 export function getData(endPoint) {
-    //let token=Auth.getToken();
-    //let token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtYWhlZGVlIiwianRpIjoiNDY2ODk3OWUtMjhjNS00NjFkLWI4M2YtMzVlY2U0ZWEzNGFlIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Im1haGVkZWUiLCJVc2VySWQiOiI0NjY4OTc5ZS0yOGM1LTQ2MWQtYjgzZi0zNWVjZTRlYTM0YWUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTY0MzM2NTM4NSwiaXNzIjoiand0IiwiYXVkIjoiand0In0.n9fwbKP5rhqG_rAr8GHs8CyiGJA8myp2fTiLALc1j08';
-    //let BaseURL = window.SERVER_URL;
-
-    //console.log("Log Token: " + token);
-
-    //debugger;
-    //console.log("Base URL: " + window.baseURL);
-    //console.log(BASE_URL);
 
     let token=SessionManager.getToken();
-    //let BaseURL = "https://localhost:7142/";
+
     let payload = {
         method: 'GET',
         headers: {   
@@ -40,8 +30,7 @@ export function getData(endPoint) {
 }
 
 export function postDataForLogin(type, userData) {
-    //let BaseURL = window.SERVER_URL;
-    let BaseURL = "https://localhost:7142/";
+    //let BaseURL = "https://localhost:7142/";
     let payload = {
         method: 'POST',
         headers: {   
@@ -51,7 +40,7 @@ export function postDataForLogin(type, userData) {
         body: JSON.stringify(userData)
 
     }
-    return fetch(BaseURL + type, payload)
+    return fetch(BASE_URL + type, payload)
     .then(function(response) {
         return response.json();
     }).then(function(result) {
@@ -62,9 +51,7 @@ export function postDataForLogin(type, userData) {
 }
 
 export function postData(endPoint, inputObj) {
-    //let BaseURL = window.SERVER_URL;
     let token=SessionManager.getToken();
-    //let BaseURL = "https://localhost:7142/";
     let payload = {
         method: 'POST',
         headers: {   
@@ -87,9 +74,7 @@ export function postData(endPoint, inputObj) {
 }
 
 export function deleteData(endPoint) {
-    //let BaseURL = window.SERVER_URL;
     let token=SessionManager.getToken();
-    //let BaseURL = "https://localhost:7142/";
     let payload = {
         method: 'DELETE',
         headers: {   
@@ -113,9 +98,7 @@ export function deleteData(endPoint) {
 }
 
 export function putData(endPoint, obj) {
-    //let BaseURL = window.SERVER_URL;
     let token=SessionManager.getToken();
-    //let BaseURL = "https://localhost:7142/";
     let payload = {
         method: 'PUT',
         headers: {   

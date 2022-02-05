@@ -18,23 +18,13 @@ export default class EditRole extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    // onKeyDown = (e) => {
-    //     if (e.key === 'Enter') {
-    //         this.update(false);
-    //     }
-    // }
-
-
+ 
     componentDidMount() {
         const { id } = this.props.match.params;
         getData('api/Role/' + id).then(
             (result) => {
-                //let responseJson = result;
-                console.log("Role for edit: ");
-                console.log(result);
                 if (result) {
                     this.setState({
-                        //users: result,
                         id: result.id,
                         roleName: result.roleName,
                         loading: false
@@ -57,7 +47,6 @@ export default class EditRole extends Component {
         putData('api/Role/Edit/' + id, roleObj).then((result) => {
             let responseJson = result;
             //console.log("update response: ");
-
             if (responseJson) {
                 console.log(responseJson);
                 history.push('/admin/roles');

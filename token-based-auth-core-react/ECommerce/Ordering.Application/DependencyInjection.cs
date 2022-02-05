@@ -17,10 +17,7 @@ namespace Ordering.Application
             //services.AddMediatR(Assembly.GetExecutingAssembly());
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehaviour<,>));
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
-            // Dependency injection with key
-            //services.AddSingleton<ITokenGenerator>(new ITokenGenerator(key));
 
             return services;
         }

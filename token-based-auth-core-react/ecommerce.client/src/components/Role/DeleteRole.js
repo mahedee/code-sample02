@@ -1,5 +1,4 @@
-﻿import axios from "axios";
-import React, { Component } from "react";
+﻿import React, { Component } from "react";
 import { deleteData, getData } from "../services/AccessAPI";
 
 export class DeleteRole extends Component {
