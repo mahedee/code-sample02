@@ -1,4 +1,5 @@
 import { Component } from "react";
+import SessionManager from "../Auth/SessionManager";
 import { postData } from "../services/AccessAPI";
 
 export default class CreateUser extends Component {
@@ -16,6 +17,7 @@ export default class CreateUser extends Component {
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onClickBack = this.onClickBack.bind(this);
 
     }
 
@@ -43,6 +45,17 @@ export default class CreateUser extends Component {
                 history.push('/admin/users');
             }
         });
+    }
+
+    onClickBack(e){
+        e.preventDefault();
+        const { history } = this.props;
+
+        if(SessionManager.getToken()){
+            history.push('/admin/users');
+        }else{
+            history.push('/login');
+        }   
     }
 
     onChange(e) {
@@ -82,7 +95,8 @@ export default class CreateUser extends Component {
 
 
                         <div className="form-group">
-                            <input type="submit" value="Create User" className="btn btn-primary"></input>
+                            <input type="submit" value="Create User" className="btn btn-primary"></input> &nbsp; &nbsp; 
+                            <input type="button" value="Back" onClick={this.onClickBack} className="btn btn-primary"></input>
                         </div>
 
                     </form>
