@@ -54,7 +54,7 @@ export default class Login extends Component {
 
                     // If login successful and get token
                     // redirect to dashboard
-                    window.location.href = "/";
+                    window.location.href = "/home";
                 }
             }
 
@@ -86,7 +86,7 @@ export default class Login extends Component {
     }
 
     registration(){
-        window.location.href = "/admin/user/create";
+        window.location.href = "/admin/user/register";
 
     }
 
@@ -97,6 +97,7 @@ export default class Login extends Component {
         }
 
         return (
+            <div className="row" style={{textAlign: "center"}}>
             <div className="login-box col-md-4">
                 <div className="login-logo">
                     <a href="/"><b>ECommerce</b></a>
@@ -145,6 +146,8 @@ export default class Login extends Component {
                         </div>
                     </div>
                 </div>
+            </div>
+
             </div>
         );
     }
