@@ -1,17 +1,19 @@
 {
-  "ReRoutes": [
+  "Routes": [
     {
       "DownstreamPathTemplate": "/api/Countries/GetAll",
       "DownstreamScheme": "https",
-      "DownstreamHost": "localhost",
-      "DownstreamPort": 7003,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ],
       "UpstreamPathTemplate": "/Countries/GetAll",
       "UpstreamHttpMethod": [ "Get" ]
     }
   ],
   "GlobalConfiguration": {
-    "RequestIdKey": "OcRequestId",
-    "AdministrationPath": "/administration"
+    "BaseUrl": "https://localhost:5000"
   }
-
 }
