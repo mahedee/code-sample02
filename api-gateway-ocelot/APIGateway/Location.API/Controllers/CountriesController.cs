@@ -3,10 +3,10 @@
 namespace Location.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CountriesController : ControllerBase
     {
-      [HttpGet]
+      [HttpGet("GetAll")]
       public IEnumerable<string> Get()
         {
             return new string[] {"America","Bangladesh", "Canada" };
