@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("configuration.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("ocelot.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables();
 
 
