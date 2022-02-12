@@ -1,3 +1,5 @@
+using Customer.API.Utility;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Data.SqlClient;
 
@@ -22,23 +24,28 @@ builder.Services.AddSwaggerGen();
 string _connectionString = builder.Configuration.GetConnectionString("CustomerDBConnection");
 
 // Register required services for health checks
+//builder.Services.AddHealthChecks()
+//    .AddCheck("sql", () => {
+
+//        using (var connection = new SqlConnection(_connectionString))
+//        {
+//            try
+//            {
+//                connection.Open();
+//            }catch (Exception ex)
+//            {
+//                return HealthCheckResult.Unhealthy();
+//            }
+
+//            return HealthCheckResult.Healthy();
+//        }
+
+//    });
+
+
 builder.Services.AddHealthChecks()
-    .AddCheck("sql", () => {
+    .AddCheck<DatabaseHealthCheck>("sql");
 
-        using (var connection = new SqlConnection(_connectionString))
-        {
-            try
-            {
-                connection.Open();
-            }catch (Exception ex)
-            {
-                return HealthCheckResult.Unhealthy();
-            }
-
-            return HealthCheckResult.Healthy();
-        }
-    
-    });
 
 var app = builder.Build();
 
@@ -55,6 +62,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseHealthChecks("/hc");
+var options = new HealthCheckOptions();
+options.ResultStatusCodes[HealthStatus.Unhealthy] = 420;
+
+app.UseHealthChecks("/hc", options);
 
 app.Run();
