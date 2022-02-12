@@ -7,6 +7,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Register required services for health checks
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,5 +24,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseHealthChecks("/hc");
 
 app.Run();
