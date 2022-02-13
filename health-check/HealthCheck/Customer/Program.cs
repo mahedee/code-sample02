@@ -1,6 +1,8 @@
+using Customer.API.Db;
 using Customer.API.Utility;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Data.SqlClient;
 
@@ -47,6 +49,18 @@ string _connectionString = builder.Configuration.GetConnectionString("CustomerDB
 builder.Services.AddHealthChecks()
     .AddCheck<DatabaseHealthCheck>("sql");
 
+//builder.Services.AddHealthChecks()
+//    .AddSqlServer(
+//        builder.Configuration.GetConnectionString("CustomerDBConnection"));
+
+// Create DbContext
+builder.Services.AddDbContext<CustomerDbContext>( options => 
+        options.UseSqlServer(
+            builder.Configuration.GetConnectionString("CustomerDBConnection"))
+    );
+
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<CustomerDbContext>("customerdbcontext");
 
 var app = builder.Build();
 
@@ -68,11 +82,47 @@ options.ResultStatusCodes[HealthStatus.Unhealthy] = 420;
 options.ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse;
 
 app.UseHealthChecks("/hc", options);
+//.RequireAuthorization();
 
 
 app.UseHealthChecks("/dbHealth", new HealthCheckOptions()
 {
-    Predicate = _ => true,
+    // Supress cache headers
+    AllowCachingResponses = false,
+
+    // Customize the HTTP Status code
+    ResultStatusCodes =
+    {
+        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+        [HealthStatus.Degraded] = StatusCodes.Status200OK,
+        [HealthStatus.Unhealthy]= StatusCodes.Status503ServiceUnavailable
+    },
+
+    // filters the health checks so that only those tagged with sql
+    Predicate = healthCheck => healthCheck.Tags.Contains("sql"),
+
+    //ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+    ResponseWriter = HealthCheckResponse.CustomResponseWriter
+});
+
+
+
+app.UseHealthChecks("/customerdbcontext", new HealthCheckOptions()
+{
+    // Supress cache headers
+    AllowCachingResponses = false,
+
+    // Customize the HTTP Status code
+    ResultStatusCodes =
+    {
+        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+        [HealthStatus.Degraded] = StatusCodes.Status200OK,
+        [HealthStatus.Unhealthy]= StatusCodes.Status503ServiceUnavailable
+    },
+
+    // filters the health checks so that only those tagged with sql
+    Predicate = healthCheck => healthCheck.Tags.Contains("customerdbcontext"),
+
     //ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
     ResponseWriter = HealthCheckResponse.CustomResponseWriter
 });

@@ -8,6 +8,7 @@ namespace Customer.API.Utility
     {
         public static Task CustomResponseWriter(HttpContext context, HealthReport healthReport)
         {
+
             context.Response.ContentType = "application/json";
 
             var result = JsonConvert.SerializeObject(new
