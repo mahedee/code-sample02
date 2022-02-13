@@ -1,4 +1,5 @@
 using Customer.API.Utility;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Data.SqlClient;
@@ -64,7 +65,16 @@ app.MapControllers();
 
 var options = new HealthCheckOptions();
 options.ResultStatusCodes[HealthStatus.Unhealthy] = 420;
+options.ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse;
 
 app.UseHealthChecks("/hc", options);
+
+
+app.UseHealthChecks("/dbHealth", new HealthCheckOptions()
+{
+    Predicate = _ => true,
+    //ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+    ResponseWriter = HealthCheckResponse.CustomResponseWriter
+});
 
 app.Run();
