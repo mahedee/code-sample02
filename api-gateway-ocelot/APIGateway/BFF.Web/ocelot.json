@@ -9,10 +9,46 @@
           "Port": 7003
         }
       ],
+
+      // Configure caching
+      // the cache will expire after 30 seconds.
+      "FileCacheOptions": {
+        "TtlSeconds": 30,
+        "Region": "customercaching"
+      },
+
       "UpstreamPathTemplate": "/Countries/GetAll",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Products/GetAll",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7282
+        }
+      ],
+
+      // Implement rate limiting
+      // maximum admitted 1 per 5s.
+      "RateLimitOptions": {
+        "ClientWhitelist": [
+          // This is an array used to specify the clients that should not be affected by the rate-limiting
+        ],
+        "EnableRateLimiting": true,
+        "Period": "5s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+
+      "UpstreamPathTemplate": "/Products/GetAll",
       "UpstreamHttpMethod": [ "Get" ]
     }
   ],
+
+  //https://localhost:7282/api/Products/GetAll
+
   "GlobalConfiguration": {
     "BaseUrl": "https://localhost:5000"
   }

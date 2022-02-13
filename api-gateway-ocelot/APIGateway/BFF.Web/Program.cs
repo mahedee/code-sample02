@@ -1,5 +1,6 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Cache.CacheManager;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +19,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //For ocelot
-
-builder.Services.AddOcelot();
+builder.Services.AddOcelot()
+    
+    // Added for caching
+    .AddCacheManager(x => {
+        x.WithDictionaryHandle();
+    });
 
 var app = builder.Build();
 
