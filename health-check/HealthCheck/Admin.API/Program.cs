@@ -35,6 +35,9 @@ app.MapHealthChecks("/hc", new HealthCheckOptions()
     Predicate = _ => true,
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 });
+
+//a basic health probe configuration that reports the app's availability to process requests (liveness) is sufficient to discover the status of the app.
+
 app.MapHealthChecks("/liveness", new HealthCheckOptions()
 {
     Predicate = r => r.Name.Contains("self"),

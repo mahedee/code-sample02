@@ -22,7 +22,8 @@ namespace Customer.API.Utility
                 }
                 catch (SqlException)
                 {
-                    return HealthCheckResult.Healthy();
+                    // return HealthCheckResult.Healthy();
+                    return await Task.FromResult(new HealthCheckResult(context.Registration.FailureStatus, "Cannot connect to Demo.CustomerDB"));
                 }
             }
 
