@@ -18,7 +18,10 @@
       },
 
       "UpstreamPathTemplate": "/Countries/GetAll",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+
+      // Enable case sensative Routing/URL
+      "RouteIsCaseSensitive": true
     },
     {
       "DownstreamPathTemplate": "/api/Products/GetAll",
@@ -44,12 +47,30 @@
 
       "UpstreamPathTemplate": "/Products/GetAll",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+
+    // Catch All Routing
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7126
+        }
+      ],
+
+      "UpstreamPathTemplate": "/{url}",
+      "UpstreamHttpMethod": [ "Get" ]
     }
+
   ],
 
   //https://localhost:7282/api/Products/GetAll
 
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:5000"
+    // enable request correleation id to capture request information
+    "RequestIdKey": "X-Correlation-Id",
+    "BaseUrl": "https://localhost:7205/"
   }
 }
