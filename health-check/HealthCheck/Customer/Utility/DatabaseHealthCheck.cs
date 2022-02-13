@@ -12,6 +12,7 @@ namespace Customer.API.Utility
         }
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
+            
             string _connectionString = _configuration.GetConnectionString("CustomerDBConnection");
 
             using (var connection = new SqlConnection(_connectionString))
