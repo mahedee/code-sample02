@@ -16,6 +16,9 @@ builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+// Swagger for ocelot
+builder.Services.AddSwaggerForOcelot(builder.Configuration);
 builder.Services.AddSwaggerGen();
 
 //For ocelot
@@ -33,6 +36,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseSwaggerForOcelotUI();
 }
 
 app.UseOcelot();
