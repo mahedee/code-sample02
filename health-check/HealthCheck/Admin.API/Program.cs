@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -37,7 +38,6 @@ app.MapHealthChecks("/hc", new HealthCheckOptions()
 });
 
 //a basic health probe configuration that reports the app's availability to process requests (liveness) is sufficient to discover the status of the app.
-
 app.MapHealthChecks("/liveness", new HealthCheckOptions()
 {
     Predicate = r => r.Name.Contains("self"),

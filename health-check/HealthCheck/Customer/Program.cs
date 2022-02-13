@@ -24,7 +24,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string _connectionString = builder.Configuration.GetConnectionString("CustomerDBConnection");
+//string _connectionString = builder.Configuration.GetConnectionString("CustomerDBConnection");
 
 // Register required services for health checks
 //builder.Services.AddHealthChecks()
@@ -45,18 +45,20 @@ string _connectionString = builder.Configuration.GetConnectionString("CustomerDB
 
 //    });
 
-
+// Sql server health check with name "customersql" with custom healtcheck
 builder.Services.AddHealthChecks()
-    .AddCheck<DatabaseHealthCheck>("sql");
+    .AddCheck<DatabaseHealthCheck>("customersql");
 
+
+// Sql server health check 
 //builder.Services.AddHealthChecks()
 //    .AddSqlServer(
-//        builder.Configuration.GetConnectionString("CustomerDBConnection"));
+//        builder.Configuration.GetConnectionString("CustomerDBConnection"), name: "directSqlTest");
 
 // Create DbContext
-builder.Services.AddDbContext<CustomerDbContext>( options => 
-        options.UseSqlServer(
-            builder.Configuration.GetConnectionString("CustomerDBConnection"))
+builder.Services.AddDbContext<CustomerDbContext>(options =>
+       options.UseSqlServer(
+           builder.Configuration.GetConnectionString("CustomerDBConnection"))
     );
 
 builder.Services.AddHealthChecks()
@@ -78,32 +80,35 @@ app.UseAuthorization();
 app.MapControllers();
 
 var options = new HealthCheckOptions();
-options.ResultStatusCodes[HealthStatus.Unhealthy] = 420;
-options.ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse;
+options.ResultStatusCodes[HealthStatus.Healthy] = StatusCodes.Status200OK;
+options.ResultStatusCodes[HealthStatus.Degraded] = StatusCodes.Status200OK;
+options.ResultStatusCodes[HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable;
+options.ResponseWriter = HealthCheckResponse.CustomResponseWriter;
+options.Predicate = healthcheck => healthcheck.Name == "customersql";
 
-app.UseHealthChecks("/hc", options);
+app.UseHealthChecks("/customersql", options);
 //.RequireAuthorization();
 
 
-app.UseHealthChecks("/dbHealth", new HealthCheckOptions()
-{
-    // Supress cache headers
-    AllowCachingResponses = false,
+//app.UseHealthChecks("/directsqltest", new HealthCheckOptions()
+//{
+//    // Supress cache headers
+//    AllowCachingResponses = false,
 
-    // Customize the HTTP Status code
-    ResultStatusCodes =
-    {
-        [HealthStatus.Healthy] = StatusCodes.Status200OK,
-        [HealthStatus.Degraded] = StatusCodes.Status200OK,
-        [HealthStatus.Unhealthy]= StatusCodes.Status503ServiceUnavailable
-    },
+//    // Customize the HTTP Status code
+//    ResultStatusCodes =
+//    {
+//        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+//        [HealthStatus.Degraded] = StatusCodes.Status200OK,
+//        [HealthStatus.Unhealthy]= StatusCodes.Status503ServiceUnavailable
+//    },
 
-    // filters the health checks so that only those tagged with sql
-    Predicate = healthCheck => healthCheck.Tags.Contains("sql"),
+//    // filters the health checks so that only those tagged with sql
+//    Predicate = healthCheck => healthCheck.Name == "directsqltest",
 
-    //ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
-    ResponseWriter = HealthCheckResponse.CustomResponseWriter
-});
+//ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+//    //ResponseWriter = HealthCheckResponse.CustomResponseWriter
+//});
 
 
 
@@ -121,10 +126,26 @@ app.UseHealthChecks("/customerdbcontext", new HealthCheckOptions()
     },
 
     // filters the health checks so that only those tagged with sql
-    Predicate = healthCheck => healthCheck.Tags.Contains("customerdbcontext"),
+    Predicate = healthCheck => healthCheck.Name == "customerdbcontext",
 
-    //ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
-    ResponseWriter = HealthCheckResponse.CustomResponseWriter
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 });
+
+
+// Cofigure for health check
+app.MapHealthChecks("/hc", new HealthCheckOptions()
+{
+    //Predicate = _ => true,
+    Predicate = r => r.Name.Contains("self"),
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+});
+
+//a basic health probe configuration that reports the app's availability to process requests (liveness) is sufficient to discover the status of the app.
+app.MapHealthChecks("/liveness", new HealthCheckOptions()
+{
+    Predicate = r => r.Name.Contains("self"),
+});
+
+
 
 app.Run();
