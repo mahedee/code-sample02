@@ -4,4 +4,9 @@ https://localhost:7003/api/Countries/GetAll
 
 https://localhost:7205/countries/getall
 
-https://localhost:7205/api/Orders/GetAll
+-------------------------------------------------------------------
+
+Business Analysis
+
+
+

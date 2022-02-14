@@ -19,7 +19,6 @@
 
       "UpstreamPathTemplate": "/Countries/GetAll",
       "UpstreamHttpMethod": [ "Get" ],
-      "SwaggerKey": "countries",
 
       // Enable case sensative Routing/URL
       "RouteIsCaseSensitive": true
@@ -67,30 +66,7 @@
 
   ],
 
-  // Configure for swagger
-
-  "SwaggerEndPoints": [
-    {
-      "Key": "countries",
-      "Config": [
-        {
-          "Name": "Countries API",
-          "Version": "v1",
-          "Url": "http://localhost:7205/swagger/v1/swagger.json"
-        }
-      ]
-    }
-    //{
-    //  "Key": "orders",
-    //  "Config": [
-    //    {
-    //      "Name": "Orders API",
-    //      "Version": "v1",
-    //      "Url": "http://localhost:7205/swagger/v1/swagger.json"
-    //    }
-    //  ]
-    //}
-  ],
+  //https://localhost:7282/api/Products/GetAll
 
   "GlobalConfiguration": {
     // enable request correleation id to capture request information
