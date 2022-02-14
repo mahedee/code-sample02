@@ -2,6 +2,7 @@ using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.Cache.CacheManager;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -18,7 +19,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 // Swagger for ocelot
-builder.Services.AddSwaggerForOcelot(builder.Configuration);
+//builder.Services.AddSwaggerForOcelot(builder.Configuration);
+//builder.Services.AddSwaggerForOcelot();
 builder.Services.AddSwaggerGen();
 
 //For ocelot
@@ -36,7 +38,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseSwaggerForOcelotUI();
+    //app.UseSwaggerForOcelotUI();
 }
 
 app.UseOcelot();
