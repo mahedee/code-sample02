@@ -23,6 +23,9 @@
       // Enable case sensative Routing/URL
       "RouteIsCaseSensitive": true
     },
+
+    // Catalog Services
+    //------------------//
     {
       "DownstreamPathTemplate": "/api/Products/GetAll",
       "DownstreamScheme": "https",
@@ -47,6 +50,61 @@
 
       "UpstreamPathTemplate": "/Products/GetAll",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Products/Add",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7282
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Products/Add",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Products/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7282
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Products/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Products/Edit/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7282
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Products/Edit/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Products/Delete/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7282
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Products/Delete/{id}",
+      "UpstreamHttpMethod": [ "Delete" ]
     },
 
     // Catch All Routing
