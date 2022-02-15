@@ -23,7 +23,7 @@ namespace Catalog.API.Controllers
         }
 
         // GET: api/Products
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             return await _context.Products.ToListAsync();
@@ -45,7 +45,7 @@ namespace Catalog.API.Controllers
 
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("Edit/{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
             if (id != product.Id)
@@ -76,7 +76,7 @@ namespace Catalog.API.Controllers
 
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("Add")]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
             _context.Products.Add(product);
@@ -86,7 +86,7 @@ namespace Catalog.API.Controllers
         }
 
         // DELETE: api/Products/5
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
