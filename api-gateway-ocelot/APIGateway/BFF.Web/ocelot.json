@@ -1,4 +1,5 @@
 {
+  //---Location Service: Start ----------//
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/Countries/GetAll",
@@ -23,6 +24,8 @@
       // Enable case sensative Routing/URL
       "RouteIsCaseSensitive": true
     },
+
+    //---Location Service: End ----------//
 
     // Catalog Services
     //------------------//
@@ -107,6 +110,9 @@
       "UpstreamHttpMethod": [ "Delete" ]
     },
 
+    //---Catalog service : End ------------//
+
+    //---Ordering Service: Start ----------//
     // Catch All Routing
     {
       "DownstreamPathTemplate": "/{url}",
@@ -119,10 +125,12 @@
       ],
 
       "UpstreamPathTemplate": "/{url}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     }
 
   ],
+
+  //---Ordering Service: End ----------//
 
   //https://localhost:7282/api/Products/GetAll
 

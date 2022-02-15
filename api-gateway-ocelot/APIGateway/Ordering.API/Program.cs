@@ -1,8 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using Ordering.API.Db;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<OrderingContext>(opt => opt.UseInMemoryDatabase("CatalogDB"));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
