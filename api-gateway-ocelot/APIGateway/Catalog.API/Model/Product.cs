@@ -14,10 +14,8 @@ namespace Catalog.API.Model
 
         public decimal Price { get; set; }
 
-        // Quantity in stock
         public int AvailableStock { get; set; }
 
-        // Available stock at which we should reorder
         public int RestockThreshold { get; set; }
     }
 }

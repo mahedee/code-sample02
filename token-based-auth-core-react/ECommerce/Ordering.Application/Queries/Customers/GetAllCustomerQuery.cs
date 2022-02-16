@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Ordering.Core.Entities;
 using Ordering.Core.Repositories.Query;
-using System.Collections.Generic;
 
 namespace Ordering.Application.Queries.Customers
 {
