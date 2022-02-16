@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Ordering.Application.DTOs
+﻿namespace Ordering.Application.DTOs
 {
     // Customer response or DTO class
     public class CustomerResponse

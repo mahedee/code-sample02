@@ -4,7 +4,6 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using System.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 

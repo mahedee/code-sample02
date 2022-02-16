@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStatus", "WebStatus\WebStatus.csproj", "{A825E0C4-2993-46C1-86F4-AE8C5885F8BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStatus", "WebStatus\WebStatus.csproj", "{A825E0C4-2993-46C1-86F4-AE8C5885F8BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Location.API", "Location.API\Location.API.csproj", "{79A66BF9-A641-4B52-A55D-C2FA04A7E4FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Location.API", "Location.API\Location.API.csproj", "{79A66BF9-A641-4B52-A55D-C2FA04A7E4FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.API", "Admin.API\Admin.API.csproj", "{8030EE0D-E691-433E-95AC-1098314A2ABC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.API", "Admin.API\Admin.API.csproj", "{8030EE0D-E691-433E-95AC-1098314A2ABC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.API", "Customer\Customer.API.csproj", "{2EED6681-9859-447E-AD14-7CCF8BF5FF28}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.API", "Product.API\Product.API.csproj", "{DC89E8C0-2CB4-4CA6-9F94-342E5DA4E553}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customer.API", "Customer\Customer.API.csproj", "{2EED6681-9859-447E-AD14-7CCF8BF5FF28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{2EED6681-9859-447E-AD14-7CCF8BF5FF28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EED6681-9859-447E-AD14-7CCF8BF5FF28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EED6681-9859-447E-AD14-7CCF8BF5FF28}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC89E8C0-2CB4-4CA6-9F94-342E5DA4E553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC89E8C0-2CB4-4CA6-9F94-342E5DA4E553}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC89E8C0-2CB4-4CA6-9F94-342E5DA4E553}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC89E8C0-2CB4-4CA6-9F94-342E5DA4E553}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

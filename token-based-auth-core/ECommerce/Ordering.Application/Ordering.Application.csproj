@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Ordering.Core\Ordering.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Queries\Auth\" />
-  </ItemGroup>
-
 </Project>
