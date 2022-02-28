@@ -1,0 +1,13 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  name: catalog-pod
+  labels:
+    app: web-api
+
+spec:
+  containers:
+    - name: web-ctr
+      image: mahedee/catalog:1.0.4
+      ports:
+        - containerPort: 8011
