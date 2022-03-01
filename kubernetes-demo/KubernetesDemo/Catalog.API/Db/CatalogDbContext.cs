@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Catalog.API.Models;
 
 namespace Catalog.API.Db
 {
