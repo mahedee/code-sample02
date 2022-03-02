@@ -1,0 +1,142 @@
+{
+  //---Location Service: Start ----------//
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Countries/GetAll",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ],
+
+      // Configure caching
+      // the cache will expire after 30 seconds.
+      "FileCacheOptions": {
+        "TtlSeconds": 30,
+        "Region": "countriescaching"
+      },
+
+      "UpstreamPathTemplate": "/Countries/GetAll",
+      "UpstreamHttpMethod": [ "Get" ],
+
+      // Enable case sensative Routing/URL
+      "RouteIsCaseSensitive": true
+    },
+
+    //---Location Service: End ----------//
+
+    // Catalog Services
+    //------------------//
+    {
+      "DownstreamPathTemplate": "/api/Products/GetAll",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7282
+        }
+      ],
+
+      // Implement rate limiting
+      // maximum admitted 1 per 5s.
+      "RateLimitOptions": {
+        "ClientWhitelist": [
+          // This is an array used to specify the clients that should not be affected by the rate-limiting
+        ],
+        "EnableRateLimiting": true,
+        "Period": "5s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+
+      "UpstreamPathTemplate": "/Products/GetAll",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Products/Add",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7282
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Products/Add",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Products/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7282
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Products/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Products/Edit/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7282
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Products/Edit/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Products/Delete/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7282
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Products/Delete/{id}",
+      "UpstreamHttpMethod": [ "Delete" ]
+    },
+
+    //---Catalog service : End ------------//
+
+    //---Ordering Service: Start ----------//
+    // Catch All Routing
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7126
+        }
+      ],
+
+      "UpstreamPathTemplate": "/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    }
+
+  ],
+
+  //---Ordering Service: End ----------//
+
+  //https://localhost:7282/api/Products/GetAll
+
+  "GlobalConfiguration": {
+    // enable request correleation id to capture request information
+    "RequestIdKey": "X-Correlation-Id",
+    "BaseUrl": "https://localhost:7205/"
+  }
+}
