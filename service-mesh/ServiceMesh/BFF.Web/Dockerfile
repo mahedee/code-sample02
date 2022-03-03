@@ -5,10 +5,15 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+ENV ASPNETCORE_URLS=http://*:80;
+ENV ASPNETCORE_ENVIRONMENT=Development
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["BFF.Web/BFF.Web.csproj", "BFF.Web/"]
+COPY ["/BFF.Web.csproj", "BFF.Web/"]
 RUN dotnet restore "BFF.Web/BFF.Web.csproj"
+
+WORKDIR "/src/BFF.Web"
 COPY . .
 WORKDIR "/src/BFF.Web"
 RUN dotnet build "BFF.Web.csproj" -c Release -o /app/build

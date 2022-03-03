@@ -3,11 +3,11 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/Countries/GetAll",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7003
+          "Host": "locationapi-service",
+          "Port": 8080
         }
       ],
 
