@@ -9,4 +9,4 @@ spec:
   ports:
   - port: 8080
     targetPort: 80
-  #type: LoadBalancer # use LoadBalancer if you want to accesss out side of pod
+  type: LoadBalancer # use LoadBalancer if you want to accesss out side of pod
