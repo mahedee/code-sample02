@@ -5,10 +5,14 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+ENV ASPNETCORE_URLS=http://*:80;
+ENV ASPNETCORE_ENVIRONMENT=Development
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Catalog.API/Catalog.API.csproj", "Catalog.API/"]
+COPY ["/Catalog.API.csproj", "Catalog.API/"]
 RUN dotnet restore "Catalog.API/Catalog.API.csproj"
+WORKDIR "/src/Catalog.API"
 COPY . .
 WORKDIR "/src/Catalog.API"
 RUN dotnet build "Catalog.API.csproj" -c Release -o /app/build
