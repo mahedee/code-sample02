@@ -2,7 +2,7 @@
   //---Location Service: Start ----------//
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/Countries/GetAll",
+      "DownstreamPathTemplate": "/{url}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -11,103 +11,26 @@
         }
       ],
 
-      // Configure caching
-      // the cache will expire after 30 seconds.
-      "FileCacheOptions": {
-        "TtlSeconds": 30,
-        "Region": "countriescaching"
-      },
-
-      "UpstreamPathTemplate": "/Countries/GetAll",
-      "UpstreamHttpMethod": [ "Get" ],
-
-      // Enable case sensative Routing/URL
-      "RouteIsCaseSensitive": true
+      "UpstreamPathTemplate": "/Location/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     },
 
     //---Location Service: End ----------//
 
-    // Catalog Services
-    //------------------//
+    //---Catalog service : Start ------------//
+
     {
-      "DownstreamPathTemplate": "/api/Products/GetAll",
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7282
+          "Host": "catalogapi-service",
+          "Port": 8080
         }
       ],
 
-      // Implement rate limiting
-      // maximum admitted 1 per 5s.
-      "RateLimitOptions": {
-        "ClientWhitelist": [
-          // This is an array used to specify the clients that should not be affected by the rate-limiting
-        ],
-        "EnableRateLimiting": true,
-        "Period": "5s",
-        "PeriodTimespan": 1,
-        "Limit": 1
-      },
-
-      "UpstreamPathTemplate": "/Products/GetAll",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/Products/Add",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7282
-        }
-      ],
-
-      "UpstreamPathTemplate": "/Products/Add",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-
-    {
-      "DownstreamPathTemplate": "/api/Products/{id}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7282
-        }
-      ],
-
-      "UpstreamPathTemplate": "/Products/{id}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-
-    {
-      "DownstreamPathTemplate": "/api/Products/Edit/{id}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7282
-        }
-      ],
-
-      "UpstreamPathTemplate": "/Products/Edit/{id}",
-      "UpstreamHttpMethod": [ "Put" ]
-    },
-
-    {
-      "DownstreamPathTemplate": "/api/Products/Delete/{id}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7282
-        }
-      ],
-
-      "UpstreamPathTemplate": "/Products/Delete/{id}",
-      "UpstreamHttpMethod": [ "Delete" ]
+      "UpstreamPathTemplate": "/Catalog/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     },
 
     //---Catalog service : End ------------//
@@ -116,15 +39,15 @@
     // Catch All Routing
     {
       "DownstreamPathTemplate": "/{url}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7126
+          "Host": "orderingapi-service",
+          "Port": 8080
         }
       ],
 
-      "UpstreamPathTemplate": "/{url}",
+      "UpstreamPathTemplate": "/Ordering/{url}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     }
 
