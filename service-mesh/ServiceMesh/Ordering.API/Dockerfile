@@ -5,10 +5,14 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+ENV ASPNETCORE_URLS=http://*:80;
+ENV ASPNETCORE_ENVIRONMENT=Development
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Ordering.API/Ordering.API.csproj", "Ordering.API/"]
+COPY ["/Ordering.API.csproj", "Ordering.API/"]
 RUN dotnet restore "Ordering.API/Ordering.API.csproj"
+WORKDIR "/src/Ordering.API"
 COPY . .
 WORKDIR "/src/Ordering.API"
 RUN dotnet build "Ordering.API.csproj" -c Release -o /app/build

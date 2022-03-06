@@ -1,0 +1,23 @@
+# Configure Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalogapi-deployment
+spec:
+  selector:
+    matchLabels:
+      app: catalogapi-pod
+  template:
+    metadata:
+      labels:
+        app: catalogapi-pod
+    spec:
+      containers:
+      - name: catalogapi-container
+        image: mahedee/catalog:1.0.1
+        resources:
+          limits:
+            memory: "128Mi" # 128 mili bytes
+            cpu: "500m"     # 500 mili cpu
+        ports:
+        - containerPort: 80
