@@ -6,6 +6,6 @@ spec:
   selector:
     app: orderingapi-pod
   ports:
-  - port: 8080
+  - port: 8003
     targetPort: 80
   type: LoadBalancer

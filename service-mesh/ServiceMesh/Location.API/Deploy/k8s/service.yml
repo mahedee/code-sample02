@@ -6,6 +6,6 @@ spec:
   selector:
     app: locationapi-pod
   ports:
-  - port: 8080
+  - port: 8002
     targetPort: 80
   #type: LoadBalancer
