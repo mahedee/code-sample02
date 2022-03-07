@@ -7,6 +7,6 @@ spec:
   selector:
     app: catalogapi-pod
   ports:
-  - port: 8080
+  - port: 8001
     targetPort: 80
   type: LoadBalancer # use LoadBalancer if you want to accesss out side of pod

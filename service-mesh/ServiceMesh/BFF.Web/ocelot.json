@@ -1,31 +1,14 @@
 {
-  //---Location Service: Start ----------//
   "Routes": [
-    {
-      "DownstreamPathTemplate": "/{url}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "locationapi-service",
-          "Port": 8080
-        }
-      ],
-
-      "UpstreamPathTemplate": "/Location/{url}",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-    },
-
-    //---Location Service: End ----------//
 
     //---Catalog service : Start ------------//
-
     {
       "DownstreamPathTemplate": "/{url}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "catalogapi-service",
-          "Port": 8080
+          "Port": 8001
         }
       ],
 
@@ -35,6 +18,24 @@
 
     //---Catalog service : End ------------//
 
+    //---Location Service: Start ----------//
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "locationapi-service",
+          "Port": 8002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Location/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+
+    //---Location Service: End ----------//
+
+
     //---Ordering Service: Start ----------//
     // Catch All Routing
     {
@@ -43,7 +44,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "orderingapi-service",
-          "Port": 8080
+          "Port": 8003
         }
       ],
 
