@@ -18,7 +18,7 @@
         {
           "Name": "Location.API",
           "Version": "1.0",
-          "Url": "http://localhost:5205/customer/swagger/v1/swagger.json"
+          "Url": "http://localhost:5205/location/swagger/v1/swagger.json"
         }
       ]
     }

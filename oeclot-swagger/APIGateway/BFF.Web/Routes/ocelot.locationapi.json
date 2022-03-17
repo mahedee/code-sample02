@@ -17,6 +17,12 @@
         "PUT",
         "DELETE"
       ]
+
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 3000
+      //}
     }
   ]
 }
