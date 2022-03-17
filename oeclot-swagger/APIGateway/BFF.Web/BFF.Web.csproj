@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Ocelot" Version="18.0.0" />
+		<PackageReference Include="Ocelot.Provider.Polly" Version="18.0.0" />
 		<PackageReference Include="Ocelot.Cache.CacheManager" Version="18.0.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 		<PackageReference Include="MMLib.SwaggerForOcelot" Version="4.8.0" />
