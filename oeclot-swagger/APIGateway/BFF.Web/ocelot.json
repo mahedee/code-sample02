@@ -1,0 +1,64 @@
+{
+  //---Location Service: Start ----------//
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Countries/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+
+    //---Location Service: End ----------//
+
+    // Catalog Services
+    //------------------//
+    
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7282
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Products/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+
+    //---Catalog service : End ------------//
+
+    //---Ordering Service: Start ----------//
+    // Catch All Routing
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7126
+        }
+      ],
+
+      "UpstreamPathTemplate": "/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    }
+
+  ],
+
+  //---Ordering Service: End ----------//
+
+  "GlobalConfiguration": {
+    // enable request correleation id to capture request information
+    "RequestIdKey": "X-Correlation-Id",
+    "BaseUrl": "https://localhost:7205/"
+  }
+}
