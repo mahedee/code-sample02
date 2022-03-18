@@ -2,15 +2,15 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/{everything}",
-      "DownstreamScheme": "http",
-      "SwaggerKey": "location",
+      "DownstreamScheme": "https",
+      "SwaggerKey": "ordering",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": "5003"
+          "Port": "7126"
         }
       ],
-      "UpstreamPathTemplate": "/location/{everything}",
+      "UpstreamPathTemplate": "/ordering/{everything}",
       "UpstreamHttpMethod": [
         "GET",
         "POST",
