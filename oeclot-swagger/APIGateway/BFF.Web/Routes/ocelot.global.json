@@ -1,10 +1,5 @@
 {
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost",
-    "ServiceDiscoveryProvider": {
-
-      "Host": "localhost",
-      "Port": 5205
-    }
+    "BaseUrl": "http://localhost:5205"
   }
 }
