@@ -42,6 +42,15 @@ namespace HRM.API.Db
                         FathersName = "Md. Mahedee Hasan",
                         MothersName = "Khaleda Islam",
                         DateOfBirth = new DateTime(2017, 09, 17, 00, 00, 00)
+                    },
+
+                    new Employee
+                    {
+                        Name = "Humaira Hasan",
+                        Designation = "Jr. Software Engineer",
+                        FathersName = "Md. Mahedee Hasan",
+                        MothersName = "Khaleda Islam",
+                        DateOfBirth = new DateTime(2021, 03, 17, 00, 00, 00)
                     }
                 );
                 context.SaveChanges();
