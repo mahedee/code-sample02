@@ -2,12 +2,12 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "SwaggerKey": "location",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": "7003"
+          "Host": "locationapi-service",
+          "Port": "8002"
         }
       ],
       "UpstreamPathTemplate": "/location/{everything}",

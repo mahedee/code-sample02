@@ -2,12 +2,12 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "SwaggerKey": "catalog",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": "7282"
+          "Host": "catalogapi-service",
+          "Port": "8001"
         }
       ],
       "UpstreamPathTemplate": "/catalog/{everything}",
