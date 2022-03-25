@@ -1,0 +1,66 @@
+{
+  "Routes": [
+
+    //---Catalog service : Start ------------//
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalogapi-service",
+          "Port": 8001
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Catalog/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+
+    //---Catalog service : End ------------//
+
+    //---Location Service: Start ----------//
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "locationapi-service",
+          "Port": 8002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Location/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+
+    //---Location Service: End ----------//
+
+
+    //---Ordering Service: Start ----------//
+    // Catch All Routing
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "orderingapi-service",
+          "Port": 8003
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Ordering/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    }
+
+  ],
+
+  //---Ordering Service: End ----------//
+
+  //https://localhost:7282/api/Products/GetAll
+
+  "GlobalConfiguration": {
+    // enable request correleation id to capture request information
+    "RequestIdKey": "X-Correlation-Id",
+    "BaseUrl": "https://localhost:7205/"
+  }
+}
