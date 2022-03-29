@@ -19,7 +19,7 @@ namespace HRM.API.Db
                 context.Employees.AddRange(
                     new Employee
                     {
-                        Name = "Md. Mahedee Hasan",
+                        Name = "Md. Mahedee Hasan - edited",
                         Designation = "Head of Software Development",
                         FathersName = "Yeasin Bhuiyan",
                         MothersName = "Moriom Begum",
