@@ -1,0 +1,37 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "https",
+      "SwaggerKey": "catalog-api",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7282"
+        }
+      ],
+      "UpstreamPathTemplate": "/catalog/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ],
+
+      "QoSOptions": {
+        // It means that the circuit breaker will break after a certain number of exceptions occur. 
+        // For example: 2
+        "ExceptionsAllowedBeforeBreaking": 2,
+
+        //This value specifies how long the circuit breaker will stay open after it is tripped. The unit of this value is milliseconds. 
+        // For example: 5000 means 5 seconds
+        "DurationOfBreak": 5000,
+
+        //This value specifies that a request will automatically be timed out if it takes more than this value. The unit of this value is milliseconds as well. 
+        //For example: 3000 means 3 seconds.
+        "TimeoutValue": 3000
+      }
+
+    }
+  ]
+}

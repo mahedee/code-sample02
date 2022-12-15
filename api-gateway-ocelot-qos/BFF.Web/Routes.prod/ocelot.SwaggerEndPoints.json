@@ -1,0 +1,51 @@
+{
+  "SwaggerEndPoints": [
+    {
+      "Key": "bffweb",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "BFF.Web",
+          "Version": "1.0",
+          "Url": "https://localhost:7205/swagger/v1/swagger.json"
+        }
+      ]
+    },
+
+    {
+      "Key": "catalog-api",
+      "TransformByOcelotConfig": true,
+      "Config": [
+        {
+          "Name": "Catalog.API",
+          "Version": "1.0",
+          "Url": "https://localhost:7205/catalog/swagger/v1/swagger.json"
+        }
+      ]
+    }
+
+    //{
+    //  "Key": "location",
+    //  "TransformByOcelotConfig": true,
+    //  "Config": [
+    //    {
+    //      "Name": "Location.API",
+    //      "Version": "1.0",
+    //      "Url": "https://localhost:7205/location/swagger/v1/swagger.json"
+    //    }
+    //  ]
+    //},
+
+    //{
+    //  "Key": "ordering",
+    //  "TransformByOcelotConfig": true,
+    //  "Config": [
+    //    {
+    //      "Name": "Ordering.API",
+    //      "Version": "1.0",
+    //      "Url": "https://localhost:7205/ordering/swagger/v1/swagger.json"
+    //    }
+    //  ]
+    //}
+  ]
+}
