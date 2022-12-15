@@ -1,0 +1,29 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "https",
+      "SwaggerKey": "catalog-api",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7282"
+        }
+      ],
+      "UpstreamPathTemplate": "/catalog/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ],
+
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 3000
+      }
+
+    }
+  ]
+}
