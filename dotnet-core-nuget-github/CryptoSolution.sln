@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoTest", "CryptoTest\CryptoTest.csproj", "{23B28122-1126-41CE-A815-0201C749B3BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoEngine", "CryptoEngine\CryptoEngine.csproj", "{6BD7B98B-6F36-4C06-A363-A77FDCA8AF2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23B28122-1126-41CE-A815-0201C749B3BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23B28122-1126-41CE-A815-0201C749B3BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23B28122-1126-41CE-A815-0201C749B3BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23B28122-1126-41CE-A815-0201C749B3BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BD7B98B-6F36-4C06-A363-A77FDCA8AF2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BD7B98B-6F36-4C06-A363-A77FDCA8AF2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BD7B98B-6F36-4C06-A363-A77FDCA8AF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BD7B98B-6F36-4C06-A363-A77FDCA8AF2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A4EAA52-ECEB-402D-884A-798E793A3264}
+	EndGlobalSection
+EndGlobal

@@ -1,10 +1,5 @@
 ﻿using Domain.Entities.Common;
 using Domain.Events.CatalogItem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
@@ -118,6 +113,7 @@ namespace Domain.Entities
 
             Id = catalogItemCreated.AggregateId; // Must have ID
             Name = catalogItemCreated.Name;
+            Description= catalogItemCreated.Description;
             Price = catalogItemCreated.Price;
             AvailableStock = catalogItemCreated.AvailableStock;
             RestockThreshold = catalogItemCreated.RestockThreshold;
@@ -129,6 +125,7 @@ namespace Domain.Entities
         private void OnCatalogItemUpdated(CatalogItemUpdated catalogItemUpdated)
         {
             Name = catalogItemUpdated.Name;
+            Description = catalogItemUpdated.Description;
             Price = catalogItemUpdated.Price;
             AvailableStock = catalogItemUpdated.AvailableStock;
             RestockThreshold = catalogItemUpdated.RestockThreshold;

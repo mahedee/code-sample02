@@ -32,7 +32,7 @@ namespace Infrastructure
             });
 
             // Add event repository in pipeline
-            services.AddScoped<ICatalogItemAggregateRepository_old, CatalogItemAggregateRepository_old>();
+            //services.AddScoped<ICatalogItemAggregateRepository_old, CatalogItemAggregateRepository_old>();
             services.AddScoped<ICatalogItemRepository, CatalogItemRepository>();
             services.AddEventsRepository<CatalogItem, Guid>();
 
