@@ -2,7 +2,6 @@
 using Application.Common.DTOs;
 using Application.Queries.CatalogItems;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers
