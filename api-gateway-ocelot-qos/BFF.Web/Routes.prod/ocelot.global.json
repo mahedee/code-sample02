@@ -1,0 +1,10 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7205"
+    //"ServiceDiscoveryProvider": {
+
+    //  "Host": "localhost",
+    //  "Port": 7205
+    //}
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ordering",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "orderingapi-service",
+          "Port": "8003"
+        }
+      ],
+      "UpstreamPathTemplate": "/ordering/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ]
+    }
+  ]
+}
