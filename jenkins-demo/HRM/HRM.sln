@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRM.API", "HRM.API\HRM.API.csproj", "{FE2FE614-D0DD-4744-8915-77E0919D5018}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRM.Test", "HRM.Test\HRM.Test.csproj", "{6CEF447F-4F9B-409D-8B5D-519F74DFC9FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE2FE614-D0DD-4744-8915-77E0919D5018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE2FE614-D0DD-4744-8915-77E0919D5018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE2FE614-D0DD-4744-8915-77E0919D5018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE2FE614-D0DD-4744-8915-77E0919D5018}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CEF447F-4F9B-409D-8B5D-519F74DFC9FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CEF447F-4F9B-409D-8B5D-519F74DFC9FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CEF447F-4F9B-409D-8B5D-519F74DFC9FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CEF447F-4F9B-409D-8B5D-519F74DFC9FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3EF3C54-EE9D-4698-9399-7E1F80CD71E4}
+	EndGlobalSection
+EndGlobal

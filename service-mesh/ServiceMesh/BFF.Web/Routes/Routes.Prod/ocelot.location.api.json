@@ -1,0 +1,22 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "location",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "locationapi-service",
+          "Port": "8002"
+        }
+      ],
+      "UpstreamPathTemplate": "/location/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ]
+    }
+  ]
+}
