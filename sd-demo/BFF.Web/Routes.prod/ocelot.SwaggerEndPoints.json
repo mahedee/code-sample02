@@ -1,0 +1,26 @@
+{
+  "SwaggerEndPoints": [
+    {
+      "Key": "bff.web",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "BFF.Web",
+          "Version": "1.0",
+          "Url": "http://localhost:8001/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "location",
+      "TransformByOcelotConfig": true,
+      "Config": [
+        {
+          "Name": "Location.API",
+          "Version": "1.0",
+          "Url": "http://localhost:8001/location/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}
