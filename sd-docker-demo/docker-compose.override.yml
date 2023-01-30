@@ -1,0 +1,65 @@
+version: '3.4'
+
+services:
+  eureka-server:
+    environment:
+      - EUREKA_SERVER_ENABLE_SELF_PRESERVATION=false
+    ports:
+      - 8761:8761
+
+
+
+  locationa.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      #- ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_URLS=http://+:80
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    ports:
+      - "9001:80"
+      #- "4001:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    depends_on:
+      - eureka-server
+
+  locationb.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    ports:
+      - "9002:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    depends_on:
+      - eureka-server
+
+
+  locationc.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    ports:
+      - "9003:80"
+    depends_on:
+      - eureka-server
+
+  bff.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    ports:
+      - "8001:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    depends_on:
+      - eureka-server
+      - locationa.api
+      - locationb.api
+      - locationc.api

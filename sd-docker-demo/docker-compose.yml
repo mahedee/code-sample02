@@ -1,0 +1,64 @@
+version: '3.4'
+
+services:
+
+  eureka-server:
+    container_name: eureka-server
+    image: steeltoeoss/eurekaserver:latest
+    restart: on-failure
+    hostname: eureka-server
+    networks:
+      - backend_network
+    #ports:
+    # - "8761:8761"
+
+  locationa.api:
+    container_name: locationa.api
+    image: ${DOCKER_REGISTRY-}locationaapi
+    restart: on-failure
+    hostname: locationa.api
+    build:
+      context: .
+      dockerfile: Locationa.API/Dockerfile
+    networks:
+      - backend_network
+
+  locationb.api:
+    container_name: locationb.api
+    image: ${DOCKER_REGISTRY-}locationbapi
+    restart: on-failure
+    hostname: locationb.api
+    build:
+      context: .
+      dockerfile: LocationB.API/Dockerfile
+    networks:
+      - backend_network
+
+  locationc.api:
+    container_name: locationc.api
+    image: ${DOCKER_REGISTRY-}locationcapi
+    restart: on-failure
+    hostname: locationc.api
+    build:
+      context: .
+      dockerfile: LocationC.API/Dockerfile
+    networks:
+      - backend_network
+
+
+  bff.web:
+    container_name: bff.web
+    image: ${DOCKER_REGISTRY-}bffweb
+    restart: on-failure
+    hostname: bff.web
+    build:
+      context: .
+      dockerfile: BFF.Web/Dockerfile
+    networks:
+      - backend_network
+
+
+networks:
+    backend_network:
+
+

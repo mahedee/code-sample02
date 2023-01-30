@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>9d57f5b8-a132-459e-9b1a-2af6036e46e7</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="MMLib.SwaggerForOcelot" Version="5.2.0" />
+    <PackageReference Include="Ocelot" Version="18.0.0" />
+    <PackageReference Include="Ocelot.Provider.Eureka" Version="18.0.0" />
+    <PackageReference Include="Ocelot.Provider.Kubernetes" Version="18.0.0" />
+    <PackageReference Include="Ocelot.Provider.Polly" Version="18.0.0" />
+    <PackageReference Include="Steeltoe.Discovery.Eureka" Version="3.2.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Routes.prod\ocelot.SwaggerEndPoints.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
