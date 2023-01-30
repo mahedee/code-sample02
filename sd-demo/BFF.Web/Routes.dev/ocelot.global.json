@@ -1,0 +1,13 @@
+{
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "DownstreamScheme": "http",
+    "UseServiceDiscovery": true,
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8001,
+      //Type can be Consul, Eureka
+      "Type": "Eureka"
+    }
+  }
+}

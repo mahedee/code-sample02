@@ -1,0 +1,23 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "location",
+      "UseServiceDiscovery": true,
+      "ServiceName": "SERVICE.LOCATIONAPI",
+      "UpstreamPathTemplate": "/location/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ],
+
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+
+    }
+  ]
+}
