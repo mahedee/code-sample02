@@ -1,0 +1,13 @@
+{
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "DownstreamScheme": "http",
+    "UseServiceDiscovery": true,
+    "ServiceDiscoveryProvider": {
+      "Host": "bff.web",
+      "Port": 80,
+      //Type can be Consul, Eureka
+      "Type": "Eureka" 
+    }
+  }
+}

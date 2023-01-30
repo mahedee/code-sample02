@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BFF.Web", "BFF.Web\BFF.Web.csproj", "{895837F9-B597-4BCA-93BF-742F69F787B7}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B2834566-723C-4299-9245-C7225546DC9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "readme", "readme", "{6703AF55-B4AF-4D8C-A049-9CC19F4A1A87}"
+	ProjectSection(SolutionItems) = preProject
+		readme.txt = readme.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "references", "references", "{835BE4FF-5403-4DE3-B37E-9C422FBA2483}"
+	ProjectSection(SolutionItems) = preProject
+		..\readme\references\Configuration of Service Discovery with Ocelot Gateway.docx = ..\readme\references\Configuration of Service Discovery with Ocelot Gateway.docx
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationB.API", "LocationB.API\LocationB.API.csproj", "{8DF21CF8-82CE-494F-9C50-3332618988FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationC.API", "LocationC.API\LocationC.API.csproj", "{039DD5D6-8557-4DE1-B4AB-B51D7D225B72}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationA.API", "LocationA.API\LocationA.API.csproj", "{4009C1AE-526B-49D1-BD18-46C267D10DB7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{895837F9-B597-4BCA-93BF-742F69F787B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{895837F9-B597-4BCA-93BF-742F69F787B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{895837F9-B597-4BCA-93BF-742F69F787B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{895837F9-B597-4BCA-93BF-742F69F787B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2834566-723C-4299-9245-C7225546DC9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2834566-723C-4299-9245-C7225546DC9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2834566-723C-4299-9245-C7225546DC9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2834566-723C-4299-9245-C7225546DC9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DF21CF8-82CE-494F-9C50-3332618988FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DF21CF8-82CE-494F-9C50-3332618988FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DF21CF8-82CE-494F-9C50-3332618988FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DF21CF8-82CE-494F-9C50-3332618988FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{039DD5D6-8557-4DE1-B4AB-B51D7D225B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{039DD5D6-8557-4DE1-B4AB-B51D7D225B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{039DD5D6-8557-4DE1-B4AB-B51D7D225B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{039DD5D6-8557-4DE1-B4AB-B51D7D225B72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4009C1AE-526B-49D1-BD18-46C267D10DB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4009C1AE-526B-49D1-BD18-46C267D10DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4009C1AE-526B-49D1-BD18-46C267D10DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4009C1AE-526B-49D1-BD18-46C267D10DB7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{835BE4FF-5403-4DE3-B37E-9C422FBA2483} = {6703AF55-B4AF-4D8C-A049-9CC19F4A1A87}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D77CB75-0350-4885-95E7-C553CC0EF58F}
+	EndGlobalSection
+EndGlobal
