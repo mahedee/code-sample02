@@ -1,0 +1,64 @@
+{
+  "AdminUserConfiguration": {
+
+    // For Admin database
+    "Roles": [
+      {
+        "Name": "Super Admin",
+        "RoleDetails": "This is Super admin role"
+      },
+      {
+        "Name": "Admin",
+        "RoleDetails": "This is Admin role"
+      },
+      {
+        "Name": "User",
+        "RoleDetails": "This is User role"
+      }
+    ],
+
+    "Users": [
+      {
+        "UserName": "mahedee",
+        "Email": "mahedee.hasan@gmail.com",
+        "Password": "Pass123$",
+        "Roles": "Super Admin",
+        "UserClaims": {
+          "UserName": "mahedee",
+          "Email": "mahedee.hasan@gmail.com"
+        }
+      }
+    ]
+  },
+
+  // For tenant database
+  "UserConfiguration": {
+    "Roles": [
+      {
+        "Name": "Super Admin",
+        "RoleDetails": "This is Super admin role"
+      },
+      {
+        "Name": "Admin",
+        "RoleDetails": "This is Admin role"
+      },
+      {
+        "Name": "User",
+        "RoleDetails": "This is User role"
+      }
+    ],
+
+    "Users": [
+      {
+        "UserName": "arisha",
+        "Email": "arisha@gmail.com",
+        "Password": "Pass123$",
+        "Roles": "Admin",
+        "UserClaims": {
+          "UserName": "arisha",
+          "Email": "arisha@gmail.com"
+        }
+      }
+    ]
+  }
+}

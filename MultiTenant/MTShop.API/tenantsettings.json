@@ -1,0 +1,35 @@
+{
+  "TenantSettings": {
+    "Defaults": {
+      "DBProvider": "mssql-server",
+      //"ConnectionString": "Server=(LocalDB)\\MSSQLLocalDB;Initial Catalog=SharedTenantDb;Trusted_Connection=True;"
+      "ConnectionString": "Server=localhost;Initial Catalog=MTShop.SharedTenantDb;User ID=sa;Password=oLdViCtOrY2008;"
+    },
+    "Tenants": [
+      {
+        "Name": "Shopno",
+        "TID": "shopno",
+        //"ConnectionString": "Server=(LocalDB)\\MSSQLLocalDB;Initial Catalog=BangladeshTenantDb;Trusted_Connection=True;"
+        "ConnectionString": "Server=localhost;Initial Catalog=MTShop.ShopnoDB;User ID=sa;Password=oLdViCtOrY2008;"
+      }
+    ]
+  },
+
+  // Array of Tenants as seed data . Related to Tenants above section
+  // Must have same information as previous seed Tenants 
+  // If you have 2 seed you have to write corresponding seed below 
+
+  "TenantsSeed": [
+    {
+      "TenantName": "Shopno",
+      "TenantKey": "shopno",
+      "DatabaseServer": "localhost",
+      "UserName": "sa",
+      "Password": "oLdViCtOrY2008",
+      "ConnectionString": "Server=localhost;Initial Catalog=MTShop.ShopnoDB;User ID=sa;Password=oLdViCtOrY2008;",
+      "dbProvider": "mssql-server",
+      "CreatedBy": "mahedee",
+      "ModifiedBy": "mahedee"
+    }
+  ]
+}
