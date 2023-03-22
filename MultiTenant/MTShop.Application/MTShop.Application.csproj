@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="FluentValidation" Version="10.3.3" />
+	  <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.3" />
+	  <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.24.0" />
+	  <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.1" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.24.0" />
+    <ProjectReference Include="..\MTShop.Core\MTShop.Core.csproj" />
+  </ItemGroup>
+
+</Project>
