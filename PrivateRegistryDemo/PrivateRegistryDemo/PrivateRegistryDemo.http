@@ -1,0 +1,6 @@
+@PrivateRegistryDemo_HostAddress = http://localhost:5133
+
+GET {{PrivateRegistryDemo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
