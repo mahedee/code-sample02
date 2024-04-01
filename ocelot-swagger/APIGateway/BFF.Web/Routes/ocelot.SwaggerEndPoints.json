@@ -40,7 +40,7 @@
         {
           "Name": "Ordering.API",
           "Version": "1.0",
-          "Url": "http://localhost:5205/catalog/swagger/v1/swagger.json"
+          "Url": "http://localhost:5205/ordering/swagger/v1/swagger.json"
         }
       ]
     }
