@@ -1,4 +1,5 @@
 {
+  //To prevent errors with the latest version of Ocelot, move SwaggerEndpoints to appsettings.json
   "SwaggerEndPoints": [
     {
       "Key": "bffweb",
