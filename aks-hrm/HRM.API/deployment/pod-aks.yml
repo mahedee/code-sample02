@@ -1,0 +1,17 @@
+﻿apiVersion: v1
+kind: Pod # Pod is the smallest deployable unit in Kubernetes and it represents a single instance of a running process in your cluster.
+metadata: # Metadata section provides information about the Pod
+  name: hrm-pod # Name of the Pod. Name must be unique within the namespace.
+  labels:       # Labels are key/value pairs that are attached to objects, such as pods. Labels are intended to be used to specify identifying attributes of objects that are meaningful and relevant to users.
+    app: hrm-api
+
+# Specification for the Pod
+spec:
+  containers: # List of containers within the Pod
+    - name: hrm-ctr
+      image: mh17acr.azurecr.io/hrm:latest 
+      ports:
+        - containerPort: 8080 # Port that the container will expose
+      env: # List of environment variables to set in the container
+        - name: ConnectionStrings__DefaultConnection # Name of the environment variable. Here __ is used to represent the hierarchy of the connection string. It means ConnectionStrings:DefaultConnection
+          value: "Server=mahedeesqlserver.database.windows.net;Database=HRMDB;User Id=mahedee;Password=mypass@123;MultipleActiveResultSets=true"
