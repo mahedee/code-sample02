@@ -1,0 +1,29 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hrm-api
+  name: hrm-service
+spec:
+  type: LoadBalancer
+  ports:
+    # First port configuration
+    - port: 8011 # Port that the service will expose
+      protocol: TCP # Protocol that the service will use
+      targetPort: 8080 # Port on the container where traffic will be directed
+      name: http # Name of the port (useful for service discovery)
+      nodePort: 30376 # Specific port on the cluster nodes to expose (used with NodePort/LoadBalancer services)
+    # Second port configuration
+    - port: 8081 # Port that the service will expose
+      protocol: TCP # Protocol that the service will use
+      targetPort: 8081 # Port on the container where traffic will be directed
+      name: https # Name of the port (useful for service discovery)
+      nodePort: 30676 # Specific port on the cluster nodes to expose (used with NodePort/LoadBalancer services)
+  # Selector matches Pods with the label "app: hrm-api"
+  selector:
+    app: hrm-api
+status:
+  loadBalancer: {} # Placeholder for LoadBalancer details (IP or DNS name) once provisioned
+
+# Use spaces (2 or 4 spaces) for indentation in YAML files; tabs are not allowed.
+# The YAML specification prohibits the use of tabs, and using spaces ensures consistency and proper parsing.
