@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CacheRefreshAzureFunction", "CacheRefreshAzureFunction\CacheRefreshAzureFunction.csproj", "{B62FF0E4-9F45-4D1B-A87A-AD275A5CE45D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B62FF0E4-9F45-4D1B-A87A-AD275A5CE45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B62FF0E4-9F45-4D1B-A87A-AD275A5CE45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B62FF0E4-9F45-4D1B-A87A-AD275A5CE45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B62FF0E4-9F45-4D1B-A87A-AD275A5CE45D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF90F9E7-2D5D-43D4-B71A-8E8AD402D085}
+	EndGlobalSection
+EndGlobal
