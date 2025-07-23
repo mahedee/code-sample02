@@ -1,0 +1,35 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mahedee</groupId>
+    <artifactId>binary-tree-traversal-app</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Binary Tree Traversal Application</name>
+    <description>A Java application demonstrating various binary tree traversal algorithms.</description>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <!-- Add any required dependencies here -->
+    </dependencies>
+
+    <build>
+        <sourceDirectory>dsa</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
