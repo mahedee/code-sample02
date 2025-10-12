@@ -1,0 +1,11 @@
+@HRM.API_HostAddress = http://localhost:5152
+
+### Departments
+GET {{HRM.API_HostAddress}}/api/departments
+Accept: application/json
+
+### Employees
+GET {{HRM.API_HostAddress}}/api/employees
+Accept: application/json
+
+###

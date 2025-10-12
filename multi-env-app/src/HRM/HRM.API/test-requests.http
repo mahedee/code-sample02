@@ -1,0 +1,128 @@
+### HRM API Test Requests
+
+# Test environment variables
+@baseUrl = http://localhost:5152
+@contentType = application/json
+
+### Get all departments
+GET {{baseUrl}}/api/departments
+Accept: {{contentType}}
+
+### Get active departments only
+GET {{baseUrl}}/api/departments/active
+Accept: {{contentType}}
+
+### Get department by ID
+GET {{baseUrl}}/api/departments/1
+Accept: {{contentType}}
+
+### Create a new department
+POST {{baseUrl}}/api/departments
+Content-Type: {{contentType}}
+
+{
+  "name": "Marketing",
+  "description": "Marketing and Sales Department",
+  "isActive": true
+}
+
+### Update a department (use ID from created department)
+PUT {{baseUrl}}/api/departments/4
+Content-Type: {{contentType}}
+
+{
+  "name": "Marketing & Sales",
+  "description": "Marketing, Sales and Customer Relations Department",
+  "isActive": true
+}
+
+### Delete a department (use ID from created department)
+DELETE {{baseUrl}}/api/departments/4
+
+### Get all employees
+GET {{baseUrl}}/api/employees
+Accept: {{contentType}}
+
+### Get employee by ID
+GET {{baseUrl}}/api/employees/1
+Accept: {{contentType}}
+
+### Create a new employee
+POST {{baseUrl}}/api/employees
+Content-Type: {{contentType}}
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@company.com",
+  "phoneNumber": "+1-555-1234",
+  "hireDate": "2024-01-15T00:00:00",
+  "salary": 75000.00,
+  "departmentId": 2
+}
+
+### Create another employee
+POST {{baseUrl}}/api/employees
+Content-Type: {{contentType}}
+
+{
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "email": "jane.smith@company.com",
+  "phoneNumber": "+1-555-5678",
+  "hireDate": "2024-02-01T00:00:00",
+  "salary": 85000.00,
+  "departmentId": 1
+}
+
+### Update an employee (use ID from created employee)
+PUT {{baseUrl}}/api/employees/1
+Content-Type: {{contentType}}
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@company.com",
+  "phoneNumber": "+1-555-1234",
+  "hireDate": "2024-01-15T00:00:00",
+  "salary": 80000.00,
+  "departmentId": 2
+}
+
+### Get employees by department
+GET {{baseUrl}}/api/employees/department/2
+Accept: {{contentType}}
+
+### Delete an employee (use ID from created employee)
+DELETE {{baseUrl}}/api/employees/1
+
+### Test error cases
+
+### Try to create employee with invalid email
+POST {{baseUrl}}/api/employees
+Content-Type: {{contentType}}
+
+{
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "invalid-email",
+  "hireDate": "2024-01-15T00:00:00",
+  "salary": 50000.00,
+  "departmentId": 1
+}
+
+### Try to create employee with non-existent department
+POST {{baseUrl}}/api/employees
+Content-Type: {{contentType}}
+
+{
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@company.com",
+  "hireDate": "2024-01-15T00:00:00",
+  "salary": 50000.00,
+  "departmentId": 999
+}
+
+### Try to delete department with employees
+DELETE {{baseUrl}}/api/departments/1
