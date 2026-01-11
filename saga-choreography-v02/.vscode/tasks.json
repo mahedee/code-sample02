@@ -1,0 +1,75 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Order.API",
+			"type": "shell",
+			"command": "dotnet",
+			"args": ["run", "--launch-profile", "https"],
+			"options": {
+				"cwd": "${workspaceFolder}/Order.API"
+			},
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": "$msCompile",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "dedicated",
+				"showReuseMessage": true,
+				"clear": false
+			}
+		},
+		{
+			"label": "Run Catalog.API",
+			"type": "shell",
+			"command": "dotnet",
+			"args": ["run", "--launch-profile", "https"],
+			"options": {
+				"cwd": "${workspaceFolder}/Catalog.API"
+			},
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": "$msCompile",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "dedicated",
+				"showReuseMessage": true,
+				"clear": false
+			}
+		},
+		{
+			"label": "Run Payment.API",
+			"type": "shell",
+			"command": "dotnet",
+			"args": ["run", "--launch-profile", "https"],
+			"options": {
+				"cwd": "${workspaceFolder}/Payment.API"
+			},
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": "$msCompile",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "dedicated",
+				"showReuseMessage": true,
+				"clear": false
+			}
+		},
+		{
+			"label": "Run All APIs",
+			"dependsOrder": "parallel",
+			"dependsOn": [
+				"Run Order.API",
+				"Run Catalog.API",
+				"Run Payment.API"
+			],
+			"group": "build"
+		}
+	]
+}
