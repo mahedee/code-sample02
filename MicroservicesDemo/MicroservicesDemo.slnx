@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Services/" />
+  <Folder Name="/src/Services/OrderService/">
+    <Project Path="src/Services/OrderService/OrderService/OrderService.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/ProductService/">
+    <Project Path="src/Services/ProductService/ProductService/ProductService.csproj" />
+  </Folder>
+  <Folder Name="/src/Shared/" />
+  <Folder Name="/src/Shared/EventBus/">
+    <Project Path="src/Shared/EventBus/EventBus/EventBus.csproj" />
+  </Folder>
+</Solution>
